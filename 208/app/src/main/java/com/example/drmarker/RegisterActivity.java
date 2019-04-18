@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 /**
  * Created by littlecurl 2018/6/24
@@ -81,7 +82,9 @@ public class RegisterActivity extends AppCompatActivity{
 
 
                         //将用户名和密码加入到数据库中
-                        Realm mRealm=Realm.getDefaultInstance();
+                        Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()
+                                .name("user_db")
+                                .build());
                         final User user = new User(username,password);
                         mRealm.executeTransaction(new Realm.Transaction() {
                             @Override
