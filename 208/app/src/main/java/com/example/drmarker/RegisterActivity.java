@@ -11,25 +11,28 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+
 import com.example.drmarker.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
+
 /**
  * Created by littlecurl 2018/6/24
  */
 public class RegisterActivity extends AppCompatActivity{
 
     private String realCode;
-    private DBOpenHelper mDBOpenHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        mDBOpenHelper = new DBOpenHelper(this);
+
     }
 
     @BindView(R.id.rl_registeractivity_top)
@@ -76,8 +79,18 @@ public class RegisterActivity extends AppCompatActivity{
                 //注册验证
                 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) ) {
 
+
                         //将用户名和密码加入到数据库中
-                        mDBOpenHelper.add(username, password);
+                        Realm mRealm=Realm.getDefaultInstance();
+                        final User user = new User(username,password);
+                        mRealm.executeTransaction(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                realm.copyToRealm(user);
+                            }
+                        });
+
+
                         Intent intent2 = new Intent(this, MainActivity.class);
                         startActivity(intent2);
                         finish();
