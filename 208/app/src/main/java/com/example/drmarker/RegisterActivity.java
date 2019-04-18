@@ -1,3 +1,5 @@
+
+
 package com.example.drmarker;
 
 import android.content.Intent;
@@ -11,25 +13,29 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+
 import com.example.drmarker.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 /**
  * Created by littlecurl 2018/6/24
  */
 public class RegisterActivity extends AppCompatActivity{
 
     private String realCode;
-    private DBOpenHelper mDBOpenHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        mDBOpenHelper = new DBOpenHelper(this);
+
     }
 
     @BindView(R.id.rl_registeractivity_top)
@@ -44,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity{
     EditText mEtRegisteractivityPassword1;
     @BindView(R.id.et_registeractivity_password2)
     EditText mEtRegisteractivityPassword2;
-//    @BindView(R.id.et_registeractivity_phoneCodes)
+    //    @BindView(R.id.et_registeractivity_phoneCodes)
 //    EditText mEtRegisteractivityPhonecodes;
 //    @BindView(R.id.iv_registeractivity_showCode)
 //    ImageView mIvRegisteractivityShowcode;
@@ -76,12 +82,24 @@ public class RegisterActivity extends AppCompatActivity{
                 //注册验证
                 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) ) {
 
-                        //将用户名和密码加入到数据库中
-                        mDBOpenHelper.add(username, password);
-                        Intent intent2 = new Intent(this, MainActivity.class);
-                        startActivity(intent2);
-                        finish();
-                        Toast.makeText(this,  "验证通过，注册成功", Toast.LENGTH_SHORT).show();
+
+                    //将用户名和密码加入到数据库中
+                    Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()
+                            .name("user_db")
+                            .build());
+                    final User user = new User(username,password);
+                    mRealm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            realm.copyToRealm(user);
+                        }
+                    });
+
+
+                    Intent intent2 = new Intent(this, MainActivity.class);
+                    startActivity(intent2);
+                    finish();
+                    Toast.makeText(this,  "验证通过，注册成功", Toast.LENGTH_SHORT).show();
 
                 }else {
                     Toast.makeText(this, "未完善信息，注册失败", Toast.LENGTH_SHORT).show();
