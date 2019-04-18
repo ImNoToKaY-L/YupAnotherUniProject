@@ -85,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity{
 
                     //将用户名和密码加入到数据库中
                     Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()
-                            .name("user_db")
+                            .name("user_db").schemaVersion(2)
                             .build());
                     final User user = new User(username,password);
                     mRealm.executeTransaction(new Realm.Transaction() {

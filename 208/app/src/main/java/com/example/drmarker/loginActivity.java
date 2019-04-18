@@ -13,6 +13,7 @@ import android.widget.Toast;
 import io.realm.*;
 
 import com.example.drmarker.R;
+import com.example.drmarker.RealmModule.UserModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.annotations.RealmModule;
+
 /**
  * Created by littlecurl 2018/6/24
  */
@@ -31,8 +34,9 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
         userDB = new RealmConfiguration.Builder()
-                .name("user_db")
+                .name("user_db").schemaVersion(2).modules(new UserModule())
                 .build();
 
     }

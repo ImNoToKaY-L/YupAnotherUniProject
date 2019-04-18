@@ -19,6 +19,9 @@ package com.example.drmarker;
 import android.app.Application;
 import android.util.Log;
 
+import com.example.drmarker.RealmModule.StepModule;
+import com.example.drmarker.stepModel.StepModel;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -52,7 +55,7 @@ public class MyApplication extends Application {
         serviceRun=false;
         Realm.init(this);
         RealmConfiguration realmConfig = new RealmConfiguration.Builder()
-                .name("step_db")
+                .name("step_db").schemaVersion(11).modules(new StepModule())
                 .build();
         Log.d("app","app create()");
         Realm.setDefaultConfiguration(realmConfig); // Make this Realm the default

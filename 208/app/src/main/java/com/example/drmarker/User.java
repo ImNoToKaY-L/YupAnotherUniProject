@@ -5,11 +5,11 @@ import java.util.UUID;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmModule;
 
 /**
  * Created by littlecurl 2018/6/24
  */
-
 
 
 public class User extends RealmObject {
@@ -27,6 +27,7 @@ public class User extends RealmObject {
     public User (){
 
     }
+
 
 
 
