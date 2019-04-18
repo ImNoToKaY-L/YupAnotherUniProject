@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 import com.example.drmarker.R;
+import com.example.drmarker.RealmModule.UserModule;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity{
 
                     //将用户名和密码加入到数据库中
                     Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()
-                            .name("user_db").schemaVersion(2)
+                            .name("user_db").schemaVersion(2).modules(new UserModule())
                             .build());
                     final User user = new User(username,password);
                     mRealm.executeTransaction(new Realm.Transaction() {
