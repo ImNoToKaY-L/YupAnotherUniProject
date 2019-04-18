@@ -30,11 +30,15 @@ import butterknife.OnClick;
  */
 public class loginActivity extends AppCompatActivity {
 
+    private RealmConfiguration userDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        userDB = new RealmConfiguration.Builder()
+                .name("user_db")
+                .build();
 
     }
 
@@ -109,7 +113,7 @@ public class loginActivity extends AppCompatActivity {
 
     //This method is to traverse the user list
     public List<User> queryAllUser() {
-        Realm  mRealm=Realm.getDefaultInstance();
+        Realm  mRealm=Realm.getInstance(userDB);
         RealmResults<User> userlist = mRealm.where(User.class).findAll();
         return mRealm.copyFromRealm(userlist);
     }

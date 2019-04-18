@@ -56,5 +56,6 @@ public class MyApplication extends Application {
                 .build();
         Log.d("app","app create()");
         Realm.setDefaultConfiguration(realmConfig); // Make this Realm the default
+
     }
 }

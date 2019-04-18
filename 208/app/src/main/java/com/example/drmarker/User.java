@@ -22,6 +22,9 @@ public class User extends RealmObject {
         //Generate a distinct uuid as user id
         uid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
     }
+    public User (){
+
+    }
 
 
 
