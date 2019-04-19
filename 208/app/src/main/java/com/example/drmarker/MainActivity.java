@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     long numSteps;
     boolean isServiceRun;
     boolean isforeground_model;
+    public static String uid;
     TextView btn;
     TextView about;
     LineChartView lineChart;
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Intent fromAbove = getIntent();
+        uid= fromAbove.getStringExtra("userID");
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 //        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) toolbar.getLayoutParams();
 //        params.setMargins(0,getStatusBarHeight(), 0, 0);
@@ -107,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         Realm realm = Realm.getDefaultInstance();
         StepModel result = realm.where(StepModel.class)
-                .equalTo("date", DateTimeHelper.getToday())
+                .equalTo("date", DateTimeHelper.getToday()).equalTo("uid",uid)
                 .findFirst();
         numSteps = result == null ? 0 : result.getNumSteps();
         bus.post(true);
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             }
             else {
                 StepModel result = realm.where(StepModel.class)
-                        .equalTo("date", d)
+                        .equalTo("date", d).equalTo("uid",uid)
                         .findFirst();
                 if (result != null) {
                     Log.d("eee","r !null  ");
@@ -363,6 +366,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             editor.putBoolean("switch_on", isChecked);
             editor.apply();
             Intent intent = new Intent(this, StepService.class);
+            intent.putExtra("userID",uid);
 
             if (isChecked) {
                 intent.putExtra("isActivity", true);
@@ -378,7 +382,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     bus.unregister(this);
                 stopService(intent);
                 Realm realm = Realm.getDefaultInstance();
-                realm.executeTransaction(new StepTransaction(DateTimeHelper.getToday(), numSteps));
+                realm.executeTransaction(new StepTransaction(DateTimeHelper.getToday(), numSteps,uid));
                 realm.close();
             }
         } else if (buttonView.getId() == R.id.foreground_model) {
@@ -387,6 +391,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             editor.apply();
 
             Intent intent = new Intent(this, StepService.class);
+            intent.putExtra("userID",uid);
             if (isChecked) {
                 editor.putBoolean("switch_on", isChecked);
                 editor.apply();

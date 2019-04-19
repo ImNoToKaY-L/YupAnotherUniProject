@@ -55,7 +55,7 @@ public class MyApplication extends Application {
         serviceRun=false;
         Realm.init(this);
         RealmConfiguration realmConfig = new RealmConfiguration.Builder()
-                .name("step_db").schemaVersion(11).modules(new StepModule())
+                .name("step_db").schemaVersion(11).modules(new StepModule()).deleteRealmIfMigrationNeeded()
                 .build();
         Log.d("app","app create()");
         Realm.setDefaultConfiguration(realmConfig); // Make this Realm the default

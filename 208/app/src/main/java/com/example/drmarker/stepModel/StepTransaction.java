@@ -5,6 +5,7 @@ import android.util.Log;
 import java.util.Date;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 /**
@@ -15,21 +16,28 @@ public class StepTransaction implements Realm.Transaction {
 
     private Date date;
     private long num;
+    private String uid;
 
-    public StepTransaction(Date date, long num) {
+    public StepTransaction(Date date, long num,String uid) {
         this.date = date;
         this.num = num;
+        this.uid = uid;
     }
 
     @Override
     public void execute(Realm realm) {
-        Log.d("realm", "now insert [" + date + " ," + num + "]");
+        Log.d("realm", "now insert [" + date + " ," + num + uid+"]");
 
-        StepModel stepModel =realm.where(StepModel.class).equalTo("date",date).findFirst();
+        StepModel stepModel =realm.where(StepModel.class).equalTo("date",date).equalTo("uid",uid).findFirst();
+        RealmResults<StepModel> people = realm.where(StepModel.class).findAll();
+        for (StepModel s:people){
+            Log.d("DEBUG", s.getUid()+" "+s.getNumSteps()+" "+s.getDate());
+        }
 
         if (stepModel == null)
             stepModel = realm.createObject(StepModel.class);
         stepModel.setDate(date);
         stepModel.setNumSteps(num);
+        stepModel.setUid(uid);
     }
 }

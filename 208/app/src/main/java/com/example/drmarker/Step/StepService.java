@@ -16,6 +16,8 @@ import com.example.drmarker.MainActivity;
 import com.example.drmarker.MyApplication;
 import com.example.drmarker.R;
 
+import lombok.ast.app.Main;
+
 //import cn.ikaze.healthgo.MainActivity;
 //import cn.ikaze.healthgo.MyApplication;
 //import cn.ikaze.healthgo.R;
@@ -28,13 +30,15 @@ public class StepService extends Service {
 
     private StepThread thread;
     private PowerManager.WakeLock mWakeLock;
-
+    private String uid;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        uid = MainActivity.uid;
         Log.d("service", "service create()");
-        thread = new StepThread(this);
+
+        thread = new StepThread(this,uid);
     }
 
     @Override
@@ -43,7 +47,8 @@ public class StepService extends Service {
             Log.d("service", "service start()");
             MyApplication app = (MyApplication) getApplication();
             app.setServiceRun(true);
-
+            uid = intent.getStringExtra("userID");
+            Log.d("IDS:service",uid);
             if (intent.getBooleanExtra("isActivity", false))
                 thread.setActivity(true);
             String s = intent.getStringExtra("restart");

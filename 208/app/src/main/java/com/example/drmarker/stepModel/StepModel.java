@@ -15,6 +15,7 @@ public class StepModel extends RealmObject {
     @Index
     private Date date;
     private long numSteps;
+    private String uid;
 
     public Date getDate() {
         return date;
@@ -31,4 +32,9 @@ public class StepModel extends RealmObject {
     public void setNumSteps(long numSteps) {
         this.numSteps = numSteps;
     }
+
+    public String getUid(){
+        return uid;
+    }
+    public void setUid(String uid){this.uid = uid;}
 }

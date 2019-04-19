@@ -14,6 +14,7 @@ import io.realm.*;
 
 import com.example.drmarker.R;
 import com.example.drmarker.RealmModule.UserModule;
+import com.example.drmarker.stepModel.StepModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class loginActivity extends AppCompatActivity {
         userDB = new RealmConfiguration.Builder()
                 .name("user_db").schemaVersion(2).modules(new UserModule())
                 .build();
+
 
     }
 
@@ -96,7 +98,7 @@ public class loginActivity extends AppCompatActivity {
                     if (match) {
                         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, MainActivity.class);
-                        intent.putExtra("username",user.getName());
+                        intent.putExtra("userID",user.getUid());
                         startActivity(intent);
                         finish();//销毁此Activity
                     }else {
