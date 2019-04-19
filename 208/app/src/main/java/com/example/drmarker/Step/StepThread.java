@@ -86,7 +86,6 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
                 .equalTo("date", today).equalTo("uid",uid)
                 .findFirst();
         Log.d("DEBUG", today+" "+uid);
-        //TODO debug
         lastStpes = result == null ? 0 : result.getNumSteps();
         step(lastStpes);
         realm.close();
