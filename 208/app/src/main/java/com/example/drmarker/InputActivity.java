@@ -15,7 +15,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_input);
         getInfo();
     }
 
@@ -32,7 +32,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.button_send:
                 //Initialize an intent to the receive class
-                Intent intent=new Intent(InputActivity.this,NewActivity.class);
+                Intent intent=new Intent(InputActivity.this, NewActivity.class);
                 //Get the input from text view
                 String height=edit_height.getText().toString().trim();
                 String weight=edit_weight.getText().toString().trim();
