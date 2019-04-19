@@ -5,7 +5,7 @@ import java.util.Date;
 
 import io.realm.RealmObject;
 import io.realm.annotations.Index;
-import io.realm.annotations.RealmModule;
+
 
 /**
  * Created by gojuukaze on 16/8/19.
