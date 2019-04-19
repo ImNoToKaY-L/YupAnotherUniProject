@@ -34,6 +34,8 @@
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".StepActivity"></activity>
+        <activity android:name=".InputActivity" />
+
         <receiver
             android:name=".BootBroadcastReceiver"
             android:enabled="true"
