@@ -1,0 +1,44 @@
+Baked Potato,94,food,true,true,true
+Sweet Potato,90,food,false,true,true
+Carrot Juice,40,drink,true,true,true
+Orange Juice,45,drink,true,true,true
+Tomato Puree,38,drink,true,true,true
+Plain Yogurt,63,drink,true,true,true
+Vegetable Juice,19,drink,true,true,true
+Fruit Yogurt,105,drink,true,true,true
+Beans,115,food,false,true,true
+Chocolate Milk,80,drink,true,true,false
+Banana,89,fruit,true,true,true
+Tangerine Juice,43,drink,true,true,true
+Skim Milk,34,drink,true,true,true
+Avocado,160,fruit,false,true,true
+Cheese,390,food,true,true,true
+Peaches,239,fruit,true,true,true
+Salmon,117,food,false,true,true
+Whole Milk,61,drink,true,true,true
+Mushrooms,29,food,false,true,true
+Tuna,198,food,false,true,true
+Apple,52,fruit,true,true,true
+Blackberry,43,fruit,true,true,true
+Egg,155,food,true,true,false
+Pumpkin,34,food,false,true,true
+Pear,57,fruit,false,true,true
+Orange,90,fruit,false,true,true
+Peanut,599,food,false,true,false
+Lamb,240,food,false,true,true
+Beef Top Sirloin,313,food,false,true,true
+Beef Chuck,272,food,false,true,true
+Pork Bacon,541,food,false,true,true
+Pork,252,food,false,true,true
+Chicken Roasting,223,food,false,true,true
+Chicken Breast,151,food,false,true,true
+Turkey,170,food,false,true,true
+Cake Muffin,120,food,true,true,false
+Pizza With Pepperoni,181,food,false,true,true
+Pizza With Cheese,140,food,false,true,true
+Pizza With Meat And Veggies,184,food,false,true,true
+Pasta,71,food,false,true,true
+Bread,264,food,true,false,true
+Toast,313,food,true,false,true
+Rice,110,food,false,true,true
+Noodles,138,food,false,true,true

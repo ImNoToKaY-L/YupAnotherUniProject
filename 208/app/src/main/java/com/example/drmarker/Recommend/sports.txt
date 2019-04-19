@@ -1,0 +1,10 @@
+Cycling,7.9
+Running,7.9
+Boxing,5.9
+Golf,4.4
+Jumping Rope,9.9
+Roller Skating,6.9
+Swimming,6.9
+Basketball,7.9
+Badminton,4.4
+Walking,3.2
