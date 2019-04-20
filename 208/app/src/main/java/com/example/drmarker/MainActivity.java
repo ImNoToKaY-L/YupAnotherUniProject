@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Intent fromAbove = getIntent();
-        uid= fromAbove.getStringExtra("userID");
+        uid= fromAbove.getStringExtra("uid");
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 //        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) toolbar.getLayoutParams();
 //        params.setMargins(0,getStatusBarHeight(), 0, 0);
@@ -366,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             editor.putBoolean("switch_on", isChecked);
             editor.apply();
             Intent intent = new Intent(this, StepService.class);
-            intent.putExtra("userID",uid);
+            intent.putExtra("uid",uid);
 
             if (isChecked) {
                 intent.putExtra("isActivity", true);
@@ -391,7 +391,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             editor.apply();
 
             Intent intent = new Intent(this, StepService.class);
-            intent.putExtra("userID",uid);
+            intent.putExtra("uid",uid);
             if (isChecked) {
                 editor.putBoolean("switch_on", isChecked);
                 editor.apply();

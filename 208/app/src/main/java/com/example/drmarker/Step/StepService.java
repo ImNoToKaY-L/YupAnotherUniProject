@@ -47,7 +47,7 @@ public class StepService extends Service {
             Log.d("service", "service start()");
             MyApplication app = (MyApplication) getApplication();
             app.setServiceRun(true);
-            uid = intent.getStringExtra("userID");
+            uid = intent.getStringExtra("uid");
             Log.d("IDS:service",uid);
             if (intent.getBooleanExtra("isActivity", false))
                 thread.setActivity(true);
