@@ -1,5 +1,6 @@
 package com.example.drmarker.Step;
 
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -12,9 +13,14 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
+import com.example.drmarker.Event.StepEvent;
 import com.example.drmarker.MainActivity;
 import com.example.drmarker.MyApplication;
 import com.example.drmarker.R;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import lombok.ast.app.Main;
 
@@ -34,6 +40,7 @@ public class StepService extends Service {
 
     @Override
     public void onCreate() {
+        EventBus.getDefault().register(this);
         super.onCreate();
         uid = MainActivity.uid;
         Log.d("service", "service create()");
@@ -80,12 +87,38 @@ public class StepService extends Service {
 
     }
 
-    public void myStartForeground() {
+    @Subscribe(threadMode = ThreadMode.MAIN,priority = 1)
+    public void onStepChanged(StepEvent event){
+        Long steps = event.getStepNum();
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("计步器")
-                        .setContentText("正在运行");
+                        .setContentTitle("Steps:")
+                        .setContentText(steps.toString());
+        Intent notificationIntent = new Intent(this, MainActivity.class);
+        notificationIntent.putExtra("uid",uid);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(MainActivity.class);
+        stackBuilder.addNextIntent(notificationIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        startForeground(1, mBuilder.build());
+        Log.d("notificationManager", "onStepChanged: "+event.getStepNum());
+    }
+
+    public void myStartForeground() {
+
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("Steps:")
+                        .setContentText("running");
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
@@ -98,8 +131,8 @@ public class StepService extends Service {
                 );
         mBuilder.setContentIntent(resultPendingIntent);
 
-
         startForeground(1, mBuilder.build());
+
     }
 
 
@@ -123,6 +156,7 @@ public class StepService extends Service {
             Intent intent = new Intent("cn.ikaze.pedometer.start");
             sendBroadcast(intent);
         }
+        EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
 

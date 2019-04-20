@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
+import com.example.drmarker.Event.StepEvent;
 import com.example.drmarker.stepModel.StepModel;
 import com.example.drmarker.stepModel.StepTransaction;
 import com.example.drmarker.stepModel.SuccessTransaction;
@@ -128,6 +129,8 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
         }
         numStpes += num;
         Log.d("step", "step(num) " + numStpes);
+        EventBus.getDefault().post(new StepEvent(numStpes));
+
         EventBus.getDefault().post(numStpes);
         if (numStpes - lastStpes > 10) {
             lastStpes = numStpes;
@@ -150,6 +153,7 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
                     }
                 }
         );
+
         realm.close();
     }
 
