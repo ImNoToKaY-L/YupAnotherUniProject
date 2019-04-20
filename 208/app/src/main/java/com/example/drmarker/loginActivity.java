@@ -61,10 +61,10 @@ public class loginActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-//            case R.id.StepTest:
-//                startActivity(new Intent(this, StepActivity.class));
-//                finish();
-//                break;
+            case R.id.StepTest:
+                startActivity(new Intent(this, StepActivity.class));
+                finish();
+                break;
             //TODO 返回箭头功能
             case R.id.tv_loginactivity_register:
                 //TODO 注册界面跳转

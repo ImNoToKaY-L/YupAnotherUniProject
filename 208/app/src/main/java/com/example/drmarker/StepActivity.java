@@ -11,9 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.drmarker.Recommend.Food;
+import com.example.drmarker.Recommend.InitDBHandler;
+import com.example.drmarker.Recommend.Sport;
+
+import java.io.InputStream;
 import java.util.List;
 
-public class StepActivity extends AppCompatActivity implements SensorEventListener {
+import io.realm.Realm;
+
+public class StepActivity extends AppCompatActivity {
 
     SensorManager mSensorManager;
     Sensor Counter;
@@ -26,46 +33,19 @@ public class StepActivity extends AppCompatActivity implements SensorEventListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step);
-
-        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        tv = (TextView)findViewById(R.id.tv_step_steps);
-        Counter = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-        Detector = mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
-        if(Counter!=null){
-            stepSensor = 0;
-            mSensorManager.registerListener(this,Counter,SensorManager.SENSOR_DELAY_NORMAL);
-        }else if (Detector!=null){
-            stepSensor = 1;
-            mSensorManager.registerListener(this,Detector,SensorManager.SENSOR_DELAY_NORMAL);
-
-        }else {
-            Log.e("FK","NOSENSOR");
-        }
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        if (stepSensor==0){
-            int tempstep = (int) event.values[0];
-            tv.setText(tempstep);
-        }
-        if(stepSensor == 1){
-            steps++;
-            tv.setText(steps);
-        }
-        if (stepSensor==-1){
-            tv.setText("你妈的没有sensor");
-        }
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        tv = (TextView)findViewById(R.id.tv_step_food);
+        InputStream foodStream = getResources().openRawResource(R.raw.calories);
+        InputStream sportStream = getResources().openRawResource(R.raw.sports);
+        InitDBHandler init = new InitDBHandler(foodStream,sportStream);
+        String testT = Realm.getInstance(init.getFoodDB()).where(Food.class).findFirst().getName();
+        Double testT2 = Realm.getInstance(init.getSportDB()).where(Sport.class).findFirst().getCalories();
+        tv.setText(testT);
+        tv = (TextView)findViewById(R.id.tv_step_sport);
+        tv.setText(testT2.toString());
 
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
 }
+
+
+
+
