@@ -35,6 +35,7 @@ public class NewActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     //Do something
                     Intent intent = new Intent(NewActivity.this, MainActivity.class);
+                    intent.putExtra("uid",getIntent().getStringExtra("uid"));
                     startActivity(intent);
                     finish();
                     return true;

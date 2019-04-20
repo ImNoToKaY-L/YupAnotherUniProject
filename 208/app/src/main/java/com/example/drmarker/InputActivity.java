@@ -45,6 +45,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                 //put the info into the intent and send it
                 intent.putExtra("height",height);
                 intent.putExtra("weight",weight);
+                intent.putExtra("uid",getIntent().getStringExtra("uid"));
                 startActivity(intent);
                 finish();
         }
