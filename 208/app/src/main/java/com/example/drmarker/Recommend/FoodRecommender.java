@@ -10,6 +10,7 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
@@ -19,14 +20,13 @@ import java.util.ArrayList;
  */
 public class FoodRecommender {
     
-    ArrayList<Food> foods = new ArrayList<>(); // arraylist for store the food.
+    private ArrayList<Food> foods = new ArrayList<>(); // arraylist for store the food.
     
-    public FoodRecommender() {
+    public FoodRecommender(InputStream foodStream) {
         try {
             // read.
-            FileInputStream fileInputStream = new FileInputStream("src/calories.txt");
+            InputStream fileInputStream = foodStream;
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-			
             String str = new String();
             while((str = bufferedReader.readLine()) != null) {
                 // each line: name, calories, type, breakfast, lunch, dinner.
@@ -53,5 +53,8 @@ public class FoodRecommender {
             Log.d("food", "FoodRecommender: NumberFormatException");
         }
     }
-    
+
+    public ArrayList<Food> getFoods() {
+        return foods;
+    }
 }
