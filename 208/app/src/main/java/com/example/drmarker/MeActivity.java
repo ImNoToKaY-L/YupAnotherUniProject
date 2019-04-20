@@ -6,25 +6,18 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class NewActivity extends AppCompatActivity {
+public class MeActivity extends AppCompatActivity {
+
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new);
+        setContentView(R.layout.activity_me);
         //Get the intent from the input activity
-        Intent intent=getIntent();
-
-        TextView tv_height=findViewById(R.id.tv_heightvalue);
-        TextView tv_weight=findViewById(R.id.tv_weightvalue);
-        //Show the text
-        tv_height.setText(intent.getStringExtra("height"));
-        tv_weight.setText(intent.getStringExtra("weight"));
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navView.setSelectedItemId(R.id.navigation_monitor);
+        navView.setSelectedItemId(R.id.navigation_me);
 
     }
 
@@ -36,7 +29,7 @@ public class NewActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     //Do something
-                    Intent intent = new Intent(NewActivity.this, MainActivity.class);
+                    Intent intent = new Intent(MeActivity.this, MainActivity.class);
                     intent.putExtra("uid",getIntent().getStringExtra("uid"));
                     startActivity(intent);
                     finish();
@@ -44,11 +37,15 @@ public class NewActivity extends AppCompatActivity {
 
                 case R.id.navigation_monitor:
                     //Do something
+                    Intent intent_monitor=new Intent(MeActivity.this, InputActivity.class);
+                    intent_monitor.putExtra("uid",getIntent().getStringExtra("uid"));
+                    startActivity(intent_monitor);
+                    finish();
                     return true;
 
                 case R.id.navigation_forum:
                     //Do something
-                    Intent intent_forum=new Intent(NewActivity.this, ForumActivity.class);
+                    Intent intent_forum=new Intent(MeActivity.this, ForumActivity.class);
                     intent_forum.putExtra("uid",getIntent().getStringExtra("uid"));
                     startActivity(intent_forum);
                     finish();
@@ -56,10 +53,6 @@ public class NewActivity extends AppCompatActivity {
 
                 case R.id.navigation_me:
                     //Do something
-                    Intent intent_me=new Intent(NewActivity.this, MeActivity.class);
-                    intent_me.putExtra("uid",getIntent().getStringExtra("uid"));
-                    startActivity(intent_me);
-                    finish();
                     return true;
             }
             return false;

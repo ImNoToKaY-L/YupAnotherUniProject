@@ -60,9 +60,9 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     //Do something
-                    Intent intent=new Intent(InputActivity.this, MainActivity.class);
-                    intent.putExtra("uid",getIntent().getStringExtra("uid"));
-                    startActivity(intent);
+                    Intent intent_home=new Intent(InputActivity.this, MainActivity.class);
+                    intent_home.putExtra("uid",getIntent().getStringExtra("uid"));
+                    startActivity(intent_home);
                     finish();
                     return true;
 
@@ -72,10 +72,18 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
                 case R.id.navigation_forum:
                     //Do something
+                    Intent intent_forum=new Intent(InputActivity.this, ForumActivity.class);
+                    intent_forum.putExtra("uid",getIntent().getStringExtra("uid"));
+                    startActivity(intent_forum);
+                    finish();
                     return true;
 
                 case R.id.navigation_me:
                     //Do something
+                    Intent intent_me=new Intent(InputActivity.this, MeActivity.class);
+                    intent_me.putExtra("uid",getIntent().getStringExtra("uid"));
+                    startActivity(intent_me);
+                    finish();
                     return true;
             }
             return false;

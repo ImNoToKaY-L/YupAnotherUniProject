@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MeActivity">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/me_tittle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_tittle"
+                android:backgroundTint="@color/colorLightBlue"
+                android:gravity="center_horizontal"
+                android:text="Me"
+                android:textColor="@color/colorWhite"
+                android:textSize="30dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/colorGrey">
+            <ImageView
+                android:id="@+id/me_picture"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/person_pic"
+                android:layout_marginTop="50dp"/>
+            <TextView
+                android:id="@+id/me_profile"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/me_picture"
+                android:background="@drawable/bg_tittle"
+                android:backgroundTint="@color/colorGrey"
+                android:text="Username:
+ID Number:"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="20dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/me_personalInfo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_tittle"
+                android:backgroundTint="@color/colorGrey"
+                android:gravity="center"
+                android:text="Personal Information"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/me_setting"
+                android:layout_below="@id/me_personalInfo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Setting"
+                android:textSize="25dp"
+                android:textColor="@color/colorLightBlue"
+                android:gravity="center"
+                android:background="@drawable/bg_tittle"
+                android:backgroundTint="@color/colorGrey"
+                android:layout_marginTop="20dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="411dp"
+            android:layout_height="52dp"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:menu="@menu/bottom_nav_menu" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</FrameLayout>

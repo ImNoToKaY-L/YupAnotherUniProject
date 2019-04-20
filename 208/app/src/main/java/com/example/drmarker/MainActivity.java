@@ -133,23 +133,31 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    //Do something
+                    //Do nothing
                     return true;
 
                 case R.id.navigation_monitor:
                     //Do something
-                    Intent intent=new Intent(MainActivity.this, InputActivity.class);
-                    intent.putExtra("uid",uid);
-                    startActivity(intent);
+                    Intent intent_monitor=new Intent(MainActivity.this, InputActivity.class);
+                    intent_monitor.putExtra("uid",uid);
+                    startActivity(intent_monitor);
                     finish();
                     return true;
 
                 case R.id.navigation_forum:
                     //Do something
+                    Intent intent_forum=new Intent(MainActivity.this, ForumActivity.class);
+                    intent_forum.putExtra("uid",getIntent().getStringExtra("uid"));
+                    startActivity(intent_forum);
+                    finish();
                     return true;
 
                 case R.id.navigation_me:
                     //Do something
+                    Intent intent_me=new Intent(MainActivity.this, MeActivity.class);
+                    intent_me.putExtra("uid",uid);
+                    startActivity(intent_me);
+                    finish();
                     return true;
             }
             return false;

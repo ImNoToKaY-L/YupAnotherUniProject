@@ -36,6 +36,8 @@
         <activity android:name=".StepActivity"></activity>
         <activity android:name=".InputActivity" />
         <activity android:name=".NewActivity" />
+        <activity android:name=".MeActivity" />
+        <activity android:name=".ForumActivity" />
 
         <receiver
             android:name=".BootBroadcastReceiver"
