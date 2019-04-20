@@ -59,6 +59,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                 case R.id.navigation_home:
                     //Do something
                     Intent intent=new Intent(InputActivity.this, MainActivity.class);
+                    intent.putExtra("uid",getIntent().getStringExtra("uid"));
                     startActivity(intent);
                     finish();
                     return true;

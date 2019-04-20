@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity{
 
 
                     Intent intent2 = new Intent(this, MainActivity.class);
-                    intent2.putExtra("userID",user.getUid());
+                    intent2.putExtra("uid",user.getUid());
                     startActivity(intent2);
                     finish();
                     Toast.makeText(this,  "验证通过，注册成功", Toast.LENGTH_SHORT).show();
