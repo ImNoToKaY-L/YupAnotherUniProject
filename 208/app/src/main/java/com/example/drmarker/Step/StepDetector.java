@@ -26,7 +26,7 @@ public class StepDetector {
 
     //初始WAIT_MODEL,连续5步后正常计步,
     // 没有连续5步不记步
-    private final long WAIT_STEPS = 4;
+    private final long WAIT_STEPS = 2;
     private final int WAIT_MODEL = 0;
     // ACTIVITY运行中,实时同步步数,不经过校验
     private final int ACTIVITY_MODEL = 1;
