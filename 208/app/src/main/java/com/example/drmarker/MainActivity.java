@@ -7,9 +7,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -37,7 +39,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 
 import io.realm.Realm;
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
@@ -119,8 +120,44 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         drawChart();
 
-
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    //Do something
+                    return true;
+
+                case R.id.navigation_monitor:
+                    //Do something
+                    Intent intent=new Intent(MainActivity.this, InputActivity.class);
+                    intent.putExtra("uid",uid);
+                    startActivity(intent);
+                    finish();
+                    return true;
+
+                case R.id.navigation_forum:
+                    //Do something
+                    return true;
+
+                case R.id.navigation_me:
+                    //Do something
+                    return true;
+            }
+            return false;
+        }
+    };
+
+
+
 
     public void drawChart() {
 
