@@ -3,6 +3,7 @@
     <string name="setting">&#x3434;</string>
 
     <string name="title_home">Home</string>
+    <string name="title_monitor">Monitor</string>
     <string name="title_forum">Forum</string>
     <string name="title_me">Me</string>
 </resources>

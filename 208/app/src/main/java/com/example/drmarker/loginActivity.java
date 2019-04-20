@@ -10,11 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import io.realm.*;
 
-import com.example.drmarker.R;
 import com.example.drmarker.RealmModule.UserModule;
-import com.example.drmarker.stepModel.StepModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +19,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.realm.annotations.RealmModule;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 /**
  * Created by littlecurl 2018/6/24

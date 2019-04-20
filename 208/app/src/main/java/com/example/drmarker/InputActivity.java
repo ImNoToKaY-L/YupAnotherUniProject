@@ -2,7 +2,10 @@ package com.example.drmarker;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,9 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
         getInfo();
+
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     private void getInfo(){
@@ -40,7 +46,37 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                 intent.putExtra("height",height);
                 intent.putExtra("weight",weight);
                 startActivity(intent);
+                finish();
         }
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    //Do something
+                    Intent intent=new Intent(InputActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return true;
+
+                case R.id.navigation_monitor:
+                    //Do something
+                    return true;
+
+                case R.id.navigation_forum:
+                    //Do something
+                    return true;
+
+                case R.id.navigation_me:
+                    //Do something
+                    return true;
+            }
+            return false;
+        }
+    };
 
 }
