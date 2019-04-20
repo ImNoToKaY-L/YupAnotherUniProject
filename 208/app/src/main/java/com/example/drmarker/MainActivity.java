@@ -1,6 +1,7 @@
 package com.example.drmarker;
 
 import android.Manifest;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -133,23 +135,31 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    //Do something
+                    //Do nothing
                     return true;
 
                 case R.id.navigation_monitor:
                     //Do something
-                    Intent intent=new Intent(MainActivity.this, InputActivity.class);
-                    intent.putExtra("uid",uid);
-                    startActivity(intent);
+                    Intent intent_monitor=new Intent(MainActivity.this, InputActivity.class);
+                    intent_monitor.putExtra("uid",uid);
+                    startActivity(intent_monitor);
                     finish();
                     return true;
 
                 case R.id.navigation_forum:
                     //Do something
+                    Intent intent_forum=new Intent(MainActivity.this, ForumActivity.class);
+                    intent_forum.putExtra("uid",getIntent().getStringExtra("uid"));
+                    startActivity(intent_forum);
+                    finish();
                     return true;
 
                 case R.id.navigation_me:
                     //Do something
+                    Intent intent_me=new Intent(MainActivity.this, MeActivity.class);
+                    intent_me.putExtra("uid",uid);
+                    startActivity(intent_me);
+                    finish();
                     return true;
             }
             return false;
@@ -259,6 +269,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void updateSteps(Long num) {
         numSteps = num;
         updateShowSteps();
+
     }
 
     public void updateShowSteps() {
