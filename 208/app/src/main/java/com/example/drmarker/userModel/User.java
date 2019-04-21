@@ -1,6 +1,6 @@
 
 
-package com.example.drmarker;
+package com.example.drmarker.userModel;
 import java.util.UUID;
 
 import io.realm.RealmObject;

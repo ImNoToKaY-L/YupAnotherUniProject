@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.drmarker.RealmModule.UserModule;
+import com.example.drmarker.userModel.User;
 
 import java.util.ArrayList;
 import java.util.List;
