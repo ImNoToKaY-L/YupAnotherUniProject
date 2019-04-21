@@ -1,7 +1,6 @@
 package com.example.drmarker.Step;
 
 import android.content.Context;
-import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -16,7 +15,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Date;
-
 
 import io.realm.Realm;
 import io.realm.RealmAsyncTask;
@@ -140,7 +138,7 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
     {
         Realm realm = Realm.getDefaultInstance();
         realmAsyncTask = realm.executeTransactionAsync(
-                new StepTransaction(date, num,uid),
+                new StepTransaction(date, num, uid),
                 new SuccessTransaction(realmAsyncTask),
                 new Realm.Transaction.OnError() {
                     @Override

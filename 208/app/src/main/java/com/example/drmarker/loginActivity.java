@@ -1,3 +1,4 @@
+
 package com.example.drmarker;
 
 import android.content.Intent;
@@ -29,6 +30,7 @@ import io.realm.RealmResults;
 public class loginActivity extends AppCompatActivity {
 
     private RealmConfiguration userDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
