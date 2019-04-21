@@ -17,14 +17,13 @@ import java.util.ArrayList;
  * @author 12242
  */
 public class SportRecommender {
-
-    private ArrayList<Sport> sports = new ArrayList<>();
     
-    public SportRecommender(InputStream sportStream) {
+    ArrayList<Sport> sports = new ArrayList<>();
+    
+    public SportRecommender(InputStream inputStream) {
         try {
             // read.
-            InputStream fileInputStream = sportStream;
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 			
             String str = new String();
             while((str = bufferedReader.readLine()) != null) {
@@ -38,7 +37,7 @@ public class SportRecommender {
             }
 
             // close.
-            fileInputStream.close();
+            inputStream.close();
             bufferedReader.close();
         } catch (IOException e) {
             e.getStackTrace();

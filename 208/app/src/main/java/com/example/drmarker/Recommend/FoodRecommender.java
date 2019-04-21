@@ -5,13 +5,7 @@
  */
 package com.example.drmarker.Recommend;
 
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -26,7 +20,7 @@ public class FoodRecommender {
     private ArrayList<Food> recommendLunch = new ArrayList<>();
     private ArrayList<Food> recommendDinner = new ArrayList<>();
     
-    public FoodRecommender(InputStream foodStream) {
+    public FoodRecommender(InputStream inputStream) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(foodStream));
 
@@ -52,13 +46,13 @@ public class FoodRecommender {
             bufferedReader.close();
         } catch (IOException e) {
             e.getStackTrace();
-            Log.d("food", "FoodRecommender: IOException");
+            System.out.println("Error for checking file's exist.");
         } catch (NumberFormatException e) {
             e.getStackTrace();
-            Log.d("food", "FoodRecommender: NumberFormatException");
+            System.out.println("Error for raw data format.");
         }
     }
-
+    
     public ArrayList<Food> getFoods() {
         return foods;
     }
