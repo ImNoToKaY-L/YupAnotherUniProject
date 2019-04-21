@@ -6,20 +6,81 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class MeActivity extends AppCompatActivity {
+import com.example.drmarker.RealmModule.UserModule;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
+
+public class MeActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static String uid;
+    private RealmConfiguration userDB;
+    private TextView userInfo;
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_me);
         //Get the intent from the input activity
+        Intent fromAbove = getIntent();
+        uid= fromAbove.getStringExtra("uid");
+        userDB = new RealmConfiguration.Builder()
+                .name("user_db").schemaVersion(2).modules(new UserModule())
+                .build();
+        Realm mRealm=Realm.getInstance(userDB);
+        RealmResults<User> userlist = mRealm.where(User.class).equalTo("uid", uid).findAll();
+        User loginUser = userlist.get(0);
+
+
+        userInfo = (TextView) findViewById(R.id.me_profile);
+        userInfo.setText("Name:" +loginUser.getName());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navView.setSelectedItemId(R.id.navigation_me);
 
+        Button button_editName = findViewById(R.id.me_editName);
+        Button me_editPic = findViewById(R.id.me_editPic);
+        Button me_changePassword = findViewById(R.id.me_changePassword);
+        Button me_about = findViewById(R.id.me_about);
+        Button me_setting = findViewById(R.id.me_setting);
+
+        button_editName.setOnClickListener(this);
+        me_editPic.setOnClickListener(this);
+        me_changePassword.setOnClickListener(this);
+        me_about.setOnClickListener(this);
+        me_setting.setOnClickListener(this);
     }
+
+
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.me_editName:
+                Intent intent_editName=new Intent(MeActivity.this, EditNameActivity.class);
+                intent_editName.putExtra("uid",getIntent().getStringExtra("uid"));
+                startActivity(intent_editName);
+                finish();
+                break;
+            case R.id.me_editPic:
+
+                break;
+            case R.id.me_changePassword:
+
+                break;
+            case R.id.me_about:
+
+                break;
+            case R.id.me_setting:
+
+                break;
+        }
+    }
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

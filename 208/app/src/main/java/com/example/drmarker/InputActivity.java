@@ -28,16 +28,16 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
     private void getInfo(){
         //Get the height and weight
-        edit_height=findViewById(R.id.edit_height);
-        edit_weight=findViewById(R.id.edit_weight);
+        edit_height=findViewById(R.id.et_edit_name);
+        edit_weight=findViewById(R.id.et_edit_name);
         //Initialize the button
-        Button button_send = findViewById(R.id.button_send);
+        Button button_send = findViewById(R.id.bt_edit);
         button_send.setOnClickListener(this);
     }
 
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.button_send:
+            case R.id.bt_edit:
                 //Initialize an intent to the receive class
                 Intent intent=new Intent(InputActivity.this, NewActivity.class);
                 //Get the input from text view

@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_tittle"
+            android:background="@drawable/bg_title"
             android:backgroundTint="@color/colorLightBlue"
             android:gravity="center_horizontal"
             android:text="Forum"

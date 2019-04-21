@@ -18,12 +18,12 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/me_tittle"
+                android:id="@+id/me_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/bg_tittle"
+                android:background="@drawable/bg_title"
                 android:backgroundTint="@color/colorLightBlue"
                 android:gravity="center_horizontal"
                 android:text="Me"
@@ -32,66 +32,136 @@
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginRight="10dp"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="394dp"
+            android:layout_height="131dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@color/colorGrey">
+
             <ImageView
                 android:id="@+id/me_picture"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="120dp"
+                android:layout_height="121dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/person_pic"
-                android:layout_marginTop="50dp"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_wrapHeight="344"
+                tools:layout_conversion_wrapWidth="349" />
+
             <TextView
                 android:id="@+id/me_profile"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="20dp"
-                android:layout_toRightOf="@+id/me_picture"
-                android:background="@drawable/bg_tittle"
+                android:layout_width="226dp"
+                android:layout_height="82dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/bg_title"
                 android:backgroundTint="@color/colorGrey"
-                android:text="Username:
-ID Number:"
+                android:singleLine="false"
+                android:text="Name:"
                 android:textColor="@color/colorLightBlue"
-                android:textSize="20dp"/>
-        </RelativeLayout>
+                android:textSize="36dp"
+                app:layout_constraintLeft_toRightOf="@+id/me_picture"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_wrapHeight="186"
+                tools:layout_conversion_wrapWidth="620" />
 
-        <RelativeLayout
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/relativeLayout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp">
 
-            <TextView
-                android:id="@+id/me_personalInfo"
+
+            <Button
+                android:id="@+id/me_editName"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/bg_tittle"
+                android:background="@drawable/bg_title"
                 android:backgroundTint="@color/colorGrey"
                 android:gravity="center"
-                android:text="Personal Information"
+                android:text="Edit My Name"
                 android:textColor="@color/colorLightBlue"
-                android:textSize="25dp" />
-
-            <TextView
-                android:id="@+id/me_setting"
-                android:layout_below="@id/me_personalInfo"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Setting"
                 android:textSize="25dp"
-                android:textColor="@color/colorLightBlue"
-                android:gravity="center"
-                android:background="@drawable/bg_tittle"
-                android:backgroundTint="@color/colorGrey"
-                android:layout_marginTop="20dp"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
 
-        </RelativeLayout>
+            <Button
+                android:id="@+id/me_editPic"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="@color/colorGrey"
+                android:gravity="center"
+                android:text="Edit My Profile Photo"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/me_editName"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
+
+            <Button
+                android:id="@+id/me_changePassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="@color/colorGrey"
+                android:gravity="center"
+                android:text="Change My Password"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/me_editPic"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
+
+            <Button
+                android:id="@+id/me_setting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="@color/colorGrey"
+                android:gravity="center"
+                android:text="Setting"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/me_changePassword"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
+
+            <Button
+                android:id="@+id/me_about"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="@color/colorGrey"
+                android:gravity="center"
+                android:text="About"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/me_setting"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
+
+
+        </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
 

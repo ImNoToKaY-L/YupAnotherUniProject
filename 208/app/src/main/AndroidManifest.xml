@@ -19,7 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".loginActivity">
+        <activity android:name=".loginActivity" android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,13 +31,14 @@
             android:label="StepRecording">
 
         </service>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".StepActivity"></activity>
-        <activity android:name=".InputActivity" />
-        <activity android:name=".NewActivity" />
-        <activity android:name=".MeActivity" />
-        <activity android:name=".ForumActivity" />
+        <activity android:name=".StepActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".InputActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".NewActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MeActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ForumActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".EditNameActivity" />
 
         <receiver
             android:name=".BootBroadcastReceiver"
