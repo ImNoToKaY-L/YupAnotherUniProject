@@ -26,6 +26,7 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
     private RealmConfiguration userDB;
     private User loginUser;
     private Realm mRealm;
+    private static final int REUSED_PASSWORD = 3;
     RealmAsyncTask realmAsyncTask;
 
     @Override
@@ -55,28 +56,43 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view){
         switch (view.getId()){
             case R.id.bt_edit:
-                //Initialize an intent to the receive class
-                Intent intent_editPassword=new Intent(EditPasswordActivity.this, MeActivity.class);
-                intent_editPassword.putExtra("uid",getIntent().getStringExtra("uid"));
-                //Get the input from text view
+
                 et_newPassword=findViewById(R.id.et_edit_password);
                 String newPassword=et_newPassword.getText().toString();
+                int validateResult = passwordValidate(loginUser.getPassword(),newPassword);
+                if (validateResult==RegisterActivity.INVALID_PASSWORD){
+                    Toast.makeText(this, "Password invalid", Toast.LENGTH_SHORT).show();
+                    et_newPassword.setText("");
+                }
+                else if (validateResult==REUSED_PASSWORD){
+                    Toast.makeText(this, "Password is the same as previous one", Toast.LENGTH_SHORT).show();
+                    et_newPassword.setText("");
+                }
+                else {
 
-                realmAsyncTask = mRealm.executeTransactionAsync(
-                        new UserTransaction(loginUser.getName(), newPassword, loginUser.getUid()),
-                        new SuccessTransaction(realmAsyncTask),
-                        new Realm.Transaction.OnError() {
-                            @Override
-                            public void onError(Throwable error) {
-                                error.printStackTrace();
-                                Log.d("realm", "insert error");
+                    //Initialize an intent to the receive class
+                    Intent intent_editPassword=new Intent(EditPasswordActivity.this, MeActivity.class);
+                    intent_editPassword.putExtra("uid",getIntent().getStringExtra("uid"));
+                    //Get the input from text view
+
+
+                    realmAsyncTask = mRealm.executeTransactionAsync(
+                            new UserTransaction(loginUser.getName(), newPassword, loginUser.getUid()),
+                            new SuccessTransaction(realmAsyncTask),
+                            new Realm.Transaction.OnError() {
+                                @Override
+                                public void onError(Throwable error) {
+                                    error.printStackTrace();
+                                    Log.d("realm", "insert error");
+                                }
                             }
-                        }
-                );
-                mRealm.close();
-                Toast.makeText(this, "Password successfully changed", Toast.LENGTH_LONG).show();
-                startActivity(intent_editPassword);
-                finish();
+                    );
+                    mRealm.close();
+                    Toast.makeText(this, "Password successfully changed", Toast.LENGTH_LONG).show();
+                    startActivity(intent_editPassword);
+                    finish();
+                }
+
                 break;
 
             case R.id.bt_back:
@@ -85,5 +101,15 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
                 startActivity(intent_back);
                 finish();
         }
+    }
+
+    private int passwordValidate(String previousPw,String password){
+        if (password.length()<=5||password.length()>=16){
+            return RegisterActivity.INVALID_PASSWORD;
+        }
+        if (previousPw.equals(password)){
+            return REUSED_PASSWORD;
+        }
+        return RegisterActivity.VALID_USER;
     }
 }

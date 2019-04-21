@@ -27,6 +27,7 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
     private User loginUser;
     private Realm mRealm;
     RealmAsyncTask realmAsyncTask;
+    private static final int NAME_NO_CHANGE = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,30 +56,45 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view){
         switch (view.getId()){
             case R.id.bt_edit:
-                //Initialize an intent to the receive class
-                Intent intent_editName=new Intent(EditNameActivity.this, MeActivity.class);
-                intent_editName.putExtra("uid",getIntent().getStringExtra("uid"));
-                //Get the input from text view
                 et_newName=findViewById(R.id.et_edit_name);
                 String newName=et_newName.getText().toString();
-                //UserTransaction ut = new UserTransaction(newName, loginUser.getPassword(), loginUser.getUid());
-                //ut.execute(mRealm);
 
-                realmAsyncTask = mRealm.executeTransactionAsync(
-                        new UserTransaction(newName, loginUser.getPassword(), loginUser.getUid()),
-                        new SuccessTransaction(realmAsyncTask),
-                        new Realm.Transaction.OnError() {
-                            @Override
-                            public void onError(Throwable error) {
-                                error.printStackTrace();
-                                Log.d("realm", "insert error");
+                int validateResult = nameValidate(loginUser.getName(),newName,mRealm);
+
+                if (validateResult==NAME_NO_CHANGE){
+                    Toast.makeText(this, "Enter a different name from before", Toast.LENGTH_SHORT).show();
+                    et_newName.setText("");
+                }else if (validateResult==RegisterActivity.USERNAME_EXIST){
+                    Toast.makeText(this, "Username exist, select another one", Toast.LENGTH_SHORT).show();
+                    et_newName.setText("");
+                }else {
+
+
+                    //Initialize an intent to the receive class
+                    Intent intent_editName=new Intent(EditNameActivity.this, MeActivity.class);
+                    intent_editName.putExtra("uid",getIntent().getStringExtra("uid"));
+                    //Get the input from text view
+
+                    //UserTransaction ut = new UserTransaction(newName, loginUser.getPassword(), loginUser.getUid());
+                    //ut.execute(mRealm);
+
+                    realmAsyncTask = mRealm.executeTransactionAsync(
+                            new UserTransaction(newName, loginUser.getPassword(), loginUser.getUid()),
+                            new SuccessTransaction(realmAsyncTask),
+                            new Realm.Transaction.OnError() {
+                                @Override
+                                public void onError(Throwable error) {
+                                    error.printStackTrace();
+                                    Log.d("realm", "insert error");
+                                }
                             }
-                        }
-                );
-                Toast.makeText(this, "Username changed to "+newName, Toast.LENGTH_LONG).show();
-                mRealm.close();
-                startActivity(intent_editName);
-                finish();
+                    );
+                    Toast.makeText(this, "Username changed to "+newName, Toast.LENGTH_LONG).show();
+                    mRealm.close();
+                    startActivity(intent_editName);
+                    finish();
+                }
+
                 break;
 
             case R.id.bt_back:
@@ -87,5 +103,16 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(intent_back);
                 finish();
         }
+    }
+
+    private int nameValidate(String previousName,String name,Realm DB){
+        if (previousName.equals(name)){
+            return NAME_NO_CHANGE;
+        }
+        User existName = DB.where(User.class).equalTo("name",name).findFirst();
+        if (existName!=null){
+            return RegisterActivity.USERNAME_EXIST;
+        }
+        return RegisterActivity.VALID_USER;
     }
 }
