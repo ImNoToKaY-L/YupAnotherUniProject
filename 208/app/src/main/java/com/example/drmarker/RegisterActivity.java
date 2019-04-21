@@ -14,8 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
-import com.example.drmarker.R;
 import com.example.drmarker.RealmModule.UserModule;
+import com.example.drmarker.userModel.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

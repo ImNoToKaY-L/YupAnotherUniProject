@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.drmarker.RealmModule.UserModule;
 import com.example.drmarker.stepModel.SuccessTransaction;
 import com.example.drmarker.stepModel.UserTransaction;
+import com.example.drmarker.userModel.User;
 
 import io.realm.Realm;
 import io.realm.RealmAsyncTask;

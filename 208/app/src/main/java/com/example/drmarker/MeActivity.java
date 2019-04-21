@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.drmarker.RealmModule.UserModule;
+import com.example.drmarker.userModel.User;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

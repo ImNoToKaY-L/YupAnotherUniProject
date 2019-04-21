@@ -1,6 +1,6 @@
 package com.example.drmarker.RealmModule;
 
-import com.example.drmarker.User;
+import com.example.drmarker.userModel.User;
 
 import io.realm.annotations.RealmModule;
 

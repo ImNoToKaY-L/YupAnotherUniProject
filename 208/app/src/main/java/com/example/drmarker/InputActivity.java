@@ -92,16 +92,20 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.bt_edit:
                 //Initialize an intent to the receive class
-                Intent intent=new Intent(InputActivity.this, NewActivity.class);
-                //Get the input from text view
-                String height=edit_height.getText().toString().trim();
-                String weight=edit_weight.getText().toString().trim();
-                //put the info into the intent and send it
-                intent.putExtra("height",height);
-                intent.putExtra("weight",weight);
-                intent.putExtra("uid",getIntent().getStringExtra("uid"));
-                startActivity(intent);
-                finish();
+
+                if(categorySelected){
+                    Intent intent=new Intent(InputActivity.this, NewActivity.class);
+                    //Get the input from text view
+                    String height=edit_height.getText().toString().trim();
+                    String weight=edit_weight.getText().toString().trim();
+                    //put the info into the intent and send it
+                    intent.putExtra("height",height);
+                    intent.putExtra("weight",weight);
+                    intent.putExtra("uid",getIntent().getStringExtra("uid"));
+                    startActivity(intent);
+                    finish();
+                }else Toast.makeText(this, "Select a category", Toast.LENGTH_SHORT).show();
+
         }
     }
 

@@ -2,7 +2,8 @@ package com.example.drmarker.stepModel;
 
 import android.util.Log;
 
-import com.example.drmarker.User;
+
+import com.example.drmarker.userModel.User;
 
 import io.realm.Realm;
 import io.realm.RealmResults;

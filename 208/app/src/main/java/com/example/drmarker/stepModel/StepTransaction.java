@@ -29,10 +29,6 @@ public class StepTransaction implements Realm.Transaction {
         Log.d("realm", "now insert [" + date + " ," + num + uid+"]");
 
         StepModel stepModel =realm.where(StepModel.class).equalTo("date",date).equalTo("uid",uid).findFirst();
-        RealmResults<StepModel> people = realm.where(StepModel.class).findAll();
-        for (StepModel s:people){
-            Log.d("DEBUG", s.getUid()+" "+s.getNumSteps()+" "+s.getDate());
-        }
 
         if (stepModel == null)
             stepModel = realm.createObject(StepModel.class);
