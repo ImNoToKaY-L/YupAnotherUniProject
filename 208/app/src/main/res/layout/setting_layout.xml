@@ -9,7 +9,7 @@
         style="@style/settingText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="开关"
+        android:text="Step recorder"
         android:id="@+id/on_off"
         />
     <View
@@ -22,7 +22,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="防杀模式"
+        android:text="*Testing function"
         android:id="@+id/foreground_model"
         />
     <View

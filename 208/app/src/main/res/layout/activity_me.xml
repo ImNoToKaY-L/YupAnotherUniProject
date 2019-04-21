@@ -113,7 +113,7 @@
                 tools:layout_conversion_wrapWidth="1028" />
 
             <Button
-                android:id="@+id/me_changePassword"
+                android:id="@+id/me_editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -140,7 +140,7 @@
                 android:textColor="@color/colorLightBlue"
                 android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/me_changePassword"
+                app:layout_constraintTop_toBottomOf="@+id/me_editPassword"
                 tools:layout_conversion_wrapHeight="131"
                 tools:layout_conversion_wrapWidth="1028" />
 

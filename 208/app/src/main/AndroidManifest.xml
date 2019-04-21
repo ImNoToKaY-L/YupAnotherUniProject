@@ -39,6 +39,7 @@
         <activity android:name=".MeActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ForumActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".EditNameActivity" />
+        <activity android:name=".EditPasswordActivity" />
 
         <receiver
             android:name=".BootBroadcastReceiver"

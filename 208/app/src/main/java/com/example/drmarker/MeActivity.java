@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.drmarker.RealmModule.UserModule;
+import com.example.drmarker.userModel.User;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -46,7 +47,7 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
 
         Button button_editName = findViewById(R.id.me_editName);
         Button me_editPic = findViewById(R.id.me_editPic);
-        Button me_changePassword = findViewById(R.id.me_changePassword);
+        Button me_changePassword = findViewById(R.id.me_editPassword);
         Button me_about = findViewById(R.id.me_about);
         Button me_setting = findViewById(R.id.me_setting);
 
@@ -69,8 +70,11 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
             case R.id.me_editPic:
 
                 break;
-            case R.id.me_changePassword:
-
+            case R.id.me_editPassword:
+                Intent intent_editPassword=new Intent(MeActivity.this, EditPasswordActivity.class);
+                intent_editPassword.putExtra("uid",getIntent().getStringExtra("uid"));
+                startActivity(intent_editPassword);
+                finish();
                 break;
             case R.id.me_about:
 
