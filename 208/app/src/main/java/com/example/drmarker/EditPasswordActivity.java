@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.drmarker.RealmModule.UserModule;
 import com.example.drmarker.stepModel.SuccessTransaction;
@@ -72,6 +73,7 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
                         }
                 );
                 mRealm.close();
+                Toast.makeText(this, "Password successfully changed", Toast.LENGTH_LONG).show();
                 startActivity(intent_editPassword);
                 finish();
                 break;

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.drmarker.RealmModule.UserModule;
 import com.example.drmarker.stepModel.SuccessTransaction;
@@ -73,6 +74,7 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
                             }
                         }
                 );
+                Toast.makeText(this, "Username changed to "+newName, Toast.LENGTH_LONG).show();
                 mRealm.close();
                 startActivity(intent_editName);
                 finish();
