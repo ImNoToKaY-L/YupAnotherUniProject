@@ -17,9 +17,9 @@ import io.realm.RealmAsyncTask;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
-public class EditNameActivity extends AppCompatActivity implements View.OnClickListener {
+public class EditPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText et_newName;
+    private EditText et_newPassword;
     public static String uid;
     private RealmConfiguration userDB;
     private User loginUser;
@@ -29,7 +29,7 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editname);
+        setContentView(R.layout.activity_editpassword);
         getInfo();
         //Get the intent from the input activity
         Intent fromAbove = getIntent();
@@ -54,16 +54,14 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
         switch (view.getId()){
             case R.id.bt_edit:
                 //Initialize an intent to the receive class
-                Intent intent_editName=new Intent(EditNameActivity.this, MeActivity.class);
-                intent_editName.putExtra("uid",getIntent().getStringExtra("uid"));
+                Intent intent_editPassword=new Intent(EditPasswordActivity.this, MeActivity.class);
+                intent_editPassword.putExtra("uid",getIntent().getStringExtra("uid"));
                 //Get the input from text view
-                et_newName=findViewById(R.id.et_edit_name);
-                String newName=et_newName.getText().toString();
-                //UserTransaction ut = new UserTransaction(newName, loginUser.getPassword(), loginUser.getUid());
-                //ut.execute(mRealm);
+                et_newPassword=findViewById(R.id.et_edit_password);
+                String newPassword=et_newPassword.getText().toString();
 
                 realmAsyncTask = mRealm.executeTransactionAsync(
-                        new UserTransaction(newName, loginUser.getPassword(), loginUser.getUid()),
+                        new UserTransaction(loginUser.getName(), newPassword, loginUser.getUid()),
                         new SuccessTransaction(realmAsyncTask),
                         new Realm.Transaction.OnError() {
                             @Override
@@ -74,12 +72,12 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
                         }
                 );
                 mRealm.close();
-                startActivity(intent_editName);
+                startActivity(intent_editPassword);
                 finish();
                 break;
 
             case R.id.bt_back:
-                Intent intent_back=new Intent(EditNameActivity.this, MeActivity.class);
+                Intent intent_back=new Intent(EditPasswordActivity.this, MeActivity.class);
                 intent_back.putExtra("uid",getIntent().getStringExtra("uid"));
                 startActivity(intent_back);
                 finish();
