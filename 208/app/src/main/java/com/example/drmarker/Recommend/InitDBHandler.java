@@ -18,10 +18,10 @@ public class InitDBHandler {
 
     private void init(InputStream foodStream,InputStream sportStream){
         foodDB =  new RealmConfiguration.Builder()
-                .name("food_db").modules(new FoodModule())
+                .name("food_db").modules(new FoodModule()).deleteRealmIfMigrationNeeded()
                 .build();
         sportDB =  new RealmConfiguration.Builder()
-                .name("sport_db").schemaVersion(2).modules(new SportModule())
+                .name("sport_db").schemaVersion(2).modules(new SportModule()).deleteRealmIfMigrationNeeded()
                 .build();
         food = new FoodRecommender(foodStream);
         sport = new SportRecommender(sportStream);
