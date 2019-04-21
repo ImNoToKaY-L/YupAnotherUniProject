@@ -44,7 +44,6 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
 
     private void getInfo(){
         //Get the height and weight
-        et_newName=findViewById(R.id.et_edit_name);
         //Initialize the button
         Button button_edit = findViewById(R.id.bt_edit);
         button_edit.setOnClickListener(this);
@@ -56,10 +55,9 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
                 //Initialize an intent to the receive class
                 Intent intent_editName=new Intent(EditNameActivity.this, MeActivity.class);
                 intent_editName.putExtra("uid",getIntent().getStringExtra("uid"));
-                startActivity(intent_editName);
-                finish();
                 //Get the input from text view
-                String newName=et_newName.getText().toString().trim();
+                et_newName=findViewById(R.id.et_edit_name);
+                String newName=et_newName.getText().toString();
                 //UserTransaction ut = new UserTransaction(newName, loginUser.getPassword(), loginUser.getUid());
                 //ut.execute(mRealm);
 
@@ -75,6 +73,8 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
                         }
                 );
                 mRealm.close();
+                startActivity(intent_editName);
+                finish();
                 break;
 
             case R.id.bt_back:
