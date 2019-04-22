@@ -108,6 +108,29 @@ public class loginActivity extends AppCompatActivity {
                     Toast.makeText(this, "Please enter your user name and password", Toast.LENGTH_SHORT).show();
                 }
                 break;
+            case R.id.bt_loginactivity_guest:
+                Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()
+                        .name("user_db").schemaVersion(2).modules(new UserModule())
+                        .build());
+                User tempGuest= mRealm.where(User.class).equalTo("name","Guest").findFirst();
+                String GuestID;
+               if (tempGuest==null){
+                   final User guest = new User("Guest","1");
+                   GuestID = guest.getUid();
+                   mRealm.executeTransaction(new Realm.Transaction() {
+                       @Override
+                       public void execute(Realm realm) {
+                           realm.copyToRealm(guest);
+                       }
+                   });
+               }else GuestID = tempGuest.getUid();
+
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("uid",GuestID);
+                intent.putExtra("guest",true);
+                startActivity(intent);
+                finish();
+                break;
         }
     }
 
