@@ -22,16 +22,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import lombok.ast.app.Main;
 
-//import cn.ikaze.healthgo.MainActivity;
-//import cn.ikaze.healthgo.MyApplication;
-//import cn.ikaze.healthgo.R;
-
-/**
- * Created by gojuukaze on 16/8/17.
- * Email: i@ikaze.uu.me
- */
 public class StepService extends Service {
 
     private StepThread thread;

@@ -1,4 +1,4 @@
-almonds,100,580,21,20,51,v,true,
+almonds,100,580,21,20,51,v,true
 apple pie,100,260,4,43,8,s,true
 asparagus,100,20,2,3,0,v,false
 aubergine,100,18,0.7,3.3,0.2,v,false

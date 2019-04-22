@@ -40,30 +40,29 @@
         android:onClick="onClick"
         />
 
-    <TextView
-        android:id="@+id/tv_loginactivity_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登录"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:layout_toRightOf="@+id/iv_loginactivity_back"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        />
-    <TextView
-        android:id="@+id/tv_loginactivity_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="注册"
-        android:textColor="#fff"
-        android:textSize="20dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="30dp"
-        android:clickable="true"
-        android:onClick="onClick"
-        />
+        <TextView
+            android:id="@+id/tv_loginactivity_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/iv_loginactivity_back"
+            android:text="Login"
+            android:textColor="#fff"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tv_loginactivity_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:text="Register"
+            android:textColor="#fff"
+            android:textSize="20dp" />
     </RelativeLayout>
 <!--
  顶部三个东西摆放好之后
@@ -88,32 +87,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/tv_loginactivity_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="用户名："/>
+                android:text="User name:" />
+
             <EditText
                 android:id="@+id/et_loginactivity_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="手机号/邮箱/用户名"/>
+                android:hint="Please enter your user name" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/tv_loginactivity_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="密    码："/>
+                android:text="Password: " />
+
             <EditText
                 android:id="@+id/et_loginactivity_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="登录密码"
-                android:inputType="textPassword"/>
+                android:hint="Please enter your password"
+                android:inputType="textPassword" />
 
         </LinearLayout>
     </LinearLayout>
@@ -127,15 +130,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_loginactivity_two"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
         android:background="@drawable/selector_loginactivity_button"
-        android:text="登录"
-        android:textColor="#fff"
         android:gravity="center"
         android:onClick="onClick"
-        />
+        android:text="Login"
+        android:textColor="#fff" />
 <!--
     为了App的人性化，
     想到有以下三种无法密码登录的异常处理情况
@@ -150,27 +152,25 @@
 
     <TextView
         android:id="@+id/tv_loginactivity_forget"
-        android:text="忘记密码"
-        android:textColor="#f00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginVertical="50dp"
         android:layout_below="@+id/bt_loginactivity_login"
         android:layout_alignLeft="@+id/bt_loginactivity_login"
-        />
+        android:layout_marginVertical="50dp"
+        android:layout_marginLeft="50dp"
+        android:text="Forget your password?"
+        android:textColor="#f00" />
 
     <TextView
         android:id="@+id/tv_loginactivity_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="短信验证码登录"
-        android:textColor="#f00"
-        android:layout_marginRight="50dp"
-        android:layout_marginVertical="50dp"
         android:layout_below="@+id/bt_loginactivity_login"
         android:layout_alignRight="@+id/bt_loginactivity_login"
-        />
+        android:layout_marginVertical="50dp"
+        android:layout_marginRight="50dp"
+        android:text="Validation by text"
+        android:textColor="#f00" />
 
     <Button
         android:id="@+id/StepTest"
