@@ -101,6 +101,7 @@ public class RegisterActivity extends AppCompatActivity{
                                 .name("user_db").schemaVersion(2).modules(new UserModule())
                                 .build());
                         final User user = new User(username,password);
+
                         mRealm.executeTransaction(new Realm.Transaction() {
                             @Override
                             public void execute(Realm realm) {

@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     EventBus bus;
     long numSteps;
     boolean isServiceRun;
+    boolean isGuest = false;
     boolean isforeground_model;
     public static String uid;
     TextView btn;
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     LineChartView lineChart;
     List<PointValue> mPointValues = new ArrayList<>();
     List<AxisValue> mAxisXValues = new ArrayList<>();
+    BottomNavigationView navView;
 
     public void mybt(View v) {
         showPopupWindow(v);
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Intent fromAbove = getIntent();
+        if (fromAbove.hasExtra("guest")) isGuest = true;
         uid= fromAbove.getStringExtra("uid");
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 //        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) toolbar.getLayoutParams();
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         drawChart();
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
@@ -134,27 +137,50 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
                 case R.id.navigation_monitor:
                     //Do something
-                    Intent intent_monitor=new Intent(MainActivity.this, InputActivity.class);
-                    intent_monitor.putExtra("uid",uid);
-                    startActivity(intent_monitor);
-                    finish();
-                    return true;
+                    if (!isGuest){
+                        Intent intent_monitor=new Intent(MainActivity.this, InputActivity.class);
+                        intent_monitor.putExtra("uid",uid);
+                        if (isGuest)intent_monitor.putExtra("guest",true);
+                        startActivity(intent_monitor);
+                        finish();
+                        return true;
+                    }else{
+                        Toast.makeText(MainActivity.this, "To use monitor, please login", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+
 
                 case R.id.navigation_forum:
                     //Do something
-                    Intent intent_forum=new Intent(MainActivity.this, ForumActivity.class);
-                    intent_forum.putExtra("uid",getIntent().getStringExtra("uid"));
-                    startActivity(intent_forum);
-                    finish();
-                    return true;
+                    if (!isGuest){
+                        Intent intent_forum=new Intent(MainActivity.this, ForumActivity.class);
+                        intent_forum.putExtra("uid",getIntent().getStringExtra("uid"));
+                        startActivity(intent_forum);
+                        finish();
+                        return true;
+
+                    }else{
+                        Toast.makeText(MainActivity.this, "To use forum, please login", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+
 
                 case R.id.navigation_me:
                     //Do something
-                    Intent intent_me=new Intent(MainActivity.this, MeActivity.class);
-                    intent_me.putExtra("uid",uid);
-                    startActivity(intent_me);
-                    finish();
-                    return true;
+
+                    if (!isGuest){
+                        Intent intent_me=new Intent(MainActivity.this, MeActivity.class);
+                        intent_me.putExtra("uid",uid);
+                        if (isGuest)intent_me.putExtra("guest",true);
+                        startActivity(intent_me);
+                        finish();
+                        return true;
+                    }else {
+                        Toast.makeText(MainActivity.this, "To edit your profile, please login", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+
+
             }
             return false;
         }

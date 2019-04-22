@@ -20,7 +20,7 @@ public class FoodRecommender {
     private ArrayList<Food> recommendLunch = new ArrayList<>();
     private ArrayList<Food> recommendDinner = new ArrayList<>();
     
-    public FoodRecommender(InputStream inputStream) {
+    public FoodRecommender(InputStream foodStream) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(foodStream));
 
