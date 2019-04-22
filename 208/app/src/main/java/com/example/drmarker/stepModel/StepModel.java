@@ -7,10 +7,6 @@ import io.realm.RealmObject;
 import io.realm.annotations.Index;
 
 
-/**
- * Created by gojuukaze on 16/8/19.
- * Email: i@ikaze.uu.me
- */
 public class StepModel extends RealmObject {
     @Index
     private Date date;

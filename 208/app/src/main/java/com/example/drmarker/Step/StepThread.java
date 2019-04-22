@@ -21,10 +21,6 @@ import io.realm.Realm;
 import io.realm.RealmAsyncTask;
 
 
-/**
- * Created by gojuukaze on 16/8/22.
- * Email: i@ikaze.uu.me
- */
 public class StepThread extends Thread implements  SensorEventListener, StepListener {
 
     private SensorManager sensorManager;

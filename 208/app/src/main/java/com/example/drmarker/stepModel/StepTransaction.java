@@ -5,13 +5,8 @@ import android.util.Log;
 import java.util.Date;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 
-/**
- * Created by gojuukaze on 16/8/19.
- * Email: i@ikaze.uu.me
- */
 public class StepTransaction implements Realm.Transaction {
 
     private Date date;

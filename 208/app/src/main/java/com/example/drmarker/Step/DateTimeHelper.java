@@ -3,10 +3,7 @@ package com.example.drmarker.Step;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by gojuukaze on 16/8/19.
- * Email: i@ikaze.uu.me
- */
+
 public class DateTimeHelper {
 
     public static Date getToday()

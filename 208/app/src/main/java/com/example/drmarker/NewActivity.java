@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class NewActivity extends AppCompatActivity {
+
+
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

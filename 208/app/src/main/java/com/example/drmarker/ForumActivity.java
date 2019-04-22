@@ -30,9 +30,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-/**
- * by moos on 2018/04/20
- */
+
 public class ForumActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     private android.support.v7.widget.Toolbar toolbar;
@@ -44,52 +42,52 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
     private BottomSheetDialog dialog;
     private String testJson = "{\n" +
             "\t\"code\": 1000,\n" +
-            "\t\"message\": \"查看评论成功\",\n" +
+            "\t\"message\": \"Comment check successfully\",\n" +
             "\t\"data\": {\n" +
             "\t\t\"total\": 3,\n" +
             "\t\t\"list\": [{\n" +
             "\t\t\t\t\"id\": 42,\n" +
-            "\t\t\t\t\"nickName\": \"程序猿\",\n" +
+            "\t\t\t\t\"nickName\": \"User1\",\n" +
             "\t\t\t\t\"userLogo\": \"http://ucardstorevideo.b0.upaiyun.com/userLogo/9fa13ec6-dddd-46cb-9df0-4bbb32d83fc1.png\",\n" +
-            "\t\t\t\t\"content\": \"时间是一切财富中最宝贵的财富。\",\n" +
+            "\t\t\t\t\"content\": \"This is the forum for login user.\",\n" +
             "\t\t\t\t\"imgId\": \"xcclsscrt0tev11ok364\",\n" +
             "\t\t\t\t\"replyTotal\": 1,\n" +
-            "\t\t\t\t\"createDate\": \"三分钟前\",\n" +
+            "\t\t\t\t\"createDate\": \"3 minutes ago\",\n" +
             "\t\t\t\t\"replyList\": [{\n" +
-            "\t\t\t\t\t\"nickName\": \"沐風\",\n" +
+            "\t\t\t\t\t\"nickName\": \"User2\",\n" +
             "\t\t\t\t\t\"userLogo\": \"http://ucardstorevideo.b0.upaiyun.com/userLogo/9fa13ec6-dddd-46cb-9df0-4bbb32d83fc1.png\",\n" +
             "\t\t\t\t\t\"id\": 40,\n" +
             "\t\t\t\t\t\"commentId\": \"42\",\n" +
-            "\t\t\t\t\t\"content\": \"时间总是在不经意中擦肩而过,不留一点痕迹.\",\n" +
+            "\t\t\t\t\t\"content\": \"Here you can post any content and also leave comment to other users.\",\n" +
             "\t\t\t\t\t\"status\": \"01\",\n" +
-            "\t\t\t\t\t\"createDate\": \"一个小时前\"\n" +
+            "\t\t\t\t\t\"createDate\": \"1 hour ago\"\n" +
             "\t\t\t\t}]\n" +
             "\t\t\t},\n" +
             "\t\t\t{\n" +
             "\t\t\t\t\"id\": 41,\n" +
-            "\t\t\t\t\"nickName\": \"设计狗\",\n" +
+            "\t\t\t\t\"nickName\": \"User1\",\n" +
             "\t\t\t\t\"userLogo\": \"http://ucardstorevideo.b0.upaiyun.com/userLogo/9fa13ec6-dddd-46cb-9df0-4bbb32d83fc1.png\",\n" +
-            "\t\t\t\t\"content\": \"这世界要是没有爱情，它在我们心中还会有什么意义！这就如一盏没有亮光的走马灯。\",\n" +
+            "\t\t\t\t\"content\": \"You can also click the right button as like\",\n" +
             "\t\t\t\t\"imgId\": \"xcclsscrt0tev11ok364\",\n" +
             "\t\t\t\t\"replyTotal\": 1,\n" +
-            "\t\t\t\t\"createDate\": \"一天前\",\n" +
+            "\t\t\t\t\"createDate\": \"1 day ago\",\n" +
             "\t\t\t\t\"replyList\": [{\n" +
-            "\t\t\t\t\t\"nickName\": \"沐風\",\n" +
+            "\t\t\t\t\t\"nickName\": \"User4\",\n" +
             "\t\t\t\t\t\"userLogo\": \"http://ucardstorevideo.b0.upaiyun.com/userLogo/9fa13ec6-dddd-46cb-9df0-4bbb32d83fc1.png\",\n" +
             "\t\t\t\t\t\"commentId\": \"41\",\n" +
-            "\t\t\t\t\t\"content\": \"时间总是在不经意中擦肩而过,不留一点痕迹.\",\n" +
+            "\t\t\t\t\t\"content\": \"Have fun using DR.MARKER\",\n" +
             "\t\t\t\t\t\"status\": \"01\",\n" +
-            "\t\t\t\t\t\"createDate\": \"三小时前\"\n" +
+            "\t\t\t\t\t\"createDate\": \"3 hours ago\"\n" +
             "\t\t\t\t}]\n" +
             "\t\t\t},\n" +
             "\t\t\t{\n" +
             "\t\t\t\t\"id\": 40,\n" +
-            "\t\t\t\t\"nickName\": \"产品喵\",\n" +
+            "\t\t\t\t\"nickName\": \"User1\",\n" +
             "\t\t\t\t\"userLogo\": \"http://ucardstorevideo.b0.upaiyun.com/userLogo/9fa13ec6-dddd-46cb-9df0-4bbb32d83fc1.png\",\n" +
-            "\t\t\t\t\"content\": \"笨蛋自以为聪明，聪明人才知道自己是笨蛋。\",\n" +
+            "\t\t\t\t\"content\": \"More functionalities will be provided further\",\n" +
             "\t\t\t\t\"imgId\": \"xcclsscrt0tev11ok364\",\n" +
             "\t\t\t\t\"replyTotal\": 0,\n" +
-            "\t\t\t\t\"createDate\": \"三天前\",\n" +
+            "\t\t\t\t\"createDate\": \"3 days ago\",\n" +
             "\t\t\t\t\"replyList\": []\n" +
             "\t\t\t}\n" +
             "\t\t]\n" +
@@ -121,17 +119,17 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("详情");
+        collapsingToolbar.setTitle("Deatails");
         commentsList = generateTestData();
         initExpandableListView(commentsList);
     }
 
     /**
-     * 初始化评论和回复列表
+     * Initialize the content and comment list
      */
     private void initExpandableListView(final List<CommentDetailBean> commentList){
         expandableListView.setGroupIndicator(null);
-        //默认展开所有回复
+        //List all the comment in default
         adapter = new CommentExpandAdapter(this, commentList);
         expandableListView.setAdapter(adapter);
         for(int i = 0; i<commentList.size(); i++){
@@ -141,7 +139,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int groupPosition, long l) {
                 boolean isExpanded = expandableListView.isGroupExpanded(groupPosition);
-                Log.e(TAG, "onGroupClick: 当前的评论id>>>"+commentList.get(groupPosition).getId());
+                Log.e(TAG, "onGroupClick: CurrentCommentid>>>"+commentList.get(groupPosition).getId());
 //                if(isExpanded){
 //                    expandableListView.collapseGroup(groupPosition);
 //                }else {
@@ -155,7 +153,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView expandableListView, View view, int groupPosition, int childPosition, long l) {
-                Toast.makeText(ForumActivity.this,"点击了回复",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ForumActivity.this,"Comment Clicked",Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -163,7 +161,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
         expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-                //toast("展开第"+groupPosition+"个分组");
+                //toast("Show the group in position: "+groupPosition);
 
             }
         });
@@ -171,9 +169,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
     }
 
     /**
-     * by moos on 2018/04/20
-     * func:生成测试数据
-     * @return 评论数据
+     * @return Comment data
      */
     private List<CommentDetailBean> generateTestData(){
         Gson gson = new Gson();
@@ -200,8 +196,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
     }
 
     /**
-     * by moos on 2018/04/20
-     * func:弹出评论框
+     * func:Show the comment dialog
      */
     private void showCommentDialog(){
         dialog = new BottomSheetDialog(this);
@@ -210,7 +205,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
         final Button bt_comment = (Button) commentView.findViewById(R.id.dialog_comment_bt);
         dialog.setContentView(commentView);
         /**
-         * 解决bsd显示不全的情况
+         * resolve the bsd issue
          */
         View parent = (View) commentView.getParent();
         BottomSheetBehavior behavior = BottomSheetBehavior.from(parent);
@@ -226,12 +221,12 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
 
                     //commentOnWork(commentContent);
                     dialog.dismiss();
-                    CommentDetailBean detailBean = new CommentDetailBean("小明", commentContent,"刚刚");
+                    CommentDetailBean detailBean = new CommentDetailBean("UserMe", commentContent,"just now");
                     adapter.addTheCommentData(detailBean);
-                    Toast.makeText(ForumActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForumActivity.this,"Comment successfully",Toast.LENGTH_SHORT).show();
 
                 }else {
-                    Toast.makeText(ForumActivity.this,"评论内容不能为空",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForumActivity.this,"The content of comments can not be null",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -259,15 +254,14 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
     }
 
     /**
-     * by moos on 2018/04/20
-     * func:弹出回复框
+     * func:Show the comment dialog
      */
     private void showReplyDialog(final int position){
         dialog = new BottomSheetDialog(this);
         View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);
         final Button bt_comment = (Button) commentView.findViewById(R.id.dialog_comment_bt);
-        commentText.setHint("回复 " + commentsList.get(position).getNickName() + " 的评论:");
+        commentText.setHint("Reply " + commentsList.get(position).getNickName() + " 's comment:");
         dialog.setContentView(commentView);
         bt_comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -276,12 +270,12 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
                 if(!TextUtils.isEmpty(replyContent)){
 
                     dialog.dismiss();
-                    ReplyDetailBean detailBean = new ReplyDetailBean("小红",replyContent);
+                    ReplyDetailBean detailBean = new ReplyDetailBean("User5",replyContent);
                     adapter.addTheReplyData(detailBean, position);
                     expandableListView.expandGroup(position);
-                    Toast.makeText(ForumActivity.this,"回复成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForumActivity.this,"Comment Successfully",Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(ForumActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForumActivity.this,"The content of comments can not be null",Toast.LENGTH_SHORT).show();
                 }
             }
         });

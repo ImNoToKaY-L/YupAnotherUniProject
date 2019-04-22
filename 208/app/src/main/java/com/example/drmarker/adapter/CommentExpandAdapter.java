@@ -23,10 +23,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Author: Moos
- * E-mail: moosphon@gmail.com
- * Date:  18/4/20.
- * Desc: 评论与回复列表的适配器
+ * Desc: adapter for reply and comment
  */
 
 public class CommentExpandAdapter extends BaseExpandableListAdapter {
@@ -133,7 +130,7 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
         if(!TextUtils.isEmpty(replyUser)){
             childHolder.tv_name.setText(replyUser + ":");
         }else {
-            childHolder.tv_name.setText("无名"+":");
+            childHolder.tv_name.setText("Nameless"+":");
         }
 
         childHolder.tv_content.setText(commentBeanList.get(groupPosition).getReplyList().get(childPosition).getContent());
@@ -168,30 +165,23 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
     }
 
 
-    /**
-     * by moos on 2018/04/20
-     * func:评论成功后插入一条数据
-     * @param commentDetailBean 新的评论数据
-     */
+
     public void addTheCommentData(CommentDetailBean commentDetailBean){
         if(commentDetailBean!=null){
 
             commentBeanList.add(commentDetailBean);
             notifyDataSetChanged();
         }else {
-            throw new IllegalArgumentException("评论数据为空!");
+            throw new IllegalArgumentException("Null comment!");
         }
 
     }
 
-    /**
-     * by moos on 2018/04/20
-     * func:回复成功后插入一条数据
-     * @param replyDetailBean 新的回复数据
-     */
+
+
     public void addTheReplyData(ReplyDetailBean replyDetailBean, int groupPosition){
         if(replyDetailBean!=null){
-            Log.e(TAG, "addTheReplyData: >>>>该刷新回复列表了:"+replyDetailBean.toString() );
+            Log.e(TAG, "addTheReplyData: >>>>refresh comment list:"+replyDetailBean.toString() );
             if(commentBeanList.get(groupPosition).getReplyList() != null ){
                 commentBeanList.get(groupPosition).getReplyList().add(replyDetailBean);
             }else {
@@ -201,17 +191,12 @@ public class CommentExpandAdapter extends BaseExpandableListAdapter {
             }
             notifyDataSetChanged();
         }else {
-            throw new IllegalArgumentException("回复数据为空!");
+            throw new IllegalArgumentException("Null comment!");
         }
 
     }
 
-    /**
-     * by moos on 2018/04/20
-     * func:添加和展示所有回复
-     * @param replyBeanList 所有回复数据
-     * @param groupPosition 当前的评论
-     */
+
     private void addReplyList(List<ReplyDetailBean> replyBeanList, int groupPosition){
         if(commentBeanList.get(groupPosition).getReplyList() != null ){
             commentBeanList.get(groupPosition).getReplyList().clear();

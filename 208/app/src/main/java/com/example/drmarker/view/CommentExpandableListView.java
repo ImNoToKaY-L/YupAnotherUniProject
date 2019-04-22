@@ -8,10 +8,7 @@ import android.util.AttributeSet;
 import android.widget.ExpandableListView;
 
 /**
- * Author: Moos
- * E-mail: moosphon@gmail.com
- * Date:  18/4/20.
- * Desc: 自定义ExpandableListView,解决与CoordinatorLayout滑动冲突问题
+ * Desc: DIY ExpandableListView,Resolve the conflict with CoordinatorLayout
  */
 
 public class CommentExpandableListView extends ExpandableListView implements NestedScrollingChild {

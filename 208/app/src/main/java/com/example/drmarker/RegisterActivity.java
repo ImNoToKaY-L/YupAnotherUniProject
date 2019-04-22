@@ -23,9 +23,7 @@ import butterknife.OnClick;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-/**
- * Created by littlecurl 2018/6/24
- */
+
 public class RegisterActivity extends AppCompatActivity{
 
     private String realCode;

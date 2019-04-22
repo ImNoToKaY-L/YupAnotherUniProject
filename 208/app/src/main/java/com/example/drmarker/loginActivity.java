@@ -25,9 +25,7 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
-/**
- * Created by littlecurl 2018/6/24
- */
+
 public class loginActivity extends AppCompatActivity {
 
     private RealmConfiguration userDB;
@@ -67,18 +65,18 @@ public class loginActivity extends AppCompatActivity {
                 startActivity(new Intent(this, StepActivity.class));
                 finish();
                 break;
-            //TODO 返回箭头功能
+            //TODO back button activity
             case R.id.tv_loginactivity_register:
-                //TODO 注册界面跳转
+                //TODO jump to register page
                 startActivity(new Intent(this, RegisterActivity.class));
                 finish();
                 break;
-            //case R.id.tv_loginactivity_forget:   //忘记密码
-            //TODO 忘记密码操作界面跳转
+            //case R.id.tv_loginactivity_forget:   //Forget the password
+            //TODO something
             //    startActivity(new Intent(this, FindPasswordActivity.class));
             //    break;
-            //case R.id.tv_loginactivity_check:    //短信验证码登录
-            // TODO 短信验证码登录界面跳转
+            //case R.id.tv_loginactivity_check:    //Login through text
+            // TODO something
 
             case R.id.bt_loginactivity_login:
                 String name = mEtLoginactivityUsername.getText().toString().trim();
@@ -98,16 +96,16 @@ public class loginActivity extends AppCompatActivity {
                         }
                     }
                     if (match) {
-                        Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, MainActivity.class);
                         intent.putExtra("uid",user.getUid());
                         startActivity(intent);
-                        finish();//销毁此Activity
+                        finish();//Destroy this Activity
                     }else {
-                        Toast.makeText(this, "用户名或密码不正确，请重新输入", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Invalid user name or password", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(this, "请输入你的用户名或密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Please enter your user name and password", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

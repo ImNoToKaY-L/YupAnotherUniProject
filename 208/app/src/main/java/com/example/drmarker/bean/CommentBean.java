@@ -2,9 +2,6 @@ package com.example.drmarker.bean;
 
 import java.util.List;
 
-/**
- * Created by moos on 2018/4/20.
- */
 
 public class CommentBean {
     private int code;

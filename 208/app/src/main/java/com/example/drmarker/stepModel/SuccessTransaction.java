@@ -7,10 +7,6 @@ import io.realm.Realm;
 import io.realm.RealmAsyncTask;
 
 
-/**
- * Created by gojuukaze on 16/8/19.
- * Email: i@ikaze.uu.me
- */
 public class SuccessTransaction implements Realm.Transaction.OnSuccess {
 
     RealmAsyncTask asyncTransaction;

@@ -82,21 +82,23 @@
                             android:layout_weight="1"
                             android:layout_marginLeft="6dp"
                             android:orientation="vertical">
+
                             <TextView
                                 android:id="@+id/detail_page_userName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:text="User2"
                                 android:textColor="#5B595A"
-                                android:textSize="14sp"
-                                android:text="沐风" />
+                                android:textSize="14sp" />
+
                             <TextView
                                 android:id="@+id/detail_page_time"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1小时前"
-                                android:textSize="12sp"
                                 android:layout_marginTop="3dp"
-                                android:textColor="#989898"/>
+                                android:text="1 hour ago"
+                                android:textColor="#989898"
+                                android:textSize="12sp" />
                         </LinearLayout>
                         <ImageView
                             android:id="@+id/detail_page_focus"
@@ -106,27 +108,29 @@
                             android:layout_margin="12dp"
                             android:padding="6dp"/>
                     </LinearLayout>
+
                     <TextView
                         android:id="@+id/detail_page_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="诗和远方"
                         android:layout_marginLeft="18dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginBottom="6dp"
-                        android:textSize="18sp"
-                        android:textColor="#363636"/>
+                        android:text="Comment example"
+                        android:textColor="#363636"
+                        android:textSize="18sp" />
+
                     <TextView
                         android:id="@+id/detail_page_story"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="18dp"
-                        android:text="水光潋滟晴方好，山色空蒙雨亦奇。\n欲把西湖比西子，淡抹浓妆总相宜。"
-                        android:maxLines="10"
-                        android:ellipsize="end"
                         android:layout_marginRight="10dp"
-                        android:textSize="14sp"
-                        android:textColor="#6e6e6e"/>
+                        android:ellipsize="end"
+                        android:maxLines="10"
+                        android:text="Dr.Marker is the best application in the world"
+                        android:textColor="#6e6e6e"
+                        android:textSize="14sp" />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -167,19 +171,20 @@
         android:elevation="2dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
+
         <TextView
             android:id="@+id/detail_page_do_comment"
             android:layout_width="0dp"
             android:layout_height="34dp"
-            android:layout_weight="1"
-            android:textColor="#B6B6B6"
-            android:textSize="12sp"
-            android:text="说点什么吧..."
-            android:background="@drawable/comment_bt_selector"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="22dp"
+            android:layout_weight="1"
+            android:background="@drawable/comment_bt_selector"
             android:gravity="center_vertical"
-            android:paddingLeft="18dp"/>
+            android:paddingLeft="18dp"
+            android:text="Say something..."
+            android:textColor="#B6B6B6"
+            android:textSize="12sp" />
         <ImageView
             android:layout_width="22dp"
             android:layout_height="22dp"
