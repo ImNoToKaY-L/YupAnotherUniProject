@@ -1,0 +1,102 @@
+almonds,100,580,21,20,51,v,true
+apple pie,100,260,4,43,8,s,true
+asparagus,100,20,2,3,0,v,false
+aubergine,100,18,0.7,3.3,0.2,v,false
+bacon,100,505,14,0,50,m,true
+banana,100,125,1,2,30.2,f,false
+beef,100,135,22,0,5,m,false
+beef and pork mince,100,255,20,0,23,m,false
+beer,300,120,0,9,0,d,false
+biscuit,8,30,0.5,5.5,0.6,s,true
+black berries,100,50,1.3,12,0.2,f,false
+boroccoli,100,20,2,3,0,v,false
+bouillon,150,20,1.2,4,0,d,false
+brei,100,336,20,1,28,s,true
+broth,150,20,1.2,4,0,m,false
+buttermilk,200,70,7,7,1,d,true
+carrots,100,30,1,6,0.2,v,false
+celeriac,100,32,2,5,0.4,v,false
+celery,100,14,1,2,0.2,v,false
+champignons,100,16,2.7,0.6,0.2,v,false
+chard,100,28,3,3,0.4,v,false
+cheese,100,235,32,0,12,s,true
+chicken breast,100,105,20,0,3,m,false
+chips,150,450,26,25,11,s,true
+chocolate biscuit,15,49,0.6,6.2,2.4,s,true
+coconut slices,20,84,0.8,6.8,6,s,false
+cod,100,101,23,0,1,m,false
+coffee black,150,0,0,0,0,d,true
+cola light,200,0.4,0,0,0,d,false
+common beans,100,18,2,2,0.2,v,false
+courgette,100,19,0.6,4,0.1,v,false
+crispbread,15,39,1.1,8.3,0.2,s,true
+croissant,50,165,3,18,9,s,true
+cucumber,100,10,0.6,2,0,v,false
+currant bun,60,210,4.5,35,5.7,s,true
+dates,100,306,2,74,0.5,f,false
+egg,50,80,7.3,0,5.7,m,true
+endive,100,14,2,1,0.2,v,false
+energy bar,15,95,1.5,20,1.2,s,true
+gherkins,100,10,0.6,1.3,0.2,v,false
+hazelnuts,100,630,15,17,61,v,false
+horse steak,100,105,22,0,2,m,false
+kebab,100,215,17,3,15,m,false
+kit kat bar,15,48,0.6,6.8,2.1,s,true
+kiwi,100,37,0.8,8,0.3,f,false
+kohlrabi,100,26,1,5,0.2,v,false
+leek,100,31,2,5,0.3,v,false
+lettuce,100,16,1.4,2.2,0.2,v,false
+liver sausage,15,63,1.8,0.2,6.2,m,false
+luncheon meat,15,45,1.6,0.5,4,m,true
+macaroni,100,338,12,70,2,s,true
+mandarin,100,36,0.7,8,1,f,false
+milk (lean),200,66,6.4,9.8,0.2,d,true
+milk (lowfat),200,96,7.2,9.8,3,d,true
+milk (whole),200,128,7,9.6,7,d,true
+milk chocolate,100,564,6.5,51,37,d,true
+mocha cake,100,382,4,32,26,s,true
+mozzarella,100,299,27,1,21,s,true
+muesli,100,374,6.5,68,8.5,s,true
+mussels,100,57,10,2,1,m,false
+nuts,100,660,17,8,62,v,true
+orange juice,200,82,1.4,17,0,d,true
+oysters,100,49,6,4,1,m,false
+papreika,100,24,1,5,0.3,v,false
+peanuts,100,590,24,22,50,v,true
+pear juice,200,70,0.2,17,0,d,true
+plaice,100,94,19,0,2,m,false
+plum,50,25,0.4,5.7,0.2,f,false
+pollack,100,77,17,0,1,m,false
+pork,100,140,21,0,6,m,false
+porridge,100,360,11,60,9,s,true
+purslane,100,10,1,1,0.2,v,false
+quaker oats,100,330,11,67,2.3,s,true
+radishes,100,14,1,2,0.2,v,false
+raisins,100,332,3,79,0.5,f,false
+raw ham,15,46,3,0,3.8,m,false
+red berries,100,45,1.1,9.7,0.2,f,false
+red cabbage,100,26,2,4,0.2,v,false
+rice,100,350,7,80,1,s,false
+rice waffle,8,26,0.5,6,0,s,true
+roast beef,15,25,4,0,0.9,m,false
+salami,15,56,2.7,0,5,m,false
+salmon,100,168,24,0,8,m,false
+sardines,100,226,24,1,14,m,false
+smoked beef,15,23,3.5,0,1,m,false
+smoked herring,100,330,22,3,26,m,false
+spaghetti,100,345,12,71,1.5,s,true
+spinach,100,20,2.5,1.6,0.4,v,false
+strawberries,100,24,1,5,0.1,f,false
+tea black,100,0,0,0,0,d,true
+tofu,100,77,10,3,4,v,false
+tomato juice,200,32,1.8,5.8,0,d,true
+tuny fish,100,135,22,0,5,m,false
+veal,100,150,20,0,8,m,false
+walnuts,100,659,15,8,63,s,true
+watermelon,100,35,0.6,7.6,0.2,f,false
+white beans,100,68,6,11,0,v,false
+white cabbage,100,24,2,4,0,v,false
+yoghurt lean,150,60,6.8,7.5,0,d,true
+yoghurt lowfat,150,75,6.3,7.6,2.3,d,true
+yoghurt whole,150,85,5.1,5.3,4.8,d,true
+zwieback,15,39,1.8,5.9,0.9,s,true

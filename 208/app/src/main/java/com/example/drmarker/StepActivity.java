@@ -30,10 +30,10 @@ public class StepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step);
         tv = (TextView)findViewById(R.id.tv_step_food);
-        InputStream foodStream = getResources().openRawResource(R.raw.calories);
+        InputStream foodStream = getResources().openRawResource(R.raw.foods);
         InputStream sportStream = getResources().openRawResource(R.raw.sports);
         InitDBHandler init = new InitDBHandler(foodStream,sportStream);
-        String testT = Realm.getInstance(init.getFoodDB()).where(Food.class).findFirst().getName();
+        String testT = Realm.getInstance(init.getFoodDB()).where(Food.class).findFirst().toString();
         Double testT2 = Realm.getInstance(init.getSportDB()).where(Sport.class).findFirst().getCalories();
         tv.setText(testT);
         tv = (TextView)findViewById(R.id.tv_step_sport);
