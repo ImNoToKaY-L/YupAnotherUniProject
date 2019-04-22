@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,10 +21,16 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
     private EditText edit_height;
     private EditText edit_weight;
-    private TextView category_warning;
-    private ArrayAdapter<String> adapter;
+    private EditText edit_waist;
+    private EditText edit_hip;
+
+    private ArrayAdapter<String> adapter, adapter_gender, adapter_age;
     private Spinner categorySpinner;
+    private Spinner ageSpinner;
+    private Spinner genderSpinner;
     private boolean categorySelected = false;
+    private boolean genderSelected = false;
+    private boolean ageSelected = false;
     private String category;
 
 
@@ -34,21 +39,32 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
         getInfo();
+
         categorySpinner = (Spinner)findViewById(R.id.input_spinner);
-        category_warning = (TextView)findViewById(R.id.input_category_warning);
+        genderSpinner = (Spinner)findViewById(R.id.spinner_gender);
+        ageSpinner = (Spinner)findViewById(R.id.spinner_age);
+
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,initDataList());
+        adapter_gender = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,initGenderList());
+        adapter_age = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,initAgeList());
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_gender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter_age.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         categorySpinner.setAdapter(adapter);
+        genderSpinner.setAdapter(adapter_gender);
+        ageSpinner.setAdapter(adapter_age);
+
+
 
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 category = adapter.getItem(position);
                 if (category.equals(getString(R.string.sport_None))){
-                    category_warning.setText("*category is a must");
                     categorySelected = false;
                 }else {
-                    category_warning.setText("");
                     categorySelected = true;
                 }
 
@@ -57,6 +73,46 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 categorySelected = false;
+            }
+        });
+
+
+
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                category = adapter.getItem(position);
+                if (category.equals(getString(R.string.sport_None))){
+                    genderSelected = false;
+                }else {
+                    genderSelected = true;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                genderSelected = false;
+            }
+        });
+
+
+
+        ageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                category = adapter.getItem(position);
+                if (category.equals(getString(R.string.sport_None))){
+                    ageSelected = false;
+                }else {
+                    ageSelected = true;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                ageSelected = false;
             }
         });
 
@@ -79,10 +135,33 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private List<String> initGenderList(){
+        List<String> dataList = new ArrayList<>();
+        dataList.add("Please select your gender");
+        dataList.add("Male");
+        dataList.add("Female");
+        return dataList;
+    }
+
+
+    private List<String> initAgeList(){
+        List<String> dataList = new ArrayList<>();
+        dataList.add("Please select your birth year");
+        for(int i = 2019;i > 1925;i --){
+            dataList.add(String.valueOf(i));
+        }
+        return dataList;
+    }
+
+
+
     private void getInfo(){
         //Get the height and weight
-        edit_height=findViewById(R.id.et_edit_name);
+        edit_height=findViewById(R.id.edit_height);
         edit_weight=findViewById(R.id.edit_weight);
+        edit_waist=findViewById(R.id.edit_waist);
+        edit_hip=findViewById(R.id.edit_hip);
+
         //Initialize the button
         Button button_send = findViewById(R.id.bt_edit);
         button_send.setOnClickListener(this);
@@ -98,6 +177,9 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                     //Get the input from text view
                     String height=edit_height.getText().toString().trim();
                     String weight=edit_weight.getText().toString().trim();
+                    String waist=edit_waist.getText().toString().trim();
+                    String hip=edit_hip.getText().toString().trim();
+
                     //put the info into the intent and send it
                     intent.putExtra("height",height);
                     intent.putExtra("weight",weight);
