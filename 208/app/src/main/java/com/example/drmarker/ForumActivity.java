@@ -1,5 +1,6 @@
 package com.example.drmarker;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
@@ -108,6 +109,15 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
         bt_comment = (TextView) findViewById(R.id.detail_page_do_comment);
         bt_comment.setOnClickListener(this);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ForumActivity.this,MainActivity.class);
+                intent.putExtra("uid",getIntent().getStringExtra("uid"));
+                startActivity(intent);
+                finish();
+            }
+        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
