@@ -212,7 +212,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
     private List<String> initAgeList() {
         List<String> dataList = new ArrayList<>();
         dataList.add(getString(R.string.age_none));
-        for (int i = 2019; i > 1925; i--) {
+        for (int i = 2001; i > 1925; i--) {
             dataList.add(String.valueOf(i));
         }
         return dataList;
@@ -247,6 +247,20 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                     final String weight = edit_weight.getText().toString().trim();
                     final String waist = edit_waist.getText().toString().trim();
                     final String hip = edit_hip.getText().toString().trim();
+
+                    //Validate the input from user, return if not valid
+                    try{
+                        if(!validateHeight(Double.parseDouble(height)) || !validateWeight(Double.parseDouble(weight))){
+                            return;
+                        }
+                        Double.parseDouble(waist);
+                        Double.parseDouble(hip);
+                    }catch (Exception e){
+                        Toast.makeText(this, "Only double input is allowed", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+
 
                     //put the info into the intent and send it
                     intent.putExtra("height", height);
@@ -300,6 +314,28 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
         }
     }
+
+
+    private boolean validateHeight(double height){
+        if(height<100 || height>300){
+            Toast.makeText(this, "Invalid height input, should be between 100 and 300", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
+    private boolean validateWeight(double weight){
+        if(weight<30 || weight>200){
+            Toast.makeText(this, "Invalid weight input, should be between 30 and 200", Toast.LENGTH_SHORT).show();
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
