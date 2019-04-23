@@ -521,17 +521,23 @@ public class FoodRecommender {
 
     public static ArrayList<Food> getRecommendBreakfast(String bodyAim, ArrayList<Food> foods) {
         recommendBreakfast(bodyAim,foods);
-        return recommendBreakfast;
+        ArrayList<Food> tempList = recommendBreakfast;
+        recommendBreakfast = new ArrayList<>();
+        return tempList;
     }
 
     public static ArrayList<Food> getRecommendLunch(String bodyAim, ArrayList<Food> foods) {
         recommendLunch(bodyAim,foods);
-        return recommendLunch;
+        ArrayList<Food> tempList = recommendLunch;
+        recommendLunch = new ArrayList<>();
+        return tempList;
     }
 
     public static ArrayList<Food> getRecommendDinner(String bodyAim,ArrayList<Food> foods) {
         recommendDinner(bodyAim,foods);
-        return recommendDinner;
+        ArrayList<Food> tempList = recommendDinner;
+        recommendDinner = new ArrayList<>();
+        return tempList;
     }
 
 

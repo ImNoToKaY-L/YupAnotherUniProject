@@ -114,6 +114,9 @@ public class NewActivity extends AppCompatActivity {
         ArrayList<Food> breakfast = FoodRecommender.getRecommendBreakfast(totalAnalysis,foods);
         ArrayList<Food> lunch = FoodRecommender.getRecommendLunch(totalAnalysis,foods);
         ArrayList<Food> dinner = FoodRecommender.getRecommendDinner(totalAnalysis,foods);
+
+        
+
         TextView tv = findViewById(R.id.image_comment1);
         tv.setText(breakfast.get(0).getName());
         ImageView ig = findViewById(R.id.image1);
