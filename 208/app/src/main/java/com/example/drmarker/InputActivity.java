@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,7 +32,9 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
     private boolean categorySelected = false;
     private boolean genderSelected = false;
     private boolean ageSelected = false;
-    private String category;
+    private boolean HWInput = false;
+    private boolean advanceView = false;
+    private String category,gender,YOB;
 
 
     @Override
@@ -81,8 +84,8 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                category = adapter.getItem(position);
-                if (category.equals(getString(R.string.sport_None))){
+                gender = adapter_gender.getItem(position);
+                if (category.equals(getString(R.string.gender_None))){
                     genderSelected = false;
                 }else {
                     genderSelected = true;
@@ -101,8 +104,8 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         ageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                category = adapter.getItem(position);
-                if (category.equals(getString(R.string.sport_None))){
+                YOB = adapter_age.getItem(position);
+                if (category.equals(getString(R.string.age_none))){
                     ageSelected = false;
                 }else {
                     ageSelected = true;
@@ -137,7 +140,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
     private List<String> initGenderList(){
         List<String> dataList = new ArrayList<>();
-        dataList.add("Please select your gender");
+        dataList.add(getString(R.string.gender_None));
         dataList.add("Male");
         dataList.add("Female");
         return dataList;
@@ -146,7 +149,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
     private List<String> initAgeList(){
         List<String> dataList = new ArrayList<>();
-        dataList.add("Please select your birth year");
+        dataList.add(getString(R.string.age_none));
         for(int i = 2019;i > 1925;i --){
             dataList.add(String.valueOf(i));
         }
@@ -171,8 +174,12 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         switch (view.getId()){
             case R.id.bt_edit:
                 //Initialize an intent to the receive class
+                if (edit_height.getText().toString().trim().length()!=0
+                        &&edit_weight.getText().toString().trim().length()!=0)HWInput = true;
+                else HWInput = false;
+                Log.d("HAM", "{"+edit_height.getText().toString().trim()+"}");
 
-                if(categorySelected){
+                if(categorySelected&&genderSelected&&ageSelected&&HWInput){
                     Intent intent=new Intent(InputActivity.this, NewActivity.class);
                     //Get the input from text view
                     String height=edit_height.getText().toString().trim();
@@ -183,10 +190,12 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                     //put the info into the intent and send it
                     intent.putExtra("height",height);
                     intent.putExtra("weight",weight);
+                    intent.putExtra("gender",gender);
+                    intent.putExtra("yob",YOB);
                     intent.putExtra("uid",getIntent().getStringExtra("uid"));
                     startActivity(intent);
                     finish();
-                }else Toast.makeText(this, "Select a category", Toast.LENGTH_SHORT).show();
+                }else Toast.makeText(this, "Compulsory fields are blank", Toast.LENGTH_SHORT).show();
 
         }
     }

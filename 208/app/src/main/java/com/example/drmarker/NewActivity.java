@@ -8,8 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class NewActivity extends AppCompatActivity {
+import com.example.drmarker.Recommend.FoodRecommender;
 
+public class NewActivity extends AppCompatActivity {
+    private String height,weight,gender,age;
+
+    private double BMI,BMR,BF,dailyCal;
+
+    private FoodRecommender fr;
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
