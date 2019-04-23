@@ -13,6 +13,7 @@ import com.example.drmarker.RealmModule.FoodModule;
 import com.example.drmarker.RealmModule.UserInfoModule;
 import com.example.drmarker.Recommend.Food;
 import com.example.drmarker.Recommend.FoodRecommender;
+import com.example.drmarker.Step.DateTimeHelper;
 import com.example.drmarker.userModel.UserInformation;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class NewActivity extends AppCompatActivity {
     private String gender;
     private double height,weight,waist,hip;
     private int age,activeType;
-    private ArrayList<Food> foods;
+    private ArrayList<Food> foods,recommend;
     private Realm foodDB;
     private UserInformation userInfo;
     private double BMI,BMR,BF,dailyCal,SM;
@@ -111,20 +112,12 @@ public class NewActivity extends AppCompatActivity {
         Log.d(TAG, totalAnalysis+"tAna");
 
         Log.d(TAG, DateTimeHelper.getHour()+"time");
+        int timeNow = DateTimeHelper.getHour();
+        if (timeNow>=8&&timeNow<=11) recommend = FoodRecommender.getRecommendLunch(totalAnalysis,foods);
+        else if (timeNow>11&&timeNow<=4) recommend = FoodRecommender.getRecommendDinner(totalAnalysis,foods);
+        else recommend = FoodRecommender.getRecommendBreakfast(totalAnalysis,foods);
 
-        ArrayList<Food> breakfast = FoodRecommender.getRecommendBreakfast(totalAnalysis,foods);
-        ArrayList<Food> lunch = FoodRecommender.getRecommendLunch(totalAnalysis,foods);
-        ArrayList<Food> dinner = FoodRecommender.getRecommendDinner(totalAnalysis,foods);
-
-        
-
-        TextView tv = findViewById(R.id.image_comment1);
-        tv.setText(breakfast.get(0).getName());
-        ImageView ig = findViewById(R.id.image1);
-        int image1ID = getResources().getIdentifier(breakfast.get(0).getName(),"raw",getPackageName());
-        ig.setImageResource(image1ID);
-        
-
+        initFoodRecommend();
 
 
 
@@ -136,6 +129,25 @@ public class NewActivity extends AppCompatActivity {
                 .build();
         Realm userInfoDB = Realm.getInstance(realmConfig);
         userInfo = userInfoDB.where(UserInformation.class).equalTo("uid",uid).findFirst();
+    }
+    private void initFoodRecommend(){
+        TextView tv1 = findViewById(R.id.image_comment1);
+        tv1.setText(recommend.get(0).getName());
+        ImageView ig1 = findViewById(R.id.image1);
+        int image1ID = getResources().getIdentifier(recommend.get(0).getName(),"raw",getPackageName());
+        ig1.setImageResource(image1ID);
+
+        TextView tv2 = findViewById(R.id.image_comment2);
+        tv2.setText(recommend.get(1).getName());
+        ImageView ig2 = findViewById(R.id.image2);
+        int image2ID = getResources().getIdentifier(recommend.get(1).getName(),"raw",getPackageName());
+        ig2.setImageResource(image2ID);
+
+        TextView tv3 = findViewById(R.id.image_comment3);
+        tv3.setText(recommend.get(2).getName());
+        ImageView ig3 = findViewById(R.id.image3);
+        int image3ID = getResources().getIdentifier(recommend.get(2).getName(),"raw",getPackageName());
+        ig3.setImageResource(image3ID);
     }
 
 
