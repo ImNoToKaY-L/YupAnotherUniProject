@@ -14,6 +14,7 @@ import com.example.drmarker.RealmModule.UserInfoModule;
 import com.example.drmarker.Recommend.Food;
 import com.example.drmarker.Recommend.FoodRecommender;
 import com.example.drmarker.userModel.User;
+import com.example.drmarker.userModel.UserInformation;
 
 import java.util.ArrayList;
 
@@ -26,32 +27,46 @@ public class NewActivity extends AppCompatActivity {
     private double height,weight,waist,hip;
     private int age,activeType;
     private ArrayList<Food> foods;
-    private Realm foodDB,userInfoDB;
+    private Realm foodDB;
+    private UserInformation userInfo;
     private double BMI,BMR,BF,dailyCal,SM;
+    private String uid;
     String analysisOfBMI, analysisOfSM, analysisOfBF,totalAnalysis;
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
         String TAG = "ANAL";
-        initUserInfoDB();
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_new);
         //Get the intent from the input activity
         Intent intent=getIntent();
-        height = Double.parseDouble(intent.getStringExtra("height")) ;
-        Log.d(TAG, height+"HE");
-        weight = Double.parseDouble(intent.getStringExtra("weight"));
+        uid = intent.getStringExtra("uid");
+        initUserInfo();
+//        height = Double.parseDouble(intent.getStringExtra("height")) ;
+//        weight = Double.parseDouble(intent.getStringExtra("weight"));
+//        gender = intent.getStringExtra("gender");
+//        waist = Double.parseDouble(intent.getStringExtra("waist"));
+//        hip = Double.parseDouble(intent.getStringExtra("hip"));
+//        age = 2019-Integer.parseInt(intent.getStringExtra("yob"));
+//        activeType = intent.getIntExtra("activeType",0);
+
+
+        height = Double.parseDouble(userInfo.getHeight());
+        weight = Double.parseDouble(userInfo.getWeight());
+        gender = userInfo.getGender();
+        waist = Double.parseDouble(userInfo.getWaist());
+        hip = Double.parseDouble(userInfo.getHip());
+        age = 2019-userInfo.getYOB();
+        activeType = userInfo.getCategory();
+                Log.d(TAG, height+"HE");
         Log.d(TAG, weight+"WE");
-        gender = intent.getStringExtra("gender");
         Log.d(TAG, gender);
-        waist = Double.parseDouble(intent.getStringExtra("waist"));
         Log.d(TAG, waist+"WA");
-        hip = Double.parseDouble(intent.getStringExtra("hip"));
         Log.d(TAG, hip+"HI");
-        age = 2019-Integer.parseInt(intent.getStringExtra("yob"));
         Log.d(TAG, age+"YOB");
-        activeType = intent.getIntExtra("activeType",0);
         Log.d(TAG, activeType+"AT");
+
         foodDB = Realm.getInstance(new RealmConfiguration.Builder()
                 .name("food_db").modules(new FoodModule()).deleteRealmIfMigrationNeeded()
                 .build());
@@ -90,11 +105,12 @@ public class NewActivity extends AppCompatActivity {
 
     }
 
-    private void initUserInfoDB(){
+    private void initUserInfo(){
         RealmConfiguration realmConfig = new RealmConfiguration.Builder()
                 .name("userInfo_db").modules(new UserInfoModule()).deleteRealmIfMigrationNeeded()
                 .build();
-        userInfoDB = Realm.getInstance(realmConfig);
+        Realm userInfoDB = Realm.getInstance(realmConfig);
+        userInfo = userInfoDB.where(UserInformation.class).equalTo("uid",uid).findFirst();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

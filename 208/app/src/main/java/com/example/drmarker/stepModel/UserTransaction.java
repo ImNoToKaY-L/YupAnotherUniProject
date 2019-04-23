@@ -21,15 +21,16 @@ public class UserTransaction implements Realm.Transaction {
         this.uid = uid;
     }
 
+
     @Override
     public void execute(Realm realm) {
         Log.d("realm", "now insert [" + name + " ," + password +","+ uid+"]");
 
         User user = realm.where(User.class).equalTo("uid",uid).findFirst();
-        RealmResults<User> people = realm.where(User.class).findAll();
-        for (User s:people){
-            Log.d("DEBUG", s.getUid()+" "+s.getName()+" "+s.getPassword());
-        }
+//        RealmResults<User> people = realm.where(User.class).findAll();
+//        for (User s:people){
+//            Log.d("DEBUG", s.getUid()+" "+s.getName()+" "+s.getPassword());
+//        }
 
         user.setName(name);
         user.setPassword(password);

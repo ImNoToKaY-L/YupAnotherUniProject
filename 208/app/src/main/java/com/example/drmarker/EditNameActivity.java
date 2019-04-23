@@ -75,7 +75,6 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
                     intent_editName.putExtra("uid",getIntent().getStringExtra("uid"));
                     //Get the input from text view
 
-                    //UserTransaction ut = new UserTransaction(newName, loginUser.getPassword(), loginUser.getUid());
                     //ut.execute(mRealm);
 
                     realmAsyncTask = mRealm.executeTransactionAsync(

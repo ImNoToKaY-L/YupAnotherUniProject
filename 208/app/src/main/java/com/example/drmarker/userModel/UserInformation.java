@@ -3,26 +3,59 @@ package com.example.drmarker.userModel;
 import javax.annotation.Nullable;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class UserInformation extends RealmObject {
-
+    @PrimaryKey
     private String uid;
-    private int height,weight,hip,waist;
-    private String category;
+    private String height,weight,hip,waist;
+    private int category;
+    private String gender;
+    private int YOB;
 
-    public int getHeight() {
+    public UserInformation(String uid,String height,String weight,String waist,String hip,String gender,int category,int YOB){
+        this.uid = uid;
+        this.height = height;
+        this.waist = waist;
+        this.weight = weight;
+        this.category = category;
+        this.YOB = YOB;
+        this.setGender(gender);
+        this.setHip(hip);
+    }
+    public UserInformation(){
+
+    }
+
+    public int getYOB() {
+        return YOB;
+    }
+
+    public void setYOB(int YOB) {
+        this.YOB = YOB;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getHeight() {
         return height;
     }
 
-    public int getHip() {
+    public String getHip() {
         return hip;
     }
 
-    public int getWaist() {
+    public String getWaist() {
         return waist;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
@@ -30,11 +63,11 @@ public class UserInformation extends RealmObject {
         return uid;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public void setHip(int hip) {
+    public void setHip(String hip) {
         this.hip = hip;
     }
 
@@ -42,19 +75,19 @@ public class UserInformation extends RealmObject {
         this.uid = uid;
     }
 
-    public void setWaist(int waist) {
+    public void setWaist(String waist) {
         this.waist = waist;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 }
