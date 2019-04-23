@@ -24,7 +24,12 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
     private EditText edit_weight;
     private EditText edit_waist;
     private EditText edit_hip;
-
+    public static final int SEDENTARY = 1;
+    public static final int LIGHTLY_ACTIVE = 2;
+    public static final int MODERATELY_ACTIVE = 3;
+    public static final int VERY_ACTIVE = 4;
+    public static final int EXTREMELY_ACTIVE = 5;
+    private int activeType;
     private ArrayAdapter<String> adapter, adapter_gender, adapter_age;
     private Spinner categorySpinner;
     private Spinner ageSpinner;
@@ -138,6 +143,16 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private int choiceToType(String choice){
+        if (choice.equals(getString(R.string.sport_Sedentary)))return SEDENTARY;
+        else if (choice.equals(getString(R.string.sport_LightlyActive)))return LIGHTLY_ACTIVE;
+        else if (choice.equals(getString(R.string.sport_VeryActive)))return VERY_ACTIVE;
+        else if (choice.equals(getString(R.string.sport_ModeratelyActive)))return MODERATELY_ACTIVE;
+        else if (choice.equals(getString(R.string.sport_ExtremelyActive)))return EXTREMELY_ACTIVE;
+        return 0;
+
+    }
+
     private List<String> initGenderList(){
         List<String> dataList = new ArrayList<>();
         dataList.add(getString(R.string.gender_None));
@@ -192,7 +207,11 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                     intent.putExtra("weight",weight);
                     intent.putExtra("gender",gender);
                     intent.putExtra("yob",YOB);
+                    Log.d("ANAL", YOB+" from above");
                     intent.putExtra("uid",getIntent().getStringExtra("uid"));
+                    intent.putExtra("activeType",choiceToType(category));
+                    intent.putExtra("waist",waist);
+                    intent.putExtra("hip",hip);
                     startActivity(intent);
                     finish();
                 }else Toast.makeText(this, "Compulsory fields are blank", Toast.LENGTH_SHORT).show();

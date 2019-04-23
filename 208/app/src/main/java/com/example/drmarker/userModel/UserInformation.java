@@ -1,8 +1,11 @@
 package com.example.drmarker.userModel;
 
+import javax.annotation.Nullable;
+
 import io.realm.RealmObject;
 
-public class UserInfomation extends RealmObject {
+public class UserInformation extends RealmObject {
+
     private String uid;
     private int height,weight,hip,waist;
     private String category;
