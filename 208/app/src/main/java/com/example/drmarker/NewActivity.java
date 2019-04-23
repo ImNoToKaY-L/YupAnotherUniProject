@@ -2,18 +2,15 @@ package com.example.drmarker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
 
 import com.example.drmarker.RealmModule.FoodModule;
 import com.example.drmarker.RealmModule.UserInfoModule;
 import com.example.drmarker.Recommend.Food;
 import com.example.drmarker.Recommend.FoodRecommender;
-import com.example.drmarker.userModel.User;
 import com.example.drmarker.userModel.UserInformation;
 
 import java.util.ArrayList;
@@ -32,12 +29,12 @@ public class NewActivity extends AppCompatActivity {
     private double BMI,BMR,BF,dailyCal,SM;
     private String uid;
     String analysisOfBMI, analysisOfSM, analysisOfBF,totalAnalysis;
+    private android.support.v7.widget.Toolbar toolbar;
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
         String TAG = "ANAL";
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_new);
         //Get the intent from the input activity
         Intent intent=getIntent();
@@ -51,6 +48,18 @@ public class NewActivity extends AppCompatActivity {
 //        age = 2019-Integer.parseInt(intent.getStringExtra("yob"));
 //        activeType = intent.getIntExtra("activeType",0);
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar_new);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NewActivity.this,InputActivity.class);
+                intent.putExtra("uid",getIntent().getStringExtra("uid"));
+                startActivity(intent);
+                finish();
+            }
+        });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         height = Double.parseDouble(userInfo.getHeight());
         weight = Double.parseDouble(userInfo.getWeight());
@@ -99,10 +108,6 @@ public class NewActivity extends AppCompatActivity {
         totalAnalysis = FoodRecommender.totalAnalysis(analysisOfBMI,analysisOfBF,analysisOfSM);
         Log.d(TAG, totalAnalysis+"tAna");
 
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navView.setSelectedItemId(R.id.navigation_monitor);
-
     }
 
     private void initUserInfo(){
@@ -113,42 +118,6 @@ public class NewActivity extends AppCompatActivity {
         userInfo = userInfoDB.where(UserInformation.class).equalTo("uid",uid).findFirst();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    //Do something
-                    Intent intent = new Intent(NewActivity.this, MainActivity.class);
-                    intent.putExtra("uid",getIntent().getStringExtra("uid"));
-                    startActivity(intent);
-                    finish();
-                    return true;
-
-                case R.id.navigation_monitor:
-                    //Do something
-                    return true;
-
-                case R.id.navigation_forum:
-                    //Do something
-                    Intent intent_forum=new Intent(NewActivity.this, ForumActivity.class);
-                    intent_forum.putExtra("uid",getIntent().getStringExtra("uid"));
-                    startActivity(intent_forum);
-                    finish();
-                    return true;
-
-                case R.id.navigation_me:
-                    //Do something
-                    Intent intent_me=new Intent(NewActivity.this, MeActivity.class);
-                    intent_me.putExtra("uid",getIntent().getStringExtra("uid"));
-                    startActivity(intent_me);
-                    finish();
-                    return true;
-            }
-            return false;
-        }
-    };
 }
 
