@@ -117,6 +117,8 @@ public class NewActivity extends AppCompatActivity {
         TextView tv = findViewById(R.id.image_comment1);
         tv.setText(breakfast.get(0).getName());
         ImageView ig = findViewById(R.id.image1);
+        int image1ID = getResources().getIdentifier(breakfast.get(0).getName(),"raw",getPackageName());
+        ig.setImageResource(image1ID);
         
 
 
