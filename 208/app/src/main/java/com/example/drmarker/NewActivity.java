@@ -110,6 +110,7 @@ public class NewActivity extends AppCompatActivity {
         totalAnalysis = FoodRecommender.totalAnalysis(analysisOfBMI,analysisOfBF,analysisOfSM);
         Log.d(TAG, totalAnalysis+"tAna");
 
+        Log.d(TAG, DateTimeHelper.getHour()+"time");
 
         ArrayList<Food> breakfast = FoodRecommender.getRecommendBreakfast(totalAnalysis,foods);
         ArrayList<Food> lunch = FoodRecommender.getRecommendLunch(totalAnalysis,foods);
