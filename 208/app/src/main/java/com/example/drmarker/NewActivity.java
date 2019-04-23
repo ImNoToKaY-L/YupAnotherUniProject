@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -67,15 +68,13 @@ public class NewActivity extends AppCompatActivity {
         height = Double.parseDouble(userInfo.getHeight());
         weight = Double.parseDouble(userInfo.getWeight());
         gender = userInfo.getGender();
-        waist = Double.parseDouble(userInfo.getWaist());
-        hip = Double.parseDouble(userInfo.getHip());
         age = 2019-userInfo.getYOB();
         activeType = userInfo.getCategory();
                 Log.d(TAG, height+"HE");
         Log.d(TAG, weight+"WE");
         Log.d(TAG, gender);
-        Log.d(TAG, waist+"WA");
-        Log.d(TAG, hip+"HI");
+//        Log.d(TAG, waist+"WA");
+//        Log.d(TAG, hip+"HI");
         Log.d(TAG, age+"YOB");
         Log.d(TAG, activeType+"AT");
 
@@ -103,10 +102,16 @@ public class NewActivity extends AppCompatActivity {
         analysisOfBF = FoodRecommender.analysisBF(BF,gender,age);
         Log.d(TAG, analysisOfBF+"aBF");
 
-        SM = FoodRecommender.SM(gender,weight,height,waist,hip,age);
-        Log.d(TAG, SM+"SM");
-        analysisOfSM = FoodRecommender.analysisSM(SM,gender,age);
-        Log.d(TAG, analysisOfSM+"ASM");
+        if (userInfo.getWaist().length()!=0&&userInfo.getHip().length()!=0){
+            waist = Double.parseDouble(userInfo.getWaist());
+            hip = Double.parseDouble(userInfo.getHip());
+
+            SM = FoodRecommender.SM(gender,weight,height,waist,hip,age);
+            Log.d(TAG, SM+"SM");
+            analysisOfSM = FoodRecommender.analysisSM(SM,gender,age);
+            Log.d(TAG, analysisOfSM+"ASM");
+        }else analysisOfSM = "";
+
 
         totalAnalysis = FoodRecommender.totalAnalysis(analysisOfBMI,analysisOfBF,analysisOfSM);
         Log.d(TAG, totalAnalysis+"tAna");
@@ -143,11 +148,21 @@ public class NewActivity extends AppCompatActivity {
         int image2ID = getResources().getIdentifier(recommend.get(1).getName(),"raw",getPackageName());
         ig2.setImageResource(image2ID);
 
+
         TextView tv3 = findViewById(R.id.image_comment3);
-        tv3.setText(recommend.get(2).getName());
         ImageView ig3 = findViewById(R.id.image3);
-        int image3ID = getResources().getIdentifier(recommend.get(2).getName(),"raw",getPackageName());
-        ig3.setImageResource(image3ID);
+        if (recommend.size()==3){
+            tv3.setText(recommend.get(2).getName());
+            int image3ID = getResources().getIdentifier(recommend.get(2).getName(),"raw",getPackageName());
+            ig3.setImageResource(image3ID);
+        }else {
+            tv3.setText("");
+            ig3.setScaleX(0);
+            ig3.setScaleY(0);
+        Button bt = findViewById(R.id.bt_cuisine3);
+        bt.setBackgroundColor(getResources().getColor(R.color.transparent));
+        bt.setText("");
+        }
     }
 
 

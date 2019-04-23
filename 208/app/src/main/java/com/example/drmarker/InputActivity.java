@@ -212,7 +212,7 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
     private List<String> initAgeList() {
         List<String> dataList = new ArrayList<>();
         dataList.add(getString(R.string.age_none));
-        for (int i = 2001; i > 1925; i--) {
+        for (int i = 2019; i > 1925; i--) {
             dataList.add(String.valueOf(i));
         }
         return dataList;
@@ -240,6 +240,14 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                 else HWInput = false;
                 Log.d("HAM", "{" + edit_height.getText().toString().trim() + "}");
 
+                if (ageSelected){
+                    if ((2019-Integer.parseInt(YOB))<18){
+                        Toast.makeText(this, "Sorry, the analysis for individuals under" +
+                                "18 is still working in progress", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
                 if (categorySelected && genderSelected && ageSelected && HWInput) {
                     Intent intent = new Intent(InputActivity.this, NewActivity.class);
                     //Get the input from text view
@@ -253,7 +261,9 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
                         if(!validateHeight(Double.parseDouble(height)) || !validateWeight(Double.parseDouble(weight))){
                             return;
                         }
+                        if (waist.length()!=0)
                         Double.parseDouble(waist);
+                        if (hip.length()!=0)
                         Double.parseDouble(hip);
                     }catch (Exception e){
                         Toast.makeText(this, "Only double input is allowed", Toast.LENGTH_SHORT).show();
