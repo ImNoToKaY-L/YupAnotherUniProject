@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.drmarker.RealmModule.FoodModule;
 import com.example.drmarker.RealmModule.UserInfoModule;
@@ -107,6 +109,18 @@ public class NewActivity extends AppCompatActivity {
 
         totalAnalysis = FoodRecommender.totalAnalysis(analysisOfBMI,analysisOfBF,analysisOfSM);
         Log.d(TAG, totalAnalysis+"tAna");
+
+
+        ArrayList<Food> breakfast = FoodRecommender.getRecommendBreakfast(totalAnalysis,foods);
+        ArrayList<Food> lunch = FoodRecommender.getRecommendLunch(totalAnalysis,foods);
+        ArrayList<Food> dinner = FoodRecommender.getRecommendDinner(totalAnalysis,foods);
+        TextView tv = findViewById(R.id.image_comment1);
+        tv.setText(breakfast.get(0).getName());
+        ImageView ig = findViewById(R.id.image1);
+        
+
+
+
 
     }
 
