@@ -180,6 +180,15 @@
         android:onClick="onClick"
         android:text="StepTest" />
 
+    <Button
+        android:id="@+id/bt_loginactivity_guest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guest"
+        android:layout_toRightOf="@id/StepTest"
+        android:layout_below="@id/bt_loginactivity_login"
+        android:onClick="onClick"
+        />
 
 
 </RelativeLayout>

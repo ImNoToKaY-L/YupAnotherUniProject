@@ -5,13 +5,7 @@
  */
 package com.example.drmarker.Recommend;
 
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -22,9 +16,9 @@ import java.util.Iterator;
 public class FoodRecommender {
     
     private ArrayList<Food> foods = new ArrayList<>(); // arraylist for store the food.
-    private ArrayList<Food> recommendBreakfast = new ArrayList<>();
-    private ArrayList<Food> recommendLunch = new ArrayList<>();
-    private ArrayList<Food> recommendDinner = new ArrayList<>();
+    private static ArrayList<Food> recommendBreakfast = new ArrayList<>();
+    private static ArrayList<Food> recommendLunch = new ArrayList<>();
+    private static ArrayList<Food> recommendDinner = new ArrayList<>();
     
     public FoodRecommender(InputStream foodStream) {
         try {
@@ -52,104 +46,104 @@ public class FoodRecommender {
             bufferedReader.close();
         } catch (IOException e) {
             e.getStackTrace();
-            Log.d("food", "FoodRecommender: IOException");
+            System.out.println("Error for checking file's exist.");
         } catch (NumberFormatException e) {
             e.getStackTrace();
-            Log.d("food", "FoodRecommender: NumberFormatException");
+            System.out.println("Error for raw data format.");
         }
     }
-
+    
     public ArrayList<Food> getFoods() {
         return foods;
     }
 
 
 
-    private void recommendBreakfast(String bodyAim) {
+    private static void recommendBreakfast(String bodyAim,ArrayList<Food> foods) {
         switch (bodyAim) {
             case "StrengthenBody":
-                recommendBreakfast.add(randomSelect("d", true, null));
-                recommendBreakfast.add(randomSelect("-d", true, null));
-                recommendBreakfast.add(randomSelect("-d", false, "c"));
+                recommendBreakfast.add(randomSelect("d", true, null,foods));
+                recommendBreakfast.add(randomSelect("-d", true, null,foods));
+                recommendBreakfast.add(randomSelect("-d", false, "c",foods));
                 // C:P:F = 65% : 20% : 15%.
                 break;
             case "BuildMuscle":
                 // C:P:F = 60% : 20% : 20%.
-                recommendBreakfast.add(randomSelect("d", true, null));
-                recommendBreakfast.add(randomSelect("-d", true, "p"));
+                recommendBreakfast.add(randomSelect("d", true, null,foods));
+                recommendBreakfast.add(randomSelect("-d", true, "p",foods));
                 break;
             case "KeepBalance":
                 // C:P:F = 55% : 15% : 30%.
-                recommendBreakfast.add(randomSelect("d", true, null));
-                recommendBreakfast.add(randomSelect("-d", true, null));
+                recommendBreakfast.add(randomSelect("d", true, null,foods));
+                recommendBreakfast.add(randomSelect("-d", true, null,foods));
                 break;
             case "LoseWeight":
                 // C:P:F = 45% : 30% : 25%.
-                recommendBreakfast.add(randomSelect("d", true, null));
-                recommendBreakfast.add(randomSelect("-d", true, "-c"));
-                recommendBreakfast.add(randomSelect("f", false, null));
+                recommendBreakfast.add(randomSelect("d", true, null,foods));
+                recommendBreakfast.add(randomSelect("-d", true, "-c",foods));
+                recommendBreakfast.add(randomSelect("f", false, null,foods));
                 break;
         }
     }
 
-    private void recommendLunch(String bodyAim) {
+    private static void recommendLunch(String bodyAim, ArrayList<Food> foods) {
         switch (bodyAim) {
             case "StrengthenBody":
                 // C:P:F = 65% : 20% : 15%.
-                recommendLunch.add(randomSelect("d", false, null));
-                recommendLunch.add(randomSelect("m", false, null));
-                recommendLunch.add(randomSelect("v", false, null));
-                recommendLunch.add(randomSelect("s", false, null));
+                recommendLunch.add(randomSelect("d", false, null,foods));
+                recommendLunch.add(randomSelect("m", false, null,foods));
+                recommendLunch.add(randomSelect("v", false, null,foods));
+                recommendLunch.add(randomSelect("s", false, null,foods));
                 break;
             case "BuildMuscle":
                 // C:P:F = 60% : 20% : 20%.
-                recommendLunch.add(randomSelect("d", false, "-f"));
-                recommendLunch.add(randomSelect("m", false, "p"));
-                recommendLunch.add(randomSelect("m", false, null));
-                recommendLunch.add(randomSelect("v", false, null));
+                recommendLunch.add(randomSelect("d", false, "-f",foods));
+                recommendLunch.add(randomSelect("m", false, "p",foods));
+                recommendLunch.add(randomSelect("m", false, null,foods));
+                recommendLunch.add(randomSelect("v", false, null,foods));
                 break;
             case "KeepBalance":
                 // C:P:F = 55% : 15% : 30%.
-                recommendLunch.add(randomSelect("d", false, null));
-                recommendLunch.add(randomSelect("m", false, null));
-                recommendLunch.add(randomSelect("v", false, null));
+                recommendLunch.add(randomSelect("d", false, null,foods));
+                recommendLunch.add(randomSelect("m", false, null,foods));
+                recommendLunch.add(randomSelect("v", false, null,foods));
                 break;
             case "LoseWeight":
                 // C:P:F = 45% : 30% : 25%.
-                recommendLunch.add(randomSelect("v", false, null));
-                recommendLunch.add(randomSelect("v", false, null));
+                recommendLunch.add(randomSelect("v", false, null,foods));
+                recommendLunch.add(randomSelect("v", false, null,foods));
                 break;
         }
     }
 
-    private void recommendDinner(String bodyAim) {
+    private static void recommendDinner(String bodyAim,ArrayList<Food> foods) {
         switch (bodyAim) {
             case "StrengthenBody":
                 // C:P:F = 65% : 20% : 15%.
-                recommendDinner.add(randomSelect("f", false, null));
-                recommendDinner.add(randomSelect("-df", false, null));
-                recommendDinner.add(randomSelect("d", false, null));
+                recommendDinner.add(randomSelect("f", false, null,foods));
+                recommendDinner.add(randomSelect("-df", false, null,foods));
+                recommendDinner.add(randomSelect("d", false, null,foods));
                 break;
             case "BuildMuscle":
                 // C:P:F = 60% : 20% : 20%.
-                recommendDinner.add(randomSelect("m", false, null));
-                recommendDinner.add(randomSelect("f", false, null));
+                recommendDinner.add(randomSelect("m", false, null,foods));
+                recommendDinner.add(randomSelect("f", false, null,foods));
                 break;
             case "KeepBalance":
                 // C:P:F = 55% : 15% : 30%.
-                recommendDinner.add(randomSelect("d", false, null));
-                recommendDinner.add(randomSelect("f", false, null));
-                recommendDinner.add(randomSelect("-df", false, null));
+                recommendDinner.add(randomSelect("d", false, null,foods));
+                recommendDinner.add(randomSelect("f", false, null,foods));
+                recommendDinner.add(randomSelect("-df", false, null,foods));
                 break;
             case "LoseWeight":
                 // C:P:F = 45% : 30% : 25%.
-                recommendDinner.add(randomSelect("f", false, null));
-                recommendDinner.add(randomSelect("f", false, null));
+                recommendDinner.add(randomSelect("f", false, null,foods));
+                recommendDinner.add(randomSelect("f", false, null,foods));
                 break;
         }
     }
 
-    private Food randomSelect(String type, boolean morning, String focus) {
+    private static Food randomSelect(String type, boolean morning, String focus,ArrayList<Food> foods) {
         ArrayList<Food> tempFoods = new ArrayList<>();
         if (type.startsWith("-")) {
             for (Food food: foods) {
@@ -228,7 +222,7 @@ public class FoodRecommender {
 
 
     // ************* BMR.
-    public double standardBMR(String gender, double weight, double height, int age) {
+    public static double standardBMR(String gender, double weight, double height, int age) {
         if (gender.equalsIgnoreCase("male")) {
             return 13.8 * weight + 5 * height - 6.8 * age + 66;
         } else {
@@ -236,10 +230,37 @@ public class FoodRecommender {
         }
     }
 
+    public static double dailyCalories(int activeType,double BMR){
+        double multifactor = 0;
+        switch (activeType) {
+            case 1:
+                System.out.println("You are a Sedentary people (multi-factor=1.2);");
+                multifactor = 1.2;
+                break;
+            case 2:
+                System.out.println("You are a Lightly active people (multi-factor=1.375);");
+                multifactor = 1.375;
+                break;
+            case 3:
+                System.out.println("You are a Moderately active people (multi-factor=1.55);");
+                multifactor = 1.55;
+                break;
+            case 4:
+                System.out.println("You are a Very active people (multi-factor=1.725);");
+                multifactor = 1.725;
+                break;
+            case 5:
+                System.out.println("You are a Extremely active people (multi-factor=1.9);");
+                multifactor = 1.9;
+                break;
+        }
+        return multifactor*BMR;
+    }
+
     // ************* END OF BMR.
 
     // ************* SM.
-    public double SM(String gender, double weight, double height, double waist, double hip, int age) {
+    public static double SM(String gender, double weight, double height, double waist, double hip, int age) {
         if (gender.equalsIgnoreCase("male")) {
             return 39.5 + 0.665 * weight - 0.185 * waist - 0.418 * hip - 0.08 * age;
         } else {
@@ -247,7 +268,7 @@ public class FoodRecommender {
         }
     }
 
-    public String analysisSM(double SM, String gender, int age) {
+    public static String analysisSM(double SM, String gender, int age) {
         if (gender.equalsIgnoreCase("male")) {
             if (age >= 18 && age <= 40) {
                 if (SM < 33.4) {
@@ -318,12 +339,12 @@ public class FoodRecommender {
     // ************** END OF SM.
 
     // ************** BMI.
-    public double BMI(double weight, double height) {
+    public static double BMI(double weight, double height) {
         double m_height = height / 100;
         return weight / (m_height * m_height);
     }
 
-    public String analysisBMI(double BMI) {
+    public static String analysisBMI(double BMI) {
         if (BMI < 18.5) {
             return "Underweight";
         } else if (BMI >= 18.5 && BMI < 25) {
@@ -338,7 +359,7 @@ public class FoodRecommender {
     // *************** END OF BMI.
 
     // *************** BF.
-    public double bodyFat(double BMI, int age, String gender) {
+    public static double bodyFat(double BMI, int age, String gender) {
         if (gender.equalsIgnoreCase("male")) {
             return 1.39 * BMI + 0.16 * age - 10.34 - 9;
         } else {
@@ -346,7 +367,7 @@ public class FoodRecommender {
         }
     }
 
-    public String analysisBF(double BF, String gender, int age) {
+    public static String analysisBF(double BF, String gender, int age) {
         if (gender.equalsIgnoreCase("female")) {
             if (age == 18) {
                 if (BF <= 16) {
@@ -456,7 +477,7 @@ public class FoodRecommender {
         }
     }
 
-    public String totalAnalysis(String analysisOfBMI, String analysisOfBF, String analysisOfSM) {
+    public static String totalAnalysis(String analysisOfBMI, String analysisOfBF, String analysisOfSM) {
         if (analysisOfSM.equals("")) {
             switch (analysisOfBF) {
                 case "Underfat":
@@ -498,18 +519,18 @@ public class FoodRecommender {
         return "";
     }
 
-    public ArrayList<Food> getRecommendBreakfast(String bodyAim) {
-        recommendBreakfast(bodyAim);
+    public static ArrayList<Food> getRecommendBreakfast(String bodyAim, ArrayList<Food> foods) {
+        recommendBreakfast(bodyAim,foods);
         return recommendBreakfast;
     }
 
-    public ArrayList<Food> getRecommendLunch(String bodyAim) {
-        recommendLunch(bodyAim);
+    public static ArrayList<Food> getRecommendLunch(String bodyAim, ArrayList<Food> foods) {
+        recommendLunch(bodyAim,foods);
         return recommendLunch;
     }
 
-    public ArrayList<Food> getRecommendDinner(String bodyAim) {
-        recommendDinner(bodyAim);
+    public static ArrayList<Food> getRecommendDinner(String bodyAim,ArrayList<Food> foods) {
+        recommendDinner(bodyAim,foods);
         return recommendDinner;
     }
 

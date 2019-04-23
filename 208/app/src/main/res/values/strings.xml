@@ -12,5 +12,7 @@
     <string name="sport_ModeratelyActive">3-5 days p/w</string>
     <string name="sport_VeryActive">more than 5 days p/w</string>
     <string name="sport_ExtremelyActive">near to professional</string>
+    <string name="gender_None">Please select your gender</string>
+    <string name="age_none">Please select your birth year</string>
 
 </resources>
