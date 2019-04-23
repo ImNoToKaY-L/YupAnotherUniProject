@@ -13,6 +13,7 @@ import com.example.drmarker.RealmModule.FoodModule;
 import com.example.drmarker.RealmModule.UserInfoModule;
 import com.example.drmarker.Recommend.Food;
 import com.example.drmarker.Recommend.FoodRecommender;
+import com.example.drmarker.Step.DateTimeHelper;
 import com.example.drmarker.userModel.User;
 import com.example.drmarker.userModel.UserInformation;
 
@@ -98,6 +99,8 @@ public class NewActivity extends AppCompatActivity {
 
         totalAnalysis = FoodRecommender.totalAnalysis(analysisOfBMI,analysisOfBF,analysisOfSM);
         Log.d(TAG, totalAnalysis+"tAna");
+
+        Log.d(TAG, DateTimeHelper.getHour()+"time");
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
