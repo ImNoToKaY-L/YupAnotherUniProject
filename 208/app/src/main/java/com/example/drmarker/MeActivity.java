@@ -47,16 +47,12 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
         navView.setSelectedItemId(R.id.navigation_me);
 
         Button button_editName = findViewById(R.id.me_editName);
-        Button me_editPic = findViewById(R.id.me_editPic);
         Button me_changePassword = findViewById(R.id.me_editPassword);
         Button me_logout = findViewById(R.id.bt_me_logout);
-        Button me_setting = findViewById(R.id.me_setting);
 
         button_editName.setOnClickListener(this);
-        me_editPic.setOnClickListener(this);
         me_changePassword.setOnClickListener(this);
         me_logout.setOnClickListener(this);
-        me_setting.setOnClickListener(this);
     }
 
     @Override
@@ -75,9 +71,6 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent_editName);
                 finish();
                 break;
-            case R.id.me_editPic:
-
-                break;
             case R.id.me_editPassword:
                 Intent intent_editPassword=new Intent(MeActivity.this, EditPasswordActivity.class);
                 intent_editPassword.putExtra("uid",getIntent().getStringExtra("uid"));
@@ -89,9 +82,6 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
                 Toast.makeText(this, "Log out success", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 finish();
-                break;
-            case R.id.me_setting:
-
                 break;
         }
     }

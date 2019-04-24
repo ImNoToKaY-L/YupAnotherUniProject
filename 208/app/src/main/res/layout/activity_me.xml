@@ -40,31 +40,44 @@
             android:layout_marginRight="10dp"
             android:background="@color/colorGrey">
 
-            <ImageView
-                android:id="@+id/me_picture"
-                android:layout_width="120dp"
-                android:layout_height="121dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/detail_page_userLogo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/person_pic"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/user_logo"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.08"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_conversion_wrapHeight="344"
-                tools:layout_conversion_wrapWidth="349" />
+                app:layout_constraintVertical_bias="0.514" />
 
             <TextView
                 android:id="@+id/me_profile"
-                android:layout_width="226dp"
-                android:layout_height="82dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="48dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_title"
                 android:backgroundTint="@color/colorGrey"
                 android:singleLine="false"
                 android:text="Name:"
                 android:textColor="@color/colorLightBlue"
                 android:textSize="36dp"
-                app:layout_constraintLeft_toRightOf="@+id/me_picture"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.859"
+                app:layout_constraintStart_toEndOf="@+id/detail_page_userLogo"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.484"
                 tools:layout_conversion_wrapHeight="186"
                 tools:layout_conversion_wrapWidth="620" />
 
@@ -84,7 +97,8 @@
             <Button
                 android:id="@+id/me_editName"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/bg_title"
                 android:backgroundTint="@color/colorGrey"
                 android:gravity="center"
@@ -97,14 +111,14 @@
                 tools:layout_conversion_wrapWidth="1028" />
 
             <Button
-                android:id="@+id/me_editPic"
+                android:id="@+id/me_editPassword"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
                 android:background="@drawable/bg_title"
                 android:backgroundTint="@color/colorGrey"
                 android:gravity="center"
-                android:text="Edit My Profile Photo"
+                android:text="Change My Password"
                 android:textColor="@color/colorLightBlue"
                 android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,42 +127,10 @@
                 tools:layout_conversion_wrapWidth="1028" />
 
             <Button
-                android:id="@+id/me_editPassword"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bg_title"
-                android:backgroundTint="@color/colorGrey"
-                android:gravity="center"
-                android:text="Change My Password"
-                android:textColor="@color/colorLightBlue"
-                android:textSize="25dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/me_editPic"
-                tools:layout_conversion_wrapHeight="131"
-                tools:layout_conversion_wrapWidth="1028" />
-
-            <Button
-                android:id="@+id/me_setting"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bg_title"
-                android:backgroundTint="@color/colorGrey"
-                android:gravity="center"
-                android:text="Setting"
-                android:textColor="@color/colorLightBlue"
-                android:textSize="25dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/me_editPassword"
-                tools:layout_conversion_wrapHeight="131"
-                tools:layout_conversion_wrapWidth="1028" />
-
-            <Button
                 android:id="@+id/bt_me_logout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/bg_title"
                 android:backgroundTint="@color/colorGrey"
                 android:gravity="center"
@@ -156,7 +138,7 @@
                 android:textColor="@color/colorLightBlue"
                 android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/me_setting"
+                app:layout_constraintTop_toBottomOf="@+id/me_editPassword"
                 tools:layout_conversion_wrapHeight="131"
                 tools:layout_conversion_wrapWidth="1028" />
 
