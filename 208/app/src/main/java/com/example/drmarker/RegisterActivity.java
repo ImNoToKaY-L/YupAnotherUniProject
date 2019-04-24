@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 
 import com.example.drmarker.RealmModule.UserModule;
+import com.example.drmarker.Step.StepService;
 import com.example.drmarker.userModel.User;
 
 import butterknife.BindView;
@@ -39,6 +40,10 @@ public class RegisterActivity extends AppCompatActivity{
         fromAbove = getIntent();
         isGuest= fromAbove.getBooleanExtra("guest",false);
         ButterKnife.bind(this);
+        if (isGuest){
+            Intent i = new Intent(RegisterActivity.this, StepService.class);
+            stopService(i);
+        }
 
     }
 
