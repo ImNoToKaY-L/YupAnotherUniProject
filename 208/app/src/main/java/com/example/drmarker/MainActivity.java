@@ -120,7 +120,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         numSteps = result == null ? 0 : result.getNumSteps();
         bus.post(true);
         updateShowSteps();
+        if (result!=null)
         showSteps.setText(result.getNumSteps()+"");
+        else showSteps.setText(0+"");
         realm.close();
 
         drawChart();
