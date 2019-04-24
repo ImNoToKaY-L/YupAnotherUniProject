@@ -58,10 +58,6 @@ public class RegisterActivity extends AppCompatActivity{
     @BindView(R.id.rl_registeractivity_bottom)
     RelativeLayout mRlRegisteractivityBottom;
 
-    /**
-     * 注册页面能点击的就三个地方
-     * top处返回箭头、刷新验证码图片、注册按钮
-     */
     @OnClick({
             R.id.iv_registeractivity_back,
 //            R.id.iv_registeractivity_showCode,
@@ -69,19 +65,32 @@ public class RegisterActivity extends AppCompatActivity{
     })
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_registeractivity_back: //返回登录页面
-                Intent intent1 = new Intent(this, loginActivity.class);
-                startActivity(intent1);
-                finish();
+            case R.id.iv_registeractivity_back:
+                Intent fromAbove = getIntent();
+                boolean isGuest = fromAbove.getBooleanExtra("guest",false);
+
+                if (isGuest){
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.putExtra("uid",fromAbove.getStringExtra("uid"));
+                    intent.putExtra("guest",true);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent1 = new Intent(this, loginActivity.class);
+                    startActivity(intent1);
+                    finish();
+                }
+
+
                 break;
 
-            case R.id.bt_registeractivity_register:    //注册按钮
-                //获取用户输入的用户名、密码、验证码
+            case R.id.bt_registeractivity_register:
+
                 String username = mEtRegisteractivityUsername.getText().toString().trim();
                 String password = mEtRegisteractivityPassword1.getText().toString().trim();
                 String re_entered_pw = mEtRegisteractivityPassword2.getText().toString().trim();
 //                String phoneCode = mEtRegisteractivityPhonecodes.getText().toString().toLowerCase();
-                //注册验证
+
 
 
                 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) ) {
@@ -117,13 +126,16 @@ public class RegisterActivity extends AppCompatActivity{
                         Toast.makeText(this,  "Registration succeed ", Toast.LENGTH_SHORT).show();
                     }
 
-                    //将用户名和密码加入到数据库中
-
 
                 }else {
                     Toast.makeText(this, "Compulsory blanks are not filled", Toast.LENGTH_SHORT).show();
                 }
                 break;
+                case R.id.bt_registeractivity_login:
+                    Intent intent = new Intent(this,loginActivity.class);
+                    startActivity(intent);
+                    finish();
+                    break;
         }
     }
 

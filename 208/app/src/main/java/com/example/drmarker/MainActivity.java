@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Intent fromAbove = getIntent();
-        if (fromAbove.hasExtra("guest")) isGuest = true;
+        isGuest = fromAbove.getBooleanExtra("guest",false);
         uid= fromAbove.getStringExtra("uid");
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 //        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) toolbar.getLayoutParams();
@@ -176,8 +176,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         finish();
                         return true;
                     }else {
-                        Toast.makeText(MainActivity.this, "To edit your profile, please login", Toast.LENGTH_SHORT).show();
-                        return false;
+                        Intent intent = new Intent(MainActivity.this,RegisterActivity.class);
+                        intent.putExtra("guest",true);
+                        intent.putExtra("uid",uid);
+                        startActivity(intent);
+                        finish();
+                        return true;
                     }
 
 

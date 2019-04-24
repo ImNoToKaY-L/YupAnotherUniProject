@@ -21,7 +21,7 @@ import io.realm.RealmResults;
 
 public class EditPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText et_newPassword;
+    private EditText et_newPassword,et_oldPassword,et_confirmPassword;
     public static String uid;
     private RealmConfiguration userDB;
     private User loginUser;
@@ -58,7 +58,23 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
             case R.id.bt_edit:
 
                 et_newPassword=findViewById(R.id.et_edit_password);
+                et_oldPassword=findViewById(R.id.et_old_password);
+                et_confirmPassword=findViewById(R.id.et_confirm_password);
+
+                String oldPassword=et_oldPassword.getText().toString();
                 String newPassword=et_newPassword.getText().toString();
+                String confirmPassword=et_confirmPassword.getText().toString();
+
+                if(!oldPassword.equals(loginUser.getPassword())){
+                    Toast.makeText(this, "Wrong original password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(!confirmPassword.equals(newPassword)){
+                    Toast.makeText(this, "Two passwords are inconsistent", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 int validateResult = passwordValidate(loginUser.getPassword(),newPassword);
                 if (validateResult==RegisterActivity.INVALID_PASSWORD){
                     Toast.makeText(this, "Password invalid", Toast.LENGTH_SHORT).show();

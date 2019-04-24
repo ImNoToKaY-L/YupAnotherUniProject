@@ -145,14 +145,14 @@
                 tools:layout_conversion_wrapWidth="1028" />
 
             <Button
-                android:id="@+id/me_about"
+                android:id="@+id/bt_me_logout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/bg_title"
                 android:backgroundTint="@color/colorGrey"
                 android:gravity="center"
-                android:text="About"
+                android:text="Logout"
                 android:textColor="@color/colorLightBlue"
                 android:textSize="25dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +171,7 @@
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/nav_view"
-            android:layout_width="411dp"
+            android:layout_width="match_parent"
             android:layout_height="52dp"
             android:background="?android:attr/windowBackground"
             app:layout_constraintBottom_toBottomOf="parent"
