@@ -13,9 +13,11 @@ import com.example.drmarker.RealmModule.FoodModule;
 import com.example.drmarker.RealmModule.UserInfoModule;
 import com.example.drmarker.Recommend.Food;
 import com.example.drmarker.Recommend.FoodRecommender;
+import com.example.drmarker.Recommend.InitDBHandler;
 import com.example.drmarker.Step.DateTimeHelper;
 import com.example.drmarker.userModel.UserInformation;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import io.realm.Realm;
@@ -63,6 +65,9 @@ public class NewActivity extends AppCompatActivity {
                 finish();
             }
         });
+        InputStream foodStream = getResources().openRawResource(R.raw.newfoods);
+        InputStream sportStream = getResources().openRawResource(R.raw.sports);
+        InitDBHandler init = new InitDBHandler(foodStream,sportStream);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -79,9 +84,7 @@ public class NewActivity extends AppCompatActivity {
         Log.d(TAG, age+"YOB");
         Log.d(TAG, activeType+"AT");
 
-        foodDB = Realm.getInstance(new RealmConfiguration.Builder()
-                .name("food_db").modules(new FoodModule()).deleteRealmIfMigrationNeeded()
-                .build());
+        foodDB = Realm.getInstance(init.getFoodDB());
         RealmResults<Food> mFoods = foodDB.where(Food.class).findAll();
         foods = (ArrayList<Food>) foodDB.copyFromRealm(mFoods);
 
@@ -120,7 +123,7 @@ public class NewActivity extends AppCompatActivity {
         Log.d(TAG, DateTimeHelper.getHour()+"time");
         int timeNow = DateTimeHelper.getHour();
         if (timeNow>=8&&timeNow<=11) recommend = FoodRecommender.getRecommendLunch(totalAnalysis,foods);
-        else if (timeNow>11&&timeNow<=4) recommend = FoodRecommender.getRecommendDinner(totalAnalysis,foods);
+        else if (timeNow>11&&timeNow<=16) recommend = FoodRecommender.getRecommendDinner(totalAnalysis,foods);
         else recommend = FoodRecommender.getRecommendBreakfast(totalAnalysis,foods);
 
         initFoodRecommend();

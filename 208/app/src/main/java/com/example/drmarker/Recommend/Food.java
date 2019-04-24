@@ -12,7 +12,6 @@ import io.realm.RealmObject;
  * @author 12242
  */
 public class Food extends RealmObject{
-    private String cao;
     private String name;
     private int unit;
     private double calories;

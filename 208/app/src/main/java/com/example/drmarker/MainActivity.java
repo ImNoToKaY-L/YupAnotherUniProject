@@ -176,8 +176,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         finish();
                         return true;
                     }else {
-                        Toast.makeText(MainActivity.this, "To edit your profile, please login", Toast.LENGTH_SHORT).show();
-                        return false;
+                        Intent intent = new Intent(MainActivity.this,RegisterActivity.class);
+                        startActivity(intent);
+                        finish();
+                        return true;
                     }
 
 

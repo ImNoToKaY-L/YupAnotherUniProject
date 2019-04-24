@@ -16,7 +16,7 @@
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:layout_gravity="center"
@@ -25,12 +25,12 @@
         <TextView
 
             android:id="@+id/todayStep"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
 
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:text="Today:"
             android:textColor="@android:color/white"
             android:textSize="25sp" />
@@ -56,6 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="327dp"
         android:layout_marginTop="16dp"
+        android:layout_gravity="center"
         android:background="@drawable/chart_bk" />
 
 
