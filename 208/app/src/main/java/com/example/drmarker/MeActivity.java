@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.drmarker.RealmModule.UserModule;
 import com.example.drmarker.userModel.User;
@@ -48,13 +49,13 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
         Button button_editName = findViewById(R.id.me_editName);
         Button me_editPic = findViewById(R.id.me_editPic);
         Button me_changePassword = findViewById(R.id.me_editPassword);
-        Button me_about = findViewById(R.id.me_about);
+        Button me_logout = findViewById(R.id.bt_me_logout);
         Button me_setting = findViewById(R.id.me_setting);
 
         button_editName.setOnClickListener(this);
         me_editPic.setOnClickListener(this);
         me_changePassword.setOnClickListener(this);
-        me_about.setOnClickListener(this);
+        me_logout.setOnClickListener(this);
         me_setting.setOnClickListener(this);
     }
 
@@ -76,8 +77,11 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
                 startActivity(intent_editPassword);
                 finish();
                 break;
-            case R.id.me_about:
-
+            case R.id.bt_me_logout:
+                Intent intent = new Intent(MeActivity.this,loginActivity.class);
+                Toast.makeText(this, "Log out success", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                finish();
                 break;
             case R.id.me_setting:
 

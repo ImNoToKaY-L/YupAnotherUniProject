@@ -37,6 +37,13 @@ public class Food extends RealmObject{
         
     }
 
+    public String getReadableName(){
+        String realName = name;
+        realName = realName.replace("_"," ");
+        realName = realName.substring(0,1).toUpperCase()+realName.substring(1);
+        return realName;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -105,7 +112,7 @@ public class Food extends RealmObject{
 
     @Override
     public String toString() {
-        return "Food Name: " + this.name + "; Calories per " + this.unit + " grams: " + this.calories
+        return "Food Name: " + getReadableName() + "; Calories per " + this.unit + " grams: " + this.calories
                                          + "; Protein per " + this.unit + " grams: " + this.protein
                                          + "; Carbohydrate per " + this.unit + " grams: " + this.carbohydrate
                                          + "; Fat per " + this.unit + " grams: " + this.fat;

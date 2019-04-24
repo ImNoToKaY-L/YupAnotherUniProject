@@ -33,8 +33,7 @@
         </service>
         <activity android:name=".RegisterActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".StepActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".InputActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".InputActivity" android:windowSoftInputMode="adjustPan" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".NewActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MeActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ForumActivity" android:theme="@style/AppTheme.NoActionBar"/>

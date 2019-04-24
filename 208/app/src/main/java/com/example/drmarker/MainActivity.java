@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         Intent fromAbove = getIntent();
-        if (fromAbove.hasExtra("guest")) isGuest = true;
+        isGuest = fromAbove.getBooleanExtra("guest",false);
         uid= fromAbove.getStringExtra("uid");
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 //        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) toolbar.getLayoutParams();
@@ -177,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                         return true;
                     }else {
                         Intent intent = new Intent(MainActivity.this,RegisterActivity.class);
+                        intent.putExtra("guest",true);
+                        intent.putExtra("uid",uid);
                         startActivity(intent);
                         finish();
                         return true;
