@@ -79,9 +79,9 @@ public class FoodRecommender {
                 break;
             case "LoseWeight":
                 // C:P:F = 45% : 30% : 25%.
-                recommendBreakfast.add(randomSelect("d", true, null,foods));
-                recommendBreakfast.add(randomSelect("-d", true, "-c",foods));
-                recommendBreakfast.add(randomSelect("f", false, null,foods));
+                recommendBreakfast.add(randomSelect("d", true, null, foods));
+                recommendBreakfast.add(randomSelect("-d", true, "-c", foods));
+                recommendBreakfast.add(randomSelect("f", false, null, foods));
                 break;
         }
     }
@@ -90,28 +90,26 @@ public class FoodRecommender {
         switch (bodyAim) {
             case "StrengthenBody":
                 // C:P:F = 65% : 20% : 15%.
-                recommendLunch.add(randomSelect("d", false, null,foods));
-                recommendLunch.add(randomSelect("m", false, null,foods));
-                recommendLunch.add(randomSelect("v", false, null,foods));
-                recommendLunch.add(randomSelect("s", false, null,foods));
+                recommendLunch.add(randomSelect("d", false, null, foods));
+                recommendLunch.add(randomSelect("v", false, null, foods));
+                recommendLunch.add(randomSelect("s", false, null, foods));
                 break;
             case "BuildMuscle":
                 // C:P:F = 60% : 20% : 20%.
-                recommendLunch.add(randomSelect("d", false, "-f",foods));
-                recommendLunch.add(randomSelect("m", false, "p",foods));
-                recommendLunch.add(randomSelect("m", false, null,foods));
-                recommendLunch.add(randomSelect("v", false, null,foods));
+                recommendLunch.add(randomSelect("d", false, "-f", foods));
+                recommendLunch.add(randomSelect("m", false, "p", foods));
+                recommendLunch.add(randomSelect("-df", false, null, foods));
                 break;
             case "KeepBalance":
                 // C:P:F = 55% : 15% : 30%.
-                recommendLunch.add(randomSelect("d", false, null,foods));
-                recommendLunch.add(randomSelect("m", false, null,foods));
-                recommendLunch.add(randomSelect("v", false, null,foods));
+                recommendLunch.add(randomSelect("d", false, null, foods));
+                recommendLunch.add(randomSelect("m", false, null, foods));
+                recommendLunch.add(randomSelect("v", false, null, foods));
                 break;
             case "LoseWeight":
                 // C:P:F = 45% : 30% : 25%.
-                recommendLunch.add(randomSelect("v", false, null,foods));
-                recommendLunch.add(randomSelect("v", false, null,foods));
+                recommendLunch.add(randomSelect("v", false, null, foods));
+                recommendLunch.add(randomSelect("v", false, null, foods));
                 break;
         }
     }
@@ -120,30 +118,30 @@ public class FoodRecommender {
         switch (bodyAim) {
             case "StrengthenBody":
                 // C:P:F = 65% : 20% : 15%.
-                recommendDinner.add(randomSelect("f", false, null,foods));
-                recommendDinner.add(randomSelect("-df", false, null,foods));
-                recommendDinner.add(randomSelect("d", false, null,foods));
+                recommendDinner.add(randomSelect("f", false, null, foods));
+                recommendDinner.add(randomSelect("-df", false, null, foods));
+                recommendDinner.add(randomSelect("d", false, null, foods));
                 break;
             case "BuildMuscle":
                 // C:P:F = 60% : 20% : 20%.
-                recommendDinner.add(randomSelect("m", false, null,foods));
-                recommendDinner.add(randomSelect("f", false, null,foods));
+                recommendDinner.add(randomSelect("m", false, null, foods));
+                recommendDinner.add(randomSelect("f", false, null, foods));
                 break;
             case "KeepBalance":
                 // C:P:F = 55% : 15% : 30%.
-                recommendDinner.add(randomSelect("d", false, null,foods));
-                recommendDinner.add(randomSelect("f", false, null,foods));
-                recommendDinner.add(randomSelect("-df", false, null,foods));
+                recommendDinner.add(randomSelect("d", false, null, foods));
+                recommendDinner.add(randomSelect("f", false, null, foods));
+                recommendDinner.add(randomSelect("-df", false, null, foods));
                 break;
             case "LoseWeight":
                 // C:P:F = 45% : 30% : 25%.
-                recommendDinner.add(randomSelect("f", false, null,foods));
-                recommendDinner.add(randomSelect("f", false, null,foods));
+                recommendDinner.add(randomSelect("f", false, null, foods));
+                recommendDinner.add(randomSelect("f", false, null, foods));
                 break;
         }
     }
 
-    private static Food randomSelect(String type, boolean morning, String focus,ArrayList<Food> foods) {
+    private static Food randomSelect(String type, boolean morning, String focus, ArrayList<Food> foods) {
         ArrayList<Food> tempFoods = new ArrayList<>();
         if (type.startsWith("-")) {
             for (Food food: foods) {

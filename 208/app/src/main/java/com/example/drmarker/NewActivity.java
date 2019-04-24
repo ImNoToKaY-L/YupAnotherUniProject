@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,6 +52,7 @@ public class NewActivity extends AppCompatActivity {
 //        activeType = intent.getIntExtra("activeType",0);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar_new);
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +63,7 @@ public class NewActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         height = Double.parseDouble(userInfo.getHeight());
@@ -136,20 +137,20 @@ public class NewActivity extends AppCompatActivity {
         userInfo = userInfoDB.where(UserInformation.class).equalTo("uid",uid).findFirst();
     }
     private void initFoodRecommend(){
-        TextView tv1 = findViewById(R.id.image_comment1);
+        TextView tv1 = findViewById(R.id.food1_name);
         tv1.setText(recommend.get(0).getName());
         ImageView ig1 = findViewById(R.id.image1);
         int image1ID = getResources().getIdentifier(recommend.get(0).getName(),"raw",getPackageName());
         ig1.setImageResource(image1ID);
 
-        TextView tv2 = findViewById(R.id.image_comment2);
+        TextView tv2 = findViewById(R.id.food2_name);
         tv2.setText(recommend.get(1).getName());
         ImageView ig2 = findViewById(R.id.image2);
         int image2ID = getResources().getIdentifier(recommend.get(1).getName(),"raw",getPackageName());
         ig2.setImageResource(image2ID);
 
 
-        TextView tv3 = findViewById(R.id.image_comment3);
+        TextView tv3 = findViewById(R.id.food3_name);
         ImageView ig3 = findViewById(R.id.image3);
         if (recommend.size()==3){
             tv3.setText(recommend.get(2).getName());
@@ -159,9 +160,7 @@ public class NewActivity extends AppCompatActivity {
             tv3.setText("");
             ig3.setScaleX(0);
             ig3.setScaleY(0);
-        Button bt = findViewById(R.id.bt_cuisine3);
-        bt.setBackgroundColor(getResources().getColor(R.color.transparent));
-        bt.setText("");
+
         }
     }
 
