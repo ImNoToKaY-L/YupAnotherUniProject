@@ -101,6 +101,14 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
         initView();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ForumActivity.this,MainActivity.class);
+        intent.putExtra("uid",getIntent().getStringExtra("uid"));
+        startActivity(intent);
+        finish();
+    }
+
     private void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         expandableListView = (CommentExpandableListView) findViewById(R.id.detail_page_lv_comment);
