@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.drmarker.RealmModule.UserModule;
+import com.example.drmarker.Step.StepService;
 import com.example.drmarker.userModel.User;
 
 import java.util.ArrayList;
@@ -39,7 +41,8 @@ public class loginActivity extends AppCompatActivity {
         userDB = new RealmConfiguration.Builder()
                 .name("user_db").schemaVersion(2).modules(new UserModule())
                 .build();
-
+           Intent i = new Intent(loginActivity.this,StepService.class);
+           stopService(i);
 
     }
 

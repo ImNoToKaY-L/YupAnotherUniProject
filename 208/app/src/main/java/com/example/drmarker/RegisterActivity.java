@@ -26,15 +26,18 @@ import io.realm.RealmConfiguration;
 
 public class RegisterActivity extends AppCompatActivity{
 
-    private String realCode;
     public static final int USERNAME_EXIST = 0;
     public static final int INVALID_PASSWORD = 1;
     public static final int VALID_USER = 2;
+    private boolean isGuest;
+    private Intent fromAbove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        fromAbove = getIntent();
+        isGuest= fromAbove.getBooleanExtra("guest",false);
         ButterKnife.bind(this);
 
     }
@@ -63,11 +66,10 @@ public class RegisterActivity extends AppCompatActivity{
 //            R.id.iv_registeractivity_showCode,
             R.id.bt_registeractivity_register
     })
+
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_registeractivity_back:
-                Intent fromAbove = getIntent();
-                boolean isGuest = fromAbove.getBooleanExtra("guest",false);
 
                 if (isGuest){
                     Intent intent = new Intent(this, MainActivity.class);
@@ -139,6 +141,20 @@ public class RegisterActivity extends AppCompatActivity{
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (isGuest){
+            Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
+            intent.putExtra("uid",fromAbove.getStringExtra("uid"));
+            intent.putExtra("guest",true);
+            startActivity(intent);
+            finish();
+        }else {
+            Intent intent = new Intent(RegisterActivity.this,loginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
     private static int userValidate(String username, String password){
         Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()

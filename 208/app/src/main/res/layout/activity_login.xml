@@ -119,21 +119,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/bt_loginactivity_guest"
-        android:layout_alignLeft="@+id/bt_loginactivity_guest"
-        android:layout_marginVertical="50dp"
-        android:layout_marginLeft="50dp"
         android:text="Forget your password?"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
         android:textColor="#f00" />
 
     <TextView
         android:id="@+id/tv_loginactivity_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bt_loginactivity_guest"
-        android:layout_alignRight="@+id/bt_loginactivity_guest"
-        android:layout_marginVertical="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_below="@+id/tv_loginactivity_forget"
         android:text="Validation by text"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
         android:textColor="#f00" />
 
     <Button
