@@ -168,6 +168,14 @@ public class NewActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(NewActivity.this,InputActivity.class);
+        intent.putExtra("uid",getIntent().getStringExtra("uid"));
+        startActivity(intent);
+        finish();
+    }
+
     private void initUserInfo(){
         RealmConfiguration realmConfig = new RealmConfiguration.Builder()
                 .name("userInfo_db").modules(new UserInfoModule()).deleteRealmIfMigrationNeeded()

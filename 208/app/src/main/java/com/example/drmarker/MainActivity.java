@@ -74,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         showPopupWindow(v);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

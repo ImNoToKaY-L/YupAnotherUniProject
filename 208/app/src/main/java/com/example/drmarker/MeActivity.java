@@ -59,6 +59,13 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
         me_setting.setOnClickListener(this);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MeActivity.this,MainActivity.class);
+        intent.putExtra("uid",getIntent().getStringExtra("uid"));
+        startActivity(intent);
+        finish();
+    }
 
     public void onClick(View view){
         switch (view.getId()){

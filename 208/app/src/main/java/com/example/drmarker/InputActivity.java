@@ -345,7 +345,13 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(InputActivity.this,MainActivity.class);
+        intent.putExtra("uid",getIntent().getStringExtra("uid"));
+        startActivity(intent);
+        finish();
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
