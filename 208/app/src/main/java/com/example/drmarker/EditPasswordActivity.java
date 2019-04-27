@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.drmarker.RealmModule.UserModule;
@@ -21,7 +22,7 @@ import io.realm.RealmResults;
 
 public class EditPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText et_newPassword,et_oldPassword,et_confirmPassword;
+    private EditText et_newPassword,et_oldPassword,et_confirmPassword,et_security_answer;
     public static String uid;
     private RealmConfiguration userDB;
     private User loginUser;
@@ -38,11 +39,13 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
         Intent fromAbove = getIntent();
         uid= fromAbove.getStringExtra("uid");
         userDB = new RealmConfiguration.Builder()
-                .name("user_db").schemaVersion(2).modules(new UserModule())
+                .name("user_db").schemaVersion(2).modules(new UserModule()).deleteRealmIfMigrationNeeded()
                 .build();
         mRealm=Realm.getInstance(userDB);
         RealmResults<User> userlist = mRealm.where(User.class).equalTo("uid", uid).findAll();
         loginUser = userlist.get(0);
+        TextView tv_security_question = findViewById(R.id.tv_security_question);
+        tv_security_question.setText(loginUser.getSecurity_question());
     }
 
     private void getInfo(){
@@ -60,11 +63,11 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
                 et_newPassword=findViewById(R.id.et_edit_password);
                 et_oldPassword=findViewById(R.id.et_old_password);
                 et_confirmPassword=findViewById(R.id.et_confirm_password);
-
+                et_security_answer = findViewById(R.id.et_security_answer);
                 String oldPassword=et_oldPassword.getText().toString();
                 String newPassword=et_newPassword.getText().toString();
                 String confirmPassword=et_confirmPassword.getText().toString();
-
+                String securityAnswer = et_security_answer.getText().toString().trim();
                 if(!oldPassword.equals(loginUser.getPassword())){
                     Toast.makeText(this, "Wrong original password", Toast.LENGTH_SHORT).show();
                     return;
@@ -72,17 +75,27 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
 
                 if(!confirmPassword.equals(newPassword)){
                     Toast.makeText(this, "Two passwords are inconsistent", Toast.LENGTH_SHORT).show();
+                    et_confirmPassword.setText("");
                     return;
                 }
+
+                if (!securityAnswer.equals(loginUser.getSecurity_answer())){
+                    Toast.makeText(this, "Wrong security answer", Toast.LENGTH_SHORT).show();
+                    et_security_answer.setText("");
+                    return;
+                }
+
 
                 int validateResult = passwordValidate(loginUser.getPassword(),newPassword);
                 if (validateResult==RegisterActivity.INVALID_PASSWORD){
                     Toast.makeText(this, "Password invalid", Toast.LENGTH_SHORT).show();
                     et_newPassword.setText("");
+                    et_confirmPassword.setText("");
                 }
                 else if (validateResult==REUSED_PASSWORD){
                     Toast.makeText(this, "Password is the same as previous one", Toast.LENGTH_SHORT).show();
                     et_newPassword.setText("");
+                    et_confirmPassword.setText("");
                 }
                 else {
 

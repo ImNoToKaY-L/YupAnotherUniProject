@@ -13,12 +13,32 @@ public class User extends RealmObject {
     private String password;        //password
     @PrimaryKey
     private String uid;                //User id
+    private String security_question;
+    private String security_answer;
 
-    public User(String name, String password) {
+    public String getSecurity_answer() {
+        return security_answer;
+    }
+
+    public String getSecurity_question() {
+        return security_question;
+    }
+
+    public void setSecurity_answer(String security_answer) {
+        this.security_answer = security_answer;
+    }
+
+    public void setSecurity_question(String security_question) {
+        this.security_question = security_question;
+    }
+
+    public User(String name, String password,String security_question,String security_answer) {
         this.name = name;
         this.password = password;
         //Generate a distinct uuid as user id
         uid = UUID.randomUUID().toString().replace("-", "").toLowerCase();
+        this.security_question = security_question;
+        this.security_answer = security_answer;
     }
     public User (){
 

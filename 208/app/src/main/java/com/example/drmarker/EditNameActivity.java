@@ -38,7 +38,7 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
         Intent fromAbove = getIntent();
         uid= fromAbove.getStringExtra("uid");
         userDB = new RealmConfiguration.Builder()
-                .name("user_db").schemaVersion(2).modules(new UserModule())
+                .name("user_db").schemaVersion(2).modules(new UserModule()).deleteRealmIfMigrationNeeded()
                 .build();
         mRealm=Realm.getInstance(userDB);
         RealmResults<User> userlist = mRealm.where(User.class).equalTo("uid", uid).findAll();

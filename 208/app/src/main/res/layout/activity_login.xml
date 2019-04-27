@@ -122,7 +122,8 @@
         android:text="Forget your password?"
         android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
-        android:textColor="#f00" />
+        android:textColor="#f00"
+        android:onClick="onClick"/>
 
     <TextView
         android:id="@+id/tv_loginactivity_check"

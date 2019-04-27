@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -38,7 +39,7 @@ public class loginActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         userDB = new RealmConfiguration.Builder()
-                .name("user_db").schemaVersion(2).modules(new UserModule())
+                .name("user_db").schemaVersion(2).modules(new UserModule()).deleteRealmIfMigrationNeeded()
                 .build();
            Intent i = new Intent(loginActivity.this,StepService.class);
            stopService(i);
@@ -70,9 +71,8 @@ public class loginActivity extends AppCompatActivity {
                 break;
             case R.id.tv_loginactivity_forget:   //Forget the password
             //TODO something
-            //    startActivity(new Intent(this, FindPasswordActivity.class));
-                
-            //    break;
+                startActivity(new Intent(this, ForgetPasswordActivity.class));
+                break;
             case R.id.tv_loginactivity_check:    //Login through text
             // TODO something
 
@@ -88,6 +88,9 @@ public class loginActivity extends AppCompatActivity {
                         user = data.get(i);
                         if (name.equals(user.getName()) && password.equals(user.getPassword())){
                             match = true;
+                            Log.d("sqDBUG", user.getSecurity_question());
+                            Log.d("sqDBUG", user.getSecurity_answer());
+
                             break;
                         }else{
                             match = false;
@@ -108,12 +111,12 @@ public class loginActivity extends AppCompatActivity {
                 break;
             case R.id.bt_loginactivity_guest:
                 Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()
-                        .name("user_db").schemaVersion(2).modules(new UserModule())
+                        .name("user_db").schemaVersion(2).modules(new UserModule()).deleteRealmIfMigrationNeeded()
                         .build());
                 User tempGuest= mRealm.where(User.class).equalTo("name","Guest").findFirst();
                 String GuestID;
                if (tempGuest==null){
-                   final User guest = new User("Guest","1");
+                   final User guest = new User("Guest","1"," "," ");
                    GuestID = guest.getUid();
                    mRealm.executeTransaction(new Realm.Transaction() {
                        @Override

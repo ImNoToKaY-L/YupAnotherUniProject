@@ -59,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 question = adapter_Question.getItem(position);
-                Log.d("position", position + "");
                 if (question.equals(getString(R.string.question_none))) {
                     questionSelected = false;
                 } else {
@@ -156,9 +155,9 @@ public class RegisterActivity extends AppCompatActivity{
                         mEtRegisteractivityPassword2.setText("");
                     }else if (validateResult == VALID_USER){
                         Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()
-                                .name("user_db").schemaVersion(2).modules(new UserModule())
+                                .name("user_db").schemaVersion(2).modules(new UserModule()).deleteRealmIfMigrationNeeded()
                                 .build());
-                        final User user = new User(username,password);
+                        final User user = new User(username,password,question,security_Answer);
 
                         mRealm.executeTransaction(new Realm.Transaction() {
                             @Override
@@ -168,6 +167,7 @@ public class RegisterActivity extends AppCompatActivity{
                         });
 
                         if (isGuest){
+                            //Only close the service if the user is finished with the registration
                             Intent i = new Intent(RegisterActivity.this, StepService.class);
                             stopService(i);
                         }
@@ -209,7 +209,7 @@ public class RegisterActivity extends AppCompatActivity{
 
     private static int userValidate(String username, String password){
         Realm mRealm=Realm.getInstance(new RealmConfiguration.Builder()
-                .name("user_db").schemaVersion(2).modules(new UserModule())
+                .name("user_db").schemaVersion(2).modules(new UserModule()).deleteRealmIfMigrationNeeded()
                 .build());
 
         User existName = mRealm.where(User.class).equalTo("name",username).findFirst();
