@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bk_new"
+
     tools:context=".NewActivity">
 
     <LinearLayout
@@ -44,7 +46,8 @@
             android:layout_height="wrap_content"
             android:text="Your body indices"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textColor="#FF9800"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -106,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Health Result"
+                android:textStyle="bold"
                 android:textColor="#FF9800"
                 android:textSize="24sp" />
 
@@ -177,7 +181,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Food1 name" />
+                    android:text="Food1 name"
+                    android:textColor="#F44336"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/food1_description"
@@ -217,7 +223,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Food2 name" />
+                    android:text="Food2 name"
+                    android:textColor="#F44336"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/food2_description"
@@ -259,7 +267,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Food3 name" />
+                    android:text="Food3 name"
+                    android:textColor="#F44336"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/food3_description"

@@ -120,12 +120,22 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         numSteps = result == null ? 0 : result.getNumSteps();
         bus.post(true);
         updateShowSteps();
+        if (result!=null)
+        {
+            numSteps = result.getNumSteps();
+            showSteps.setText(numSteps+"");
+        }
+        else {
+            numSteps = 0;
+            showSteps.setText(0+"");
+        }
         realm.close();
 
         drawChart();
 
         navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
 
 
@@ -430,6 +440,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         if (bus.isRegistered(this))
             bus.unregister(this);
     }
+
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

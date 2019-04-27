@@ -142,6 +142,8 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
         }
         if (userInfo != null) selectedItemsChange();
 
+        View linerLayout_input = findViewById(R.id.LinerLayout_input);
+        linerLayout_input.getBackground().setAlpha(100);
     }
 
     private void initExistUserInfo() {
@@ -242,8 +244,8 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
 
                 if (ageSelected){
                     if ((2019-Integer.parseInt(YOB))<18){
-                        Toast.makeText(this, "Sorry, the analysis for individuals under" +
-                                "18 is still working in progress", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Unfortunately, according to the GDPR protocol, the analysis for individuals under" +
+                                "18 is not available", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
