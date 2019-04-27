@@ -40,10 +40,6 @@ public class RegisterActivity extends AppCompatActivity{
         fromAbove = getIntent();
         isGuest= fromAbove.getBooleanExtra("guest",false);
         ButterKnife.bind(this);
-        if (isGuest){
-            Intent i = new Intent(RegisterActivity.this, StepService.class);
-            stopService(i);
-        }
 
     }
 
@@ -125,6 +121,10 @@ public class RegisterActivity extends AppCompatActivity{
                             }
                         });
 
+                        if (isGuest){
+                            Intent i = new Intent(RegisterActivity.this, StepService.class);
+                            stopService(i);
+                        }
 
                         Intent intent2 = new Intent(this, MainActivity.class);
                         intent2.putExtra("uid",user.getUid());
