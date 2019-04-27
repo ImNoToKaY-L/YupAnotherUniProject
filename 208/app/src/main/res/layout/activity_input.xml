@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:background="@drawable/bk_input"
     tools:context=".InputActivity">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
         <LinearLayout
+            android:id="@+id/LinerLayout_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorGrey"
             android:orientation="vertical">
 
             <LinearLayout
@@ -25,7 +28,7 @@
                 <TextView
                     android:id="@+id/textView5"
                     android:layout_width="94dp"
-                    android:layout_height="37dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:autoLink="phone"
                     android:text="*Height(cm)"
@@ -63,7 +66,7 @@
                 <TextView
                     android:id="@+id/textView7"
                     android:layout_width="94dp"
-                    android:layout_height="37dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:autoLink="phone"
                     android:text="*Weight(kg)"
@@ -99,8 +102,8 @@
 
                 <TextView
                     android:id="@+id/textView13"
-                    android:layout_width="94dp"
-                    android:layout_height="38dp"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:autoLink="phone"
                     android:text="*Gender"
@@ -139,8 +142,8 @@
 
                 <TextView
                     android:id="@+id/textView14"
-                    android:layout_width="97dp"
-                    android:layout_height="37dp"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:autoLink="phone"
                     android:text="*Age"
@@ -178,12 +181,12 @@
                 <TextView
                     android:id="@+id/textView15"
                     android:layout_width="113dp"
-                    android:layout_height="62dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:autoLink="phone"
                     android:text="*Exercise frequency"
                     android:textColor="#F87461"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.114"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -218,7 +221,7 @@
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="99dp"
-                    android:layout_height="40dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:autoLink="phone"
                     android:text="Waist(cm)"
@@ -256,7 +259,7 @@
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="99dp"
-                    android:layout_height="40dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:autoLink="phone"
                     android:text="Hip(cm)"
@@ -301,7 +304,7 @@
             <TextView
                 android:id="@+id/textView18"
                 android:layout_width="match_parent"
-                android:layout_height="17dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
@@ -323,7 +326,9 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="10dp">
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/nav_view"
