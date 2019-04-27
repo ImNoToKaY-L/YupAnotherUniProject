@@ -6,17 +6,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
-
 
 import com.example.drmarker.RealmModule.UserModule;
 import com.example.drmarker.Step.StepService;
 import com.example.drmarker.userModel.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +38,10 @@ public class RegisterActivity extends AppCompatActivity{
     public static final int VALID_USER = 2;
     private boolean isGuest;
     private Intent fromAbove;
+    private Spinner questionSpinner;
+    private ArrayAdapter<String> adapter_Question;
+    private boolean questionSelected;
+    private String question;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +51,39 @@ public class RegisterActivity extends AppCompatActivity{
         isGuest= fromAbove.getBooleanExtra("guest",false);
         ButterKnife.bind(this);
 
+        questionSpinner = (Spinner) findViewById(R.id.security_spinner);
+        adapter_Question = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, initQuestion());
+        questionSpinner.setAdapter(adapter_Question);
+
+        questionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                question = adapter_Question.getItem(position);
+                Log.d("position", position + "");
+                if (question.equals(getString(R.string.question_none))) {
+                    questionSelected = false;
+                } else {
+                    questionSelected = true;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                questionSelected = false;
+            }
+        });
+    }
+
+
+    private List<String> initQuestion() {
+        List<String> questionList = new ArrayList<>();
+        questionList.add("Please select a security question");
+        questionList.add("What's your mother's name?");
+        questionList.add("What's your father's name?");
+        questionList.add("What's the street name of your home?");
+        questionList.add("What's your girl/boyfriend's name?");
+        return questionList;
     }
 
     @BindView(R.id.rl_registeractivity_top)
@@ -61,6 +104,8 @@ public class RegisterActivity extends AppCompatActivity{
 //    ImageView mIvRegisteractivityShowcode;
     @BindView(R.id.rl_registeractivity_bottom)
     RelativeLayout mRlRegisteractivityBottom;
+    @BindView(R.id.security_answer)
+    EditText securityAnswer;
 
     @OnClick({
             R.id.iv_registeractivity_back,
@@ -92,11 +137,12 @@ public class RegisterActivity extends AppCompatActivity{
                 String username = mEtRegisteractivityUsername.getText().toString().trim();
                 String password = mEtRegisteractivityPassword1.getText().toString().trim();
                 String re_entered_pw = mEtRegisteractivityPassword2.getText().toString().trim();
+                String security_Answer = securityAnswer.getText().toString().trim();
 //                String phoneCode = mEtRegisteractivityPhonecodes.getText().toString().toLowerCase();
 
 
 
-                if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) ) {
+                if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) && questionSelected && !TextUtils.isEmpty(security_Answer)) {
                     int validateResult = userValidate(username,password);
                     if (validateResult==USERNAME_EXIST){
                         Toast.makeText(this, "Username is duplicate", Toast.LENGTH_SHORT).show();

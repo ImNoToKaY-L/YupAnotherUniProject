@@ -14,5 +14,6 @@
     <string name="sport_ExtremelyActive">near to professional</string>
     <string name="gender_None">Please select your gender</string>
     <string name="age_none">Please select your birth year</string>
+    <string name="question_none">Please select a security question</string>
 
 </resources>

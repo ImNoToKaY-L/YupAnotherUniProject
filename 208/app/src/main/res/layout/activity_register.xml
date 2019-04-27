@@ -109,6 +109,33 @@
             android:hint="Please enter the password again"
             android:inputType="textPassword" />
     </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Secuity question for your password protection"
+            android:textColor="#E53935" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/security_spinner"
+                android:layout_width="187dp"
+                android:layout_height="50dp" />
+
+            <EditText
+                android:id="@+id/security_answer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
         <Button
             android:id="@+id/bt_registeractivity_register"
             android:layout_width="match_parent"

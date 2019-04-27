@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -69,11 +68,12 @@ public class loginActivity extends AppCompatActivity {
                 startActivity(new Intent(this, RegisterActivity.class));
                 finish();
                 break;
-            //case R.id.tv_loginactivity_forget:   //Forget the password
+            case R.id.tv_loginactivity_forget:   //Forget the password
             //TODO something
             //    startActivity(new Intent(this, FindPasswordActivity.class));
+                
             //    break;
-            //case R.id.tv_loginactivity_check:    //Login through text
+            case R.id.tv_loginactivity_check:    //Login through text
             // TODO something
 
             case R.id.bt_loginactivity_login:
