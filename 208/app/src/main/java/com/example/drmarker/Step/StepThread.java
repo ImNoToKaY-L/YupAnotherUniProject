@@ -19,7 +19,10 @@ import java.util.Date;
 
 import io.realm.Realm;
 import io.realm.RealmAsyncTask;
-
+/**
+ * Implemented with regard to @gojuukaze
+ * github: https://github.com/gojuukaze/healthgo
+ */
 
 public class StepThread extends Thread implements  SensorEventListener, StepListener {
 

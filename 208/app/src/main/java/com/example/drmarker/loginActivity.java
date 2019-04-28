@@ -27,6 +27,10 @@ import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
+/**
+ * Implemented with the idea from @ZLM1498370923
+ * github: https://github.com/ZLM1498370923
+ */
 
 public class loginActivity extends AppCompatActivity {
 
@@ -64,17 +68,14 @@ public class loginActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         switch (view.getId()) {
-            //TODO back button activity
             case R.id.tv_loginactivity_register:
                 startActivity(new Intent(this, RegisterActivity.class));
                 finish();
                 break;
             case R.id.tv_loginactivity_forget:   //Forget the password
-            //TODO something
                 startActivity(new Intent(this, ForgetPasswordActivity.class));
                 break;
             case R.id.tv_loginactivity_check:    //Login through text
-            // TODO something
 
             case R.id.bt_loginactivity_login:
                 String name = mEtLoginactivityUsername.getText().toString().trim();

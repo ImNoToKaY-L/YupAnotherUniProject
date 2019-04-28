@@ -9,6 +9,8 @@ import android.widget.ExpandableListView;
 
 /**
  * Desc: DIY ExpandableListView,Resolve the conflict with CoordinatorLayout
+ * Developed with respect to @AFeng
+ * github: https://github.com/Moosphan
  */
 
 public class CommentExpandableListView extends ExpandableListView implements NestedScrollingChild {

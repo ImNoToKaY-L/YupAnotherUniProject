@@ -4,6 +4,10 @@ import android.util.Log;
 
 import java.math.BigDecimal;
 
+/**
+ * Implemented with regard to @gojuukaze
+ * github: https://github.com/gojuukaze/healthgo
+ */
 
 public class StepDetector {
     private final int DELAY = 100;
