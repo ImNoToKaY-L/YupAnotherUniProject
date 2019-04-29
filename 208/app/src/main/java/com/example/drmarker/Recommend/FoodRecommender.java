@@ -342,7 +342,6 @@ public class FoodRecommender {
     public static double BMI(double weight, double height) {
         double m_height = height / 100;
         DecimalFormat df = new DecimalFormat("0.000");
-        //df.format(weight / (m_height * m_height));
         return Double.parseDouble(df.format(weight / (m_height * m_height)));
     }
 

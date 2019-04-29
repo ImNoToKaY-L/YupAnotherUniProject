@@ -9,11 +9,11 @@ import android.widget.Button;
 public class AboutActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static String uid;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.about_me);
+//        setContentView(R.layout.about_me);
         //Get the intent from the input activity
         Intent fromAbove = getIntent();
         uid= fromAbove.getStringExtra("uid");
