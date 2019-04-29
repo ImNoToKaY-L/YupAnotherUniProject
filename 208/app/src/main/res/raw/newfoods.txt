@@ -22,7 +22,7 @@ chard,100,28,3,3,0.4,v,false
 cheese,100,235,32,0,12,s,true
 chicken_breast,100,105,20,0,3,m,false
 chips,150,450,26,25,11,s,true
-chocolate_biscuit,15,49,0.6,6.2,2.4,s,true
+chocolate_biscuits,15,49,0.6,6.2,2.4,s,true
 coconut_slices,20,84,0.8,6.8,6,s,false
 cod,100,101,23,0,1,m,false
 coffee_black,150,0,0,0,0,d,true
@@ -90,7 +90,7 @@ strawberries,100,24,1,5,0.1,f,false
 tea_black,100,0,0,0,0,d,true
 tofu,100,77,10,3,4,v,false
 tomato_juice,200,32,1.8,5.8,0,d,true
-tuny_fish,100,135,22,0,5,m,false
+tuna_fish,100,135,22,0,5,m,false
 veal,100,150,20,0,8,m,false
 walnuts,100,659,15,8,63,s,true
 watermelon,100,35,0.6,7.6,0.2,f,false
