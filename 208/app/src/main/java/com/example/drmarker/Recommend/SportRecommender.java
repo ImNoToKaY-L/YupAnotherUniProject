@@ -14,6 +14,8 @@ import java.util.ArrayList;
 /**
  *
  * @author lmo.
+ * Test realm...
+ * lack sports.
  */
 public class SportRecommender {
     

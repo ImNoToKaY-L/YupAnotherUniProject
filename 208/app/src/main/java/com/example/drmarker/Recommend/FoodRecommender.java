@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author lmo.
+ * @author Zisen Lin. lmo.
  */
 public class FoodRecommender {
     

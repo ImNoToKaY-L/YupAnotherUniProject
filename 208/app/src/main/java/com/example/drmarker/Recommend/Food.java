@@ -5,7 +5,7 @@ import io.realm.RealmObject;
 
 /**
  *
- * @author lmo.
+ * @author Zisen Lin. lmo.
  */
 public class Food extends RealmObject{
     private String name;
