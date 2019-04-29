@@ -127,7 +127,7 @@ public class ForumActivity extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle("Details");
+        collapsingToolbar.setTitle("Forum");
         commentsList = generateTestData();
         initExpandableListView(commentsList);
     }

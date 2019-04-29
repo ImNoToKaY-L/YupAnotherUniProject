@@ -41,7 +41,6 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
         userDB = new RealmConfiguration.Builder()
                 .name("user_db").schemaVersion(2).modules(new UserModule()).deleteRealmIfMigrationNeeded()
                 .build();
@@ -50,7 +49,7 @@ public class loginActivity extends AppCompatActivity {
 
     }
 
-    @BindView(R.id.tv_loginactivity_register)
+    @BindView(R.id.bt_loginactivity_register)
     TextView mTvLoginactivityRegister;
     @BindView(R.id.rl_loginactivity_top)
     RelativeLayout mRlLoginactivityTop;
@@ -62,21 +61,19 @@ public class loginActivity extends AppCompatActivity {
     LinearLayout mLlLoginactivityTwo;
 
     @OnClick({
-            R.id.tv_loginactivity_register,
+            R.id.bt_loginactivity_register,
             R.id.bt_loginactivity_login,
     })
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_loginactivity_register:
+            case R.id.bt_loginactivity_register:
                 startActivity(new Intent(this, RegisterActivity.class));
                 finish();
                 break;
             case R.id.tv_loginactivity_forget:   //Forget the password
                 startActivity(new Intent(this, ForgetPasswordActivity.class));
                 break;
-            case R.id.tv_loginactivity_check:    //Login through text
-
             case R.id.bt_loginactivity_login:
                 String name = mEtLoginactivityUsername.getText().toString().trim();
                 String password = mEtLoginactivityPassword.getText().toString().trim();
@@ -126,7 +123,6 @@ public class loginActivity extends AppCompatActivity {
                        }
                    });
                }else GuestID = tempGuest.getUid();
-
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("uid",GuestID);
                 intent.putExtra("guest",true);

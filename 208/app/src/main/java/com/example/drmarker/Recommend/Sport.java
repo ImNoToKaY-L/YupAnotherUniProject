@@ -9,7 +9,7 @@ import io.realm.RealmObject;
 
 /**
  *
- * @author 12242
+ * @author lmo.
  */
 public class Sport extends RealmObject {
     

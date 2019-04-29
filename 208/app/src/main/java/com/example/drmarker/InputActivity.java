@@ -141,9 +141,6 @@ public class InputActivity extends AppCompatActivity implements View.OnClickList
             Log.d(u.getUid(), u.getGender() + " " + u.getHeight() + " " + u.getYOB() + " " + u.getCategory());
         }
         if (userInfo != null) selectedItemsChange();
-
-        View linerLayout_input = findViewById(R.id.LinerLayout_input);
-        linerLayout_input.getBackground().setAlpha(100);
     }
 
     private void initExistUserInfo() {

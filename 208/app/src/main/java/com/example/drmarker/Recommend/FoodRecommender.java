@@ -6,12 +6,13 @@
 package com.example.drmarker.Recommend;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  *
- * @author 12242
+ * @author lmo.
  */
 public class FoodRecommender {
     
@@ -339,7 +340,9 @@ public class FoodRecommender {
     // ************** BMI.
     public static double BMI(double weight, double height) {
         double m_height = height / 100;
-        return weight / (m_height * m_height);
+        DecimalFormat df = new DecimalFormat("0.000");
+        df.format(weight / (m_height * m_height));
+        return Double.parseDouble(df.format(weight / (m_height * m_height)));
     }
 
     public static String analysisBMI(double BMI) {

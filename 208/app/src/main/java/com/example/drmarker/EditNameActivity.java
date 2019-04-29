@@ -27,7 +27,8 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
     private User loginUser;
     private Realm mRealm;
     RealmAsyncTask realmAsyncTask;
-    private static final int NAME_NO_CHANGE = 3;
+    private static final int NAME_NO_CHANGE = 5;
+    private static final int REUSED_PASSWORD = 6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,9 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
                     et_newName.setText("");
                 }else if (validateResult==RegisterActivity.USERNAME_EXIST){
                     Toast.makeText(this, "Username exist, select another one", Toast.LENGTH_SHORT).show();
+                    et_newName.setText("");
+                }else if(validateResult==RegisterActivity.USERNAME_INVALID){
+                    Toast.makeText(this, "User name length should be 3 to 12", Toast.LENGTH_SHORT).show();
                     et_newName.setText("");
                 }else {
 
@@ -111,6 +115,9 @@ public class EditNameActivity extends AppCompatActivity implements View.OnClickL
         User existName = DB.where(User.class).equalTo("name",name).findFirst();
         if (existName!=null){
             return RegisterActivity.USERNAME_EXIST;
+        }
+        if(name.length() < 3 || name.length() > 12){
+            return RegisterActivity.USERNAME_INVALID;
         }
         return RegisterActivity.VALID_USER;
     }

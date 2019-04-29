@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.example.drmarker.Recommend;
 
 import io.realm.RealmObject;
 
 /**
  *
- * @author 12242
+ * @author lmo.
  */
 public class Food extends RealmObject{
     private String name;
@@ -112,9 +108,9 @@ public class Food extends RealmObject{
 
     @Override
     public String toString() {
-        return "Food Name: " + getReadableName() + "; Calories per " + this.unit + " grams: " + this.calories
-                                         + "; Protein per " + this.unit + " grams: " + this.protein
-                                         + "; Carbohydrate per " + this.unit + " grams: " + this.carbohydrate
-                                         + "; Fat per " + this.unit + " grams: " + this.fat;
+        return "Calories: " + this.calories + "kCal/" + this.unit + "g"
+                + ";\nProtein: " + this.protein + "g/" + this.unit + "g"
+                + ";\nCarbohydrate: " + this.carbohydrate + "g/ " + this.unit + "g"
+                + ";\nFat: " + this.fat + "g/" + this.unit + "g.";
     }
 }

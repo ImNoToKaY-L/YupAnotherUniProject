@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity{
     public static final int USERNAME_EXIST = 0;
     public static final int INVALID_PASSWORD = 1;
     public static final int VALID_USER = 2;
+    public static final int USERNAME_INVALID = 3;
     private boolean isGuest;
     private Intent fromAbove;
     private Spinner questionSpinner;
@@ -146,6 +146,9 @@ public class RegisterActivity extends AppCompatActivity{
                     if (validateResult==USERNAME_EXIST){
                         Toast.makeText(this, "Username is duplicate", Toast.LENGTH_SHORT).show();
                         mEtRegisteractivityUsername.setText("");
+                    }else if(validateResult==USERNAME_INVALID){
+                        Toast.makeText(this, "User name length should be 3 to 12", Toast.LENGTH_SHORT).show();
+                        mEtRegisteractivityUsername.setText("");
                     }else if (validateResult==INVALID_PASSWORD){
                         Toast.makeText(this,"Password length should be within 5-16 characters",Toast.LENGTH_LONG).show();
                         mEtRegisteractivityPassword1.setText("");
@@ -217,6 +220,8 @@ public class RegisterActivity extends AppCompatActivity{
             return USERNAME_EXIST;
         }else if (password.length()<=5||password.length()>=16){
             return INVALID_PASSWORD;
+        }else if (username.length()<3 || username.length()>12){
+            return USERNAME_INVALID;
         }
         return VALID_USER;
 

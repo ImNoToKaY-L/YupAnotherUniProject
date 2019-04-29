@@ -40,7 +40,7 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
 
 
         userInfo = (TextView) findViewById(R.id.me_profile);
-        userInfo.setText("Name:" +loginUser.getName());
+        userInfo.setText(loginUser.getName());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -49,10 +49,12 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
         Button button_editName = findViewById(R.id.me_editName);
         Button me_changePassword = findViewById(R.id.me_editPassword);
         Button me_logout = findViewById(R.id.bt_me_logout);
+        Button me_about = findViewById(R.id.bt_me_about);
 
         button_editName.setOnClickListener(this);
         me_changePassword.setOnClickListener(this);
         me_logout.setOnClickListener(this);
+        me_about.setOnClickListener(this);
     }
 
     @Override
@@ -78,9 +80,15 @@ public class MeActivity extends AppCompatActivity implements View.OnClickListene
                 finish();
                 break;
             case R.id.bt_me_logout:
-                Intent intent = new Intent(MeActivity.this,loginActivity.class);
+                Intent intent_logout = new Intent(MeActivity.this,loginActivity.class);
                 Toast.makeText(this, "Log out success", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+                startActivity(intent_logout);
+                finish();
+                break;
+            case R.id.bt_me_about:
+                Intent intent_about = new Intent(MeActivity.this,AboutActivity.class);
+                intent_about.putExtra("uid",getIntent().getStringExtra("uid"));
+                startActivity(intent_about);
                 finish();
                 break;
         }

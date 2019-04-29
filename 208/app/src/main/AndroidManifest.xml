@@ -40,6 +40,7 @@
         <activity android:name=".EditNameActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".EditPasswordActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".ForgetPasswordActivity" android:theme="@style/AppTheme"></activity>
+        <activity android:name=".AboutActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <receiver
             android:name=".BootBroadcastReceiver"

@@ -121,7 +121,6 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
                     startActivity(intent_editPassword);
                     finish();
                 }
-
                 break;
 
             case R.id.bt_back:
@@ -141,4 +140,7 @@ public class EditPasswordActivity extends AppCompatActivity implements View.OnCl
         }
         return RegisterActivity.VALID_USER;
     }
+
+
+
 }

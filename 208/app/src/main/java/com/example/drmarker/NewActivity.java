@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.drmarker.RealmModule.FoodModule;
 import com.example.drmarker.RealmModule.UserInfoModule;
 import com.example.drmarker.Recommend.Food;
 import com.example.drmarker.Recommend.FoodRecommender;
@@ -91,10 +90,10 @@ public class NewActivity extends AppCompatActivity {
 
         BMR = FoodRecommender.standardBMR(gender,weight,height,age);
         Log.d(TAG, BMR+"BMR");
-        TextView bmrView = findViewById(R.id.tv_new_BMR);
-        bmrView.setText(BMR+"");
         dailyCal = FoodRecommender.dailyCalories(activeType,BMR);
         Log.d(TAG, dailyCal+"daC");
+        TextView bmrView = findViewById(R.id.tv_new_dailyCal);
+        bmrView.setText(dailyCal+"");
 
         BMI = FoodRecommender.BMI(weight,height);
         Log.d(TAG, BMI+"BMI");
@@ -102,7 +101,7 @@ public class NewActivity extends AppCompatActivity {
         bmiView.setText(BMI+"");
         TextView commonTV;
         analysisOfBMI = FoodRecommender.analysisBMI(BMI);
-        outputMessage = "According to your BMI level, your body is "+analysisOfBMI+" now";
+        outputMessage = "Based on your BMI, your body is ["+analysisOfBMI+"].";
         commonTV = findViewById(R.id.tv_result1);
         commonTV.setText(outputMessage);
 
@@ -113,8 +112,8 @@ public class NewActivity extends AppCompatActivity {
         Log.d(TAG, BF+"BF");
         analysisOfBF = FoodRecommender.analysisBF(BF,gender,age);
         Log.d(TAG, analysisOfBF+"aBF");
-        outputMessage = "And according to your body fat level, your might be suffering from "
-                +analysisOfBF+ " at this moment";
+        outputMessage = "Based on your Body-Fat, you health point is ["
+                +analysisOfBF+ "] now.";
         commonTV = findViewById(R.id.tv_result2);
         commonTV.setText(outputMessage);
 
@@ -127,14 +126,14 @@ public class NewActivity extends AppCompatActivity {
             SM = FoodRecommender.SM(gender,weight,height,waist,hip,age);
             Log.d(TAG, SM+"SM");
             analysisOfSM = FoodRecommender.analysisSM(SM,gender,age);
-            outputMessage = "Additionally, according to your data, you have a "
-            +analysisOfSM+" level of Skeletal Muscle";
+            outputMessage = "Additionally, according to your data, you have a ["
+            +analysisOfSM+"] level of Skeletal Muscle.";
             commonTV.setText(outputMessage);
             Log.d(TAG, analysisOfSM+"ASM");
 
         }else {
-            outputMessage = "To know more about your Skeletal muscle information, please measure your"+
-                    "waist and hip and edit them in the previous monitor page";
+            outputMessage = "\nTo know more about your Skeletal muscle information, please measure your"+
+                    "waist and hip and edit them in the previous monitor page.";
             analysisOfSM = "";
             commonTV.setText(outputMessage);
         }
@@ -143,22 +142,22 @@ public class NewActivity extends AppCompatActivity {
         totalAnalysis = FoodRecommender.totalAnalysis(analysisOfBMI,analysisOfBF,analysisOfSM);
         Log.d(TAG, totalAnalysis+"tAna");
         commonTV = findViewById(R.id.tv_result4);
-        outputMessage = "In total, your exercising goal is "+totalAnalysis;
+        outputMessage = "In total, your Exercising Goal is ["+totalAnalysis + "].";
         commonTV.setText(outputMessage);
 
         Log.d(TAG, DateTimeHelper.getHour()+"time");
         int timeNow = DateTimeHelper.getHour();
         if (timeNow>=8&&timeNow<=11) {
             recommend = FoodRecommender.getRecommendLunch(totalAnalysis,foods);
-            period = "For your next Lunch, the recommended foods are:";
+            period = "For next Lunch, the recommended foods are:";
         }
         else if (timeNow>11&&timeNow<=16) {
             recommend = FoodRecommender.getRecommendDinner(totalAnalysis,foods);
-            period = "For your next Dinner, the recommended foods are:";
+            period = "For next Dinner, the recommended foods are:";
         }
         else  {
             recommend =FoodRecommender.getRecommendBreakfast(totalAnalysis,foods);
-            period = "For your next Breakfast, the recommended foods are:";
+            period = "For next Breakfast, the recommended foods are:";
             }
         TextView foodRecommend = findViewById(R.id.tv_new_food_recommend);
         foodRecommend.setText(period);

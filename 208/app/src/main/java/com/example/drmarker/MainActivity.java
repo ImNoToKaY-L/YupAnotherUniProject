@@ -421,7 +421,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setPositiveButton("Confirm", null);
         builder.setCancelable(true);
-        View mview = LayoutInflater.from(this).inflate(R.layout.about_me, null);
+        View mview = LayoutInflater.from(this).inflate(R.layout.switch_about, null);
         TextView t = (TextView) mview.findViewById(R.id.version_name);
         String s = getVersionName(this);
         if (t != null) {
