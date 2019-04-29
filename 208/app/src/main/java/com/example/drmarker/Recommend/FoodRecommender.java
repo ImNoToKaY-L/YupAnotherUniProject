@@ -253,7 +253,8 @@ public class FoodRecommender {
                 multifactor = 1.9;
                 break;
         }
-        return multifactor*BMR;
+        DecimalFormat df = new DecimalFormat("0.000");
+        return Double.parseDouble(df.format(multifactor*BMR));
     }
 
     // ************* END OF BMR.
@@ -341,7 +342,7 @@ public class FoodRecommender {
     public static double BMI(double weight, double height) {
         double m_height = height / 100;
         DecimalFormat df = new DecimalFormat("0.000");
-        df.format(weight / (m_height * m_height));
+        //df.format(weight / (m_height * m_height));
         return Double.parseDouble(df.format(weight / (m_height * m_height)));
     }
 
