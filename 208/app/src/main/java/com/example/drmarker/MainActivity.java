@@ -7,9 +7,10 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -38,7 +40,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import io.realm.Realm;
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
 import lecho.lib.hellocharts.gesture.ZoomType;
@@ -51,10 +52,6 @@ import lecho.lib.hellocharts.model.ValueShape;
 import lecho.lib.hellocharts.view.LineChartView;
 
 
-/**
- * Created by gojuukaze on 16/8/17.
- * Email: i@ikaze.uu.me
- */
 public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private TextView showSteps;
     private View mLayout;
@@ -63,23 +60,34 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     EventBus bus;
     long numSteps;
     boolean isServiceRun;
+    boolean isGuest = false;
     boolean isforeground_model;
+    public static String uid;
     TextView btn;
     TextView about;
     LineChartView lineChart;
     List<PointValue> mPointValues = new ArrayList<>();
     List<AxisValue> mAxisXValues = new ArrayList<>();
+    BottomNavigationView navView;
 
     public void mybt(View v) {
         showPopupWindow(v);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Intent fromAbove = getIntent();
+        isGuest = fromAbove.getBooleanExtra("guest",false);
+        uid= fromAbove.getStringExtra("uid");
 //        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 //        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) toolbar.getLayoutParams();
 //        params.setMargins(0,getStatusBarHeight(), 0, 0);
@@ -107,17 +115,98 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
         Realm realm = Realm.getDefaultInstance();
         StepModel result = realm.where(StepModel.class)
-                .equalTo("date", DateTimeHelper.getToday())
+                .equalTo("date", DateTimeHelper.getToday()).equalTo("uid",uid)
                 .findFirst();
         numSteps = result == null ? 0 : result.getNumSteps();
         bus.post(true);
         updateShowSteps();
+        if (result!=null)
+        {
+            numSteps = result.getNumSteps();
+            showSteps.setText(numSteps+"");
+        }
+        else {
+            numSteps = 0;
+            showSteps.setText(0+"");
+        }
         realm.close();
 
         drawChart();
 
+        navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
     }
+
+
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    //Do nothing
+                    return true;
+
+                case R.id.navigation_monitor:
+                    //Do something
+                    if (!isGuest){
+                        Intent intent_monitor=new Intent(MainActivity.this, InputActivity.class);
+                        intent_monitor.putExtra("uid",uid);
+                        if (isGuest)intent_monitor.putExtra("guest",true);
+                        startActivity(intent_monitor);
+                        finish();
+                        return true;
+                    }else{
+                        Toast.makeText(MainActivity.this, "To use monitor, please login", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+
+
+                case R.id.navigation_forum:
+                    //Do something
+                    if (!isGuest){
+                        Intent intent_forum=new Intent(MainActivity.this, ForumActivity.class);
+                        intent_forum.putExtra("uid",getIntent().getStringExtra("uid"));
+                        startActivity(intent_forum);
+                        finish();
+                        return true;
+
+                    }else{
+                        Toast.makeText(MainActivity.this, "To use forum, please login", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+
+
+                case R.id.navigation_me:
+                    //Do something
+
+                    if (!isGuest){
+                        Intent intent_me=new Intent(MainActivity.this, MeActivity.class);
+                        intent_me.putExtra("uid",uid);
+                        if (isGuest)intent_me.putExtra("guest",true);
+                        startActivity(intent_me);
+                        finish();
+                        return true;
+                    }else {
+                        Intent intent = new Intent(MainActivity.this,RegisterActivity.class);
+                        intent.putExtra("guest",true);
+                        intent.putExtra("uid",uid);
+                        startActivity(intent);
+                        finish();
+                        return true;
+                    }
+
+
+            }
+            return false;
+        }
+    };
+
+
+
 
     public void drawChart() {
 
@@ -135,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             }
             else {
                 StepModel result = realm.where(StepModel.class)
-                        .equalTo("date", d)
+                        .equalTo("date", d).equalTo("uid",uid)
                         .findFirst();
                 if (result != null) {
                     Log.d("eee","r !null  ");
@@ -158,56 +247,54 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         for (i = 0; i < data.length; i++) {
             mPointValues.add(new PointValue(i, data[i]));
         }
-        initLineChart();//初始化
+        initLineChart();
 
     }
 
     private void initLineChart() {
         Line line = new Line(mPointValues).setColor(Color.parseColor("#FFFAFA"));  //折线的颜色（橙色）
         List<Line> lines = new ArrayList<>();
-        line.setShape(ValueShape.CIRCLE);//折线图上每个数据点的形状  这里是圆形 （有三种 ：ValueShape.SQUARE  ValueShape.CIRCLE  ValueShape.DIAMOND）
-        line.setCubic(false);//曲线是否平滑，即是曲线还是折线
-        line.setFilled(false);//是否填充曲线的面积
-        line.setHasLabels(true);//曲线的数据坐标是否加上备注
-//      line.setHasLabelsOnlyForSelected(true);//点击数据坐标提示数据（设置了这个line.setHasLabels(true);就无效）
-        line.setHasLines(true);//是否用线显示。如果为false 则没有曲线只有点显示
-        line.setHasPoints(true);//是否显示圆点 如果为false 则没有原点只有点显示（每个数据点都是个大的圆点）
+        line.setShape(ValueShape.CIRCLE);
+        line.setCubic(false);
+        line.setFilled(false);
+        line.setHasLabels(true);
+//      line.setHasLabelsOnlyForSelected(true);
+        line.setHasLines(true);
+        line.setHasPoints(true);
         lines.add(line);
         LineChartData data = new LineChartData();
         data.setLines(lines);
 
-        //坐标轴
-        Axis axisX = new Axis(); //X轴
-        axisX.setHasTiltedLabels(true);  //X坐标轴字体是斜的显示还是直的，true是斜的显示
-        axisX.setTextColor(Color.WHITE);  //设置字体颜色
-        //axisX.setName("date");  //表格名称
-        axisX.setTextSize(10);//设置字体大小
-        axisX.setMaxLabelChars(8); //最多几个X轴坐标，意思就是你的缩放让X轴上数据的个数7<=x<=mAxisXValues.length
-        axisX.setValues(mAxisXValues);  //填充X轴的坐标名称
-        data.setAxisXBottom(axisX); //x 轴在底部
-        //data.setAxisXTop(axisX);  //x 轴在顶部
-        axisX.setHasLines(true); //x 轴分割线
 
-        // Y轴是根据数据的大小自动设置Y轴上限(在下面我会给出固定Y轴数据个数的解决方案)
+        Axis axisX = new Axis();
+        axisX.setHasTiltedLabels(true);
+        axisX.setTextColor(Color.WHITE);
+        //axisX.setName("date");
+        axisX.setTextSize(10);
+        axisX.setMaxLabelChars(8);
+        axisX.setValues(mAxisXValues);
+        data.setAxisXBottom(axisX);
+        //data.setAxisXTop(axisX);
+        axisX.setHasLines(true);
+
+
         Axis axisY = new Axis();
 
-        axisY.setName("");//y轴标注
-        // axisY.setTextSize(10);//设置字体大小
+        axisY.setName("");
+        // axisY.setTextSize(10);
         axisY.setTextColor(Color.parseColor("#ffffff"));
-        data.setAxisYLeft(axisY);  //Y轴设置在左边
-        //data.setAxisYRight(axisY);  //y轴设置在右边
+        data.setAxisYLeft(axisY);
+        //data.setAxisYRight(axisY);
 
 
-        //设置行为属性，支持缩放、滑动以及平移
+
         lineChart.setInteractive(true);
         lineChart.setZoomType(ZoomType.HORIZONTAL);
-        lineChart.setMaxZoom((float) 2);//最大方法比例
+        lineChart.setMaxZoom((float) 2);
         lineChart.setContainerScrollEnabled(true, ContainerScrollType.HORIZONTAL);
         lineChart.setLineChartData(data);
         lineChart.setVisibility(View.VISIBLE);
-        /**注：下面的7，10只是代表一个数字去类比而已
-         * 当时是为了解决X轴固定数据个数。见（http://forum.xda-developers.com/tools/programming/library-hellocharts-charting-library-t2904456/page2）;
-         */
+
 //        Viewport v = new Viewport(lineChart.getMaximumViewport());
 //        v.left = 0;
 //        v.right= 7;
@@ -219,6 +306,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     public void updateSteps(Long num) {
         numSteps = num;
         updateShowSteps();
+
     }
 
     public void updateShowSteps() {
@@ -232,14 +320,14 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         else if (numSteps >= 100000)
             showSteps.setTextSize(55);
         else if (numSteps >= 10000) {
-            notifyIsUpToStandard( "太棒了，你今天超过1万步了");
+            notifyIsUpToStandard( "Excellent, More than 10k steps today!");
             showSteps.setTextSize(60);
         }
 
         else {
             showSteps.setTextSize(66);
-            if (numSteps>=5000) notifyIsUpToStandard("加油，你已经再走走你就达到1万步了");
-            else notifyIsUpToStandard("你今天都没怎么走路，快出门运动吧");
+            if (numSteps>=5000) notifyIsUpToStandard("Come on，More closer to 10k steps");
+            else notifyIsUpToStandard("You haven't walked today. Go out and exercise!");
         }
         showSteps.setText(text);
 
@@ -257,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     private void showPopupWindow(View view) {
 
-        // 一个自定义的布局，作为显示的内容
+
         MyApplication app = (MyApplication) getApplication();
         isServiceRun=app.getServiceRun();
 
@@ -294,17 +382,15 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 //                Log.d("mengdd", "onTouch : ");
 //
 //                return false;
-//                // 这里如果返回true的话，touch事件将被拦截
-//                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+//
 //            }
 //        });
 
-        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
-        // 我觉得这里是API的一个bug
+
 //        popupWindow.setBackgroundDrawable(getResources().getDrawable(
 //                R.drawable.selectmenu_bg_downward));
 
-        // 设置好参数之后再show
+
         popupWindow.showAsDropDown(view);
 
     }
@@ -331,11 +417,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     public void showAbout() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("关于");
+        builder.setTitle("About");
         builder.setIcon(R.mipmap.ic_launcher);
-        builder.setPositiveButton("确定", null);
+        builder.setPositiveButton("Confirm", null);
         builder.setCancelable(true);
-        View mview = LayoutInflater.from(this).inflate(R.layout.about_me, null);
+        View mview = LayoutInflater.from(this).inflate(R.layout.switch_about, null);
         TextView t = (TextView) mview.findViewById(R.id.version_name);
         String s = getVersionName(this);
         if (t != null) {
@@ -355,6 +441,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             bus.unregister(this);
     }
 
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
@@ -363,6 +450,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             editor.putBoolean("switch_on", isChecked);
             editor.apply();
             Intent intent = new Intent(this, StepService.class);
+            intent.putExtra("uid",uid);
 
             if (isChecked) {
                 intent.putExtra("isActivity", true);
@@ -378,7 +466,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                     bus.unregister(this);
                 stopService(intent);
                 Realm realm = Realm.getDefaultInstance();
-                realm.executeTransaction(new StepTransaction(DateTimeHelper.getToday(), numSteps));
+                realm.executeTransaction(new StepTransaction(DateTimeHelper.getToday(), numSteps,uid));
                 realm.close();
             }
         } else if (buttonView.getId() == R.id.foreground_model) {
@@ -387,6 +475,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             editor.apply();
 
             Intent intent = new Intent(this, StepService.class);
+            intent.putExtra("uid",uid);
             if (isChecked) {
                 editor.putBoolean("switch_on", isChecked);
                 editor.apply();
@@ -411,7 +500,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (isServiceRun != temp) {
             if (!isServiceRun) {
-                Toast.makeText(getApplicationContext(), "计步服务意外终止,请把应用加入白名单",
+                Toast.makeText(getApplicationContext(), "The pedestrian service terminated unexpectedly. Please add the application to the whitelist",
                         Toast.LENGTH_LONG).show();
             }
             editor.putBoolean("switch_on", isServiceRun);
@@ -439,7 +528,7 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (this.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                 if (this.shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                    Snackbar.make(mLayout, "申请权限",
+                    Snackbar.make(mLayout, "Apply authority",
                             Snackbar.LENGTH_INDEFINITE)
                             .setAction("OK", new View.OnClickListener() {
                                 @Override

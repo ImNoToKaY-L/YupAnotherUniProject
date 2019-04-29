@@ -8,10 +8,6 @@ import android.content.SharedPreferences;
 import com.example.drmarker.Step.StepService;
 
 
-/**
- * Created by gojuukaze on 16/8/20.
- * Email: i@ikaze.uu.me
- */
 public class BootBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {

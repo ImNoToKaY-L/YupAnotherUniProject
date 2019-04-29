@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bk_me"
+    tools:context=".MeActivity">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/me_title"
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="#00ACC1"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Me"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp" />
+
+        </RelativeLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="394dp"
+            android:layout_height="131dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#99F2F2F2">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/detail_page_userLogo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/user_profile"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="1dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.08"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.514" />
+
+            <TextView
+                android:id="@+id/me_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="#B3F2F2F2"
+                android:singleLine="false"
+                android:text=""
+                android:textColor="#1E88E5"
+                android:textSize="36dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.859"
+                app:layout_constraintStart_toEndOf="@+id/detail_page_userLogo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.484"
+                tools:layout_conversion_wrapHeight="186"
+                tools:layout_conversion_wrapWidth="620" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/relativeLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp">
+
+
+            <Button
+                android:id="@+id/me_editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="#99F2F2F2"
+                android:gravity="center"
+                android:text="Edit My Name"
+                android:textColor="#1E88E5"
+                android:textSize="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
+
+            <Button
+                android:id="@+id/me_editPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="#99F2F2F2"
+                android:gravity="center"
+                android:text="Change My Password"
+                android:textColor="#1E88E5"
+                android:textSize="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/me_editName"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
+
+            <Button
+                android:id="@+id/bt_me_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="#99F2F2F2"
+                android:gravity="center"
+                android:text="Logout"
+                android:textColor="#1E88E5"
+                android:textSize="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/me_editPassword"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
+
+            <Button
+                android:id="@+id/bt_me_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_title"
+                android:backgroundTint="#99F2F2F2"
+                android:gravity="center"
+                android:text="About"
+                android:textColor="#1E88E5"
+                android:textSize="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_me_logout"
+                tools:layout_conversion_wrapHeight="131"
+                tools:layout_conversion_wrapWidth="1028" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAlignment="center">
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:menu="@menu/bottom_nav_menu" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</FrameLayout>

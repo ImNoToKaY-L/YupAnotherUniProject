@@ -1,12 +1,10 @@
 package com.example.drmarker.Step;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by gojuukaze on 16/8/19.
- * Email: i@ikaze.uu.me
- */
+
 public class DateTimeHelper {
 
     public static Date getToday()
@@ -33,6 +31,17 @@ public class DateTimeHelper {
             days[i]=add(d,i-5);
         }
         return days;
+    }
+
+    public static int getHour(){
+        long time = System.currentTimeMillis();
+        final Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(time);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        return hour;
+
+
+
     }
 
     public static String[] get6days(boolean returnString)

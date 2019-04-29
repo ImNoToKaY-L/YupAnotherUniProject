@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditNameActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" >
+
+    <Button
+        android:id="@+id/bt_back"
+        android:layout_width="95dp"
+        android:layout_height="55dp"
+        android:background="?attr/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:text="Back" />
+    </android.support.v7.widget.Toolbar>
+
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/chart_bk" />
+
+    <EditText
+        android:id="@+id/et_edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your New Name Here"
+        android:inputType="text" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/chart_bk" />
+
+    <Button
+        android:id="@+id/bt_edit"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:background="?attr/colorPrimary"
+        android:text="Confirm"
+        android:textColor="@color/colorWhite" />
+
+</LinearLayout>

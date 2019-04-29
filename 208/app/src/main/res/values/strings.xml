@@ -2,4 +2,18 @@
     <string name="app_name">DrMarker</string>
     <string name="setting">&#x3434;</string>
 
+    <string name="title_home">Home</string>
+    <string name="title_monitor">Monitor</string>
+    <string name="title_forum">Forum</string>
+    <string name="title_me">Me</string>
+    <string name="sport_None">Select a category</string>
+    <string name="sport_Sedentary">less than 1 day p/w</string>
+    <string name="sport_LightlyActive">1-3 days p/w</string>
+    <string name="sport_ModeratelyActive">3-5 days p/w</string>
+    <string name="sport_VeryActive">more than 5 days p/w</string>
+    <string name="sport_ExtremelyActive">near to professional</string>
+    <string name="gender_None">Select your gender</string>
+    <string name="age_none">Select your birth year</string>
+    <string name="question_none">Select a security question</string>
+
 </resources>

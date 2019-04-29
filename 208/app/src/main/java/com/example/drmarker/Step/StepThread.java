@@ -7,6 +7,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
+import com.example.drmarker.Event.StepEvent;
 import com.example.drmarker.stepModel.StepModel;
 import com.example.drmarker.stepModel.StepTransaction;
 import com.example.drmarker.stepModel.SuccessTransaction;
@@ -16,19 +17,18 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.Date;
 
-
 import io.realm.Realm;
 import io.realm.RealmAsyncTask;
-
-
 /**
- * Created by gojuukaze on 16/8/22.
- * Email: i@ikaze.uu.me
+ * Implemented with regard to @gojuukaze
+ * github: https://github.com/gojuukaze/healthgo
  */
+
 public class StepThread extends Thread implements  SensorEventListener, StepListener {
 
     private SensorManager sensorManager;
     Sensor accel;
+    private String uid;
     private StepDetector stepDetector;
     private long numStpes = 0;
     private long lastStpes = 0;
@@ -39,8 +39,9 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
     private Date today;
 
 
-    public StepThread(Context context) {
+    public StepThread(Context context,String uid) {
         this.context = context;
+        this.uid = uid;
         initStepDetector();
     }
 
@@ -50,6 +51,7 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
         if (!isRegiter) {
             sensorManager.registerListener(this, accel, SensorManager.SENSOR_DELAY_NORMAL);
             isRegiter = true;
+            Log.d("IDS:TH",uid);
         }
     }
 
@@ -79,9 +81,9 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
         accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         Realm realm = Realm.getDefaultInstance();
         StepModel result = realm.where(StepModel.class)
-                .equalTo("date", today)
+                .equalTo("date", today).equalTo("uid",uid)
                 .findFirst();
-
+        Log.d("DEBUG", today+" "+uid);
         lastStpes = result == null ? 0 : result.getNumSteps();
         step(lastStpes);
         realm.close();
@@ -94,7 +96,7 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
         if (f)
             EventBus.getDefault().post(numStpes);
         else
-            save(DateTimeHelper.getToday(),numStpes);
+            save(DateTimeHelper.getToday(),numStpes,uid);
         isActivity = f;
     }
 
@@ -117,26 +119,28 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
     public void step(long num) {
         if (!today.equals(DateTimeHelper.getToday()))
         {
-            save(today,numStpes);
+            save(today,numStpes,uid);
             numStpes=0;
             lastStpes=0;
             today=DateTimeHelper.getToday();
         }
         numStpes += num;
         Log.d("step", "step(num) " + numStpes);
+        EventBus.getDefault().post(new StepEvent(numStpes));
+
         EventBus.getDefault().post(numStpes);
         if (numStpes - lastStpes > 10) {
             lastStpes = numStpes;
-            save(today,numStpes);
+            save(today,numStpes,uid);
         }
 
     }
 
-    public void save(Date date,long num)
+    public void save(Date date,long num,String uid)
     {
         Realm realm = Realm.getDefaultInstance();
         realmAsyncTask = realm.executeTransactionAsync(
-                new StepTransaction(date, num),
+                new StepTransaction(date, num, uid),
                 new SuccessTransaction(realmAsyncTask),
                 new Realm.Transaction.OnError() {
                     @Override
@@ -146,6 +150,7 @@ public class StepThread extends Thread implements  SensorEventListener, StepList
                     }
                 }
         );
+
         realm.close();
     }
 

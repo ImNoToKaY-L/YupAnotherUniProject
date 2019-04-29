@@ -14,49 +14,50 @@
     android:id="@+id/mylayout"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_margin="10dp"
-        android:layout_gravity="center"
 
-        android:layout_width="260dp"
-        android:layout_height="260dp"
-        android:background="@drawable/step_bk">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center"
+        android:layout_margin="10dp">
+
         <TextView
 
+            android:id="@+id/todayStep"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-
-            android:gravity="center_vertical"
-            android:id="@+id/todayStep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="今日步数"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"/>
-        <TextView
             android:gravity="center"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/todayStep"
+            android:text="Today:"
+            android:textColor="@android:color/white"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/showSteps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello"
+            android:layout_below="@+id/todayStep"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dp"
+            android:gravity="center"
             android:shadowColor="@android:color/black"
             android:shadowRadius="1.5"
-            android:textSize="40sp"
-            android:id="@+id/showSteps"
-            android:layout_margin="16dp"
+            android:text="Hello"
             android:textColor="@android:color/white"
-            />
+            android:textSize="40sp" />
 
     </RelativeLayout>
 
-
     <lecho.lib.hellocharts.view.LineChartView
-        android:layout_marginTop="16dp"
         android:id="@+id/line_chart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/chart_bk"/>
+        android:layout_height="327dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:background="@drawable/chart_bk" />
 
 
 
